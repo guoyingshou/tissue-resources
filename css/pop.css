@@ -1,0 +1,28 @@
+#planForm {
+    position: fixed;
+    background: #ccc;
+    border: 1px solid red;
+    width: 650px;
+    height: 260px;
+    top: 60px;
+    z-index: 100;
+}
+
+#dia, #topicDia, #postDia {
+    position: fixed;
+    background: #ccc;
+    border: 1px solid red;
+    width: 650px;
+    height: 460px;
+    top: 60px;
+    z-index: 100;
+}
+
+#mask {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background: #fff;
+    z-index: 99;
+}
+

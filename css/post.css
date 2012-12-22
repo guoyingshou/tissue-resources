@@ -1,0 +1,34 @@
+a {
+    text-decoration: none;
+}
+
+h1 a {
+    display: block;
+}
+
+div.article {
+    margin-bottom: 36px;
+}
+
+ul.messages {
+    margin-top: 36px;
+    margin-bottom: 36px;
+}
+
+li.messageItem {
+    margin-top: 24px;
+    border-top: 1px dotted #ddd;
+}
+
+li.messageItem ul {
+    padding-left: 16px;
+}
+
+div.message-actions {
+    margin-top: 24px;
+    border-top: 1px solid black;
+}
+
+#contentInner h2 {
+    border-top: 2px solid black;
+}

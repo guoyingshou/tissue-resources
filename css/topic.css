@@ -1,0 +1,10 @@
+/**
+ * css rules for topic content.
+ */
+.selected {
+    border: 1px solid red;
+}
+
+.pagedPosts {
+    min-height: 200px;
+}
