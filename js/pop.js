@@ -29,8 +29,20 @@
         });
     }
 
+    function updateTopic(url, data) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            headers: {"Accept": "text/html"},
+            data: data 
+        }).done(function(res) {
+            
+            result.html(res);
+            clean();
+        });
+    }
+
     function savePost(url, data) {
-        //var content = CKEDITOR.instances.editor.getData();
         $.ajax({
             type: "POST",
             url: url,
@@ -49,6 +61,86 @@
         dia = null;
     }
  
+    $.fn.newTopicDialog = function() {
+        mask();
+
+        dia = $('#topicDia').clone();
+
+        var w = ($(window).width() - 650) /2;
+        dia.css('left', w);
+        
+        $('body').prepend(dia);
+        CKEDITOR.replace('editor');
+        dia.show();
+
+        $('a.cancel', dia).on('click', function() {
+            clean();
+        });
+
+        $('form', dia).submit(function(e) {
+        });
+
+        return this;
+
+    }
+
+    $.fn.editTopicDialog = function(action) {
+        mask();
+
+        dia = $('#topicDia').clone();
+        result = this;
+
+        var w = ($(window).width() - 650) /2;
+        dia.css('left', w);
+        $('textarea', dia).val($('.topic-content', this).html());
+        $('#tags', dia).val($('.topic-tags', this).text());
+        
+        $('body').prepend(dia);
+        CKEDITOR.replace('editor');
+        dia.show();
+
+        $('a.cancel', dia).on('click', function() {
+            clean();
+        });
+
+        $('form', dia).submit(function(e) {
+            e.preventDefault();
+            var data = {
+                content: CKEDITOR.instances.editor.getData(),
+                tags: $('#tags', dia).val()
+            };
+            //console.log(data);
+            updateTopic(action, data)
+        });
+
+        return this;
+
+    }
+
+    $.fn.newPlanDialog = function() {
+        mask();
+
+        dia = $('#planDia').clone();
+        //result = this;
+
+        var w = ($(window).width() - 650) /2;
+        dia.css('left', w);
+        
+        $('body').prepend(dia);
+        dia.show();
+
+        $('a.cancel', dia).on('click', function() {
+            clean();
+        });
+
+        $('form', dia).submit(function(e) {
+
+        });
+
+        return this;
+    }
+
+
     $.fn.oneItemDialog = function(action) {
         mask();
 
@@ -77,11 +169,11 @@
         return this;
     }
 
-    $.fn.newPostDialog = function(action) {
+    $.fn.newPostDialog = function() {
         mask();
 
         dia = $('#postDia').clone();
-        result = this;
+        //result = this;
 
         var w = ($(window).width() - 650) /2;
         dia.css('left', w);
@@ -95,7 +187,6 @@
         });
 
         $('form', dia).submit(function(e) {
-            $(this).attr("action", action);
         });
 
         return this;
@@ -141,35 +232,6 @@
             savePost(action, data);
         });
 
-        return this;
-    }
-
-    $.fn.planFormDialog = function(action) {
-        mask();
-
-        url = action;
-
-        dia = $('#planFormDia').clone();
-        result = this;
-        if(!this.is('ul')) {
-            $('textarea', dia).html(this.html());
-        }
-
-        var w = ($(window).width() - 650) /2;
-        dia.css('left', w);
-        
-        $('body').prepend(dia);
-        CKEDITOR.replace('editor');
-        dia.show();
-
-        $('a.cancel', dia).on('click', function() {
-            clean();
-        });
-
-        $('form', dia).submit(function(e) {
-            e.preventDefault();
-            saveOneItem();
-        });
         return this;
     }
 
