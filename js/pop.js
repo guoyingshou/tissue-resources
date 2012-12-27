@@ -70,7 +70,10 @@
         dia.css('left', w);
         
         $('body').prepend(dia);
-        CKEDITOR.replace('editor');
+        CKEDITOR.replace('editor', {
+            filebrowserUploadUrl: '/media/images',
+            filebrowserBrowseUrl: '/media/browseImages'
+        });
         dia.show();
 
         $('a.cancel', dia).on('click', function() {
