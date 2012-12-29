@@ -1,4 +1,4 @@
-#planDia {
+#planForm {
     position: fixed;
     background: #ccc;
     border: 1px solid red;
@@ -8,7 +8,7 @@
     z-index: 100;
 }
 
-#dia, #topicDia, #postDia {
+#topicForm, #topicEditForm, #postForm, #postEditForm, #oneItemForm {
     position: fixed;
     background: #ccc;
     border: 1px solid red;

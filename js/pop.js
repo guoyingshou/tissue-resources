@@ -1,6 +1,4 @@
 (function($) {
-    var result;
-    var dia;
 
     function mask() {
         var mask = $('<div id="mask"></div>');
@@ -11,60 +9,10 @@
         return this;
     }
 
-    function saveOneItem(url) {
-        var content = CKEDITOR.instances.editor.getData();
-        $.ajax({
-            type: "POST",
-            url: url,
-            headers: {"Accept": "text/html"},
-            data: {content: content}
-        }).done(function(res) {
-            if(result.is("ul")) {
-                result.append(res);
-            }
-            else {
-                result.html(res);
-            }
-            clean();
-        });
-    }
-
-    function updateTopic(url, data) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            headers: {"Accept": "text/html"},
-            data: data 
-        }).done(function(res) {
-            
-            result.html(res);
-            clean();
-        });
-    }
-
-    function savePost(url, data) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            headers: {"Accept": "text/html"},
-            data: data 
-        }).done(function(res) {
-            result.html(res);
-            clean();
-        });
-    }
-
-    function clean() {
-        dia.remove();
-        $('#mask').remove();
-        result = null;
-        dia = null;
-    }
- 
     $.fn.newTopicDialog = function() {
         mask();
 
-        dia = $('#topicDia').clone();
+        var dia = $('#topicForm').clone();
 
         var w = ($(window).width() - 650) /2;
         dia.css('left', w);
@@ -77,21 +25,23 @@
         dia.show();
 
         $('a.cancel', dia).on('click', function() {
-            clean();
+            dia.remove();
+            $('#mask').remove();
         });
 
         $('form', dia).submit(function(e) {
+            //todo: validate data
         });
 
         return this;
 
     }
 
-    $.fn.editTopicDialog = function(action) {
+    $.fn.editTopicDialog = function(url) {
         mask();
 
-        dia = $('#topicDia').clone();
-        result = this;
+        var dia = $('#topicEditForm').clone();
+        var needUpdate = this;
 
         var w = ($(window).width() - 650) /2;
         dia.css('left', w);
@@ -103,17 +53,28 @@
         dia.show();
 
         $('a.cancel', dia).on('click', function() {
-            clean();
+            dia.remove();
+            $('#mask').remove();
         });
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
+
             var data = {
                 content: CKEDITOR.instances.editor.getData(),
                 tags: $('#tags', dia).val()
             };
-            //console.log(data);
-            updateTopic(action, data)
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {"Accept": "text/html"},
+                data: data 
+            }).done(function(res) {
+                needUpdate.html(res);
+                dia.remove();
+                $('#mask').remove();
+            });
         });
 
         return this;
@@ -123,8 +84,7 @@
     $.fn.newPlanDialog = function() {
         mask();
 
-        dia = $('#planDia').clone();
-        //result = this;
+        var dia = $('#planForm').clone();
 
         var w = ($(window).width() - 650) /2;
         dia.css('left', w);
@@ -133,7 +93,8 @@
         dia.show();
 
         $('a.cancel', dia).on('click', function() {
-            clean();
+            dia.remove();
+            $('#mask').remove();
         });
 
         $('form', dia).submit(function(e) {
@@ -144,11 +105,13 @@
     }
 
 
-    $.fn.oneItemDialog = function(action) {
+    $.fn.oneItemDialog = function(url) {
         mask();
 
-        dia = $('#dia').clone();
-        result = this;
+        var dia = $('#oneItemForm').clone();
+        console.log(dia);
+
+        var needUpdate = this;
         if(!this.is('ul')) {
             $('textarea', dia).html(this.html());
         }
@@ -161,22 +124,36 @@
         dia.show();
 
         $('a.cancel', dia).on('click', function() {
-            clean();
+            dia.remove();
+            $('#mask').remove();
         });
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
-            saveOneItem(action);
+            var content = CKEDITOR.instances.editor.getData();
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {"Accept": "text/html"},
+                data: {content: content}
+            }).done(function(res) {
+                if(needUpdate.is("ul")) {
+                    needUpdate.append(res);
+                }
+                else {
+                    needUpdate.html(res);
+                }
+                dia.remove();
+                $('#mask').remove();
+            });
         });
-
         return this;
     }
 
     $.fn.newPostDialog = function() {
         mask();
 
-        dia = $('#postDia').clone();
-        //result = this;
+        var dia = $('#postForm').clone();
 
         var w = ($(window).width() - 650) /2;
         dia.css('left', w);
@@ -186,7 +163,8 @@
         dia.show();
 
         $('a.cancel', dia).on('click', function() {
-            clean();
+            dia.remove();
+            $('#mask').remove();
         });
 
         $('form', dia).submit(function(e) {
@@ -195,44 +173,49 @@
         return this;
     }
 
-    $.fn.editPostDialog = function(action) {
+    $.fn.editPostDialog = function(options) {
         mask();
 
-        //the selected jquery object is the one to place the updated content
-        result = this;
+        var needUpdate = this;
+        var dia = $('#postEditForm').clone();
 
-        //construct the dialog object from template
-        dia = $('#postDia').clone();
-
-        //preset data for editing
-        var title = $('.article-title', this).html();
-        var content = $('.article-content', this).html();
-        $('fieldset', dia).first().remove();
+        var title = $('.post-title', this).html();
+        var content = $('.post-content', this).html();
 
         $('#title', dia).val(title);
         $('#editor', dia).val(content);
 
-        //style the dialog. missing styles come from css with element id of "#postDia" 
         var w = ($(window).width() - 650) /2;
         dia.css('left', w);
         
-        //display the dialog
         $('body').prepend(dia);
         CKEDITOR.replace('editor');
         dia.show();
 
         $('a.cancel', dia).on('click', function() {
-            clean();
+            dia.remove();
+            $('#mask').remove();
         });
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
             
             var data = {
+                type: options.type,
                 title: $('#title', dia).val(), 
                 content: CKEDITOR.instances.editor.getData()
             };
-            savePost(action, data);
+
+            $.ajax({
+                type: "POST",
+                url: options.url,
+                headers: {"Accept": "text/html"},
+                data: data 
+            }).done(function(res) {
+                needUpdate.html(res);
+                dia.remove();
+                $('#mask').remove();
+            });
         });
 
         return this;
