@@ -1,12 +1,8 @@
-a {
-    text-decoration: none;
-}
-
 h1 a {
     display: block;
 }
 
-div.article {
+div.post {
     margin-bottom: 36px;
 }
 
@@ -15,20 +11,43 @@ ul.messages {
     margin-bottom: 36px;
 }
 
-li.messageItem {
+li.message-item {
     margin-top: 24px;
     border-top: 1px dotted #ddd;
 }
 
-li.messageItem ul {
+li.message-item ul {
     padding-left: 16px;
 }
 
-div.message-actions {
-    margin-top: 24px;
-    border-top: 1px solid black;
+/**
+ * Question 
+ */
+div.question {
+    border-bottom: 1px solid #ddd;
 }
 
-#contentInner h2 {
-    border-top: 2px solid black;
+ul.question-comments {
+    padding-left: 2em;
+    margin-bottom: 36px;
+    border-bottom: 1px solid black;
 }
+
+ul.question-comments li {
+    margin-top: 12px;
+}
+
+ul.answers {
+    margin-bottom: 24px;
+    border-bottom: 1px solid black;
+}
+
+ul.answers li.answer-item {
+    margin-top: 12px;
+    border-bottom: 1px dotted #ccc;
+}
+
+ul.answers li.answer-item ul {
+   padding-left: 2em; 
+}
+

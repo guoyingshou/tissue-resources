@@ -66,9 +66,12 @@
         $('form', dia).submit(function(e) {
             e.preventDefault();
 
+            var content = CKEDITOR.instances.editor.getData();
+            var tags = $('#tags', dia).val();
+
             var data = {
-                content: CKEDITOR.instances.editor.getData(),
-                tags: $('#tags', dia).val()
+                content: content,
+                tags: tags
             };
 
             $.ajax({
@@ -77,7 +80,8 @@
                 headers: {"Accept": "text/html"},
                 data: data 
             }).done(function(res) {
-                needUpdate.html(res);
+                needUpdate.children(':nth-child(1)').html(content);
+                needUpdate.children(':nth-child(2)').html(tags);
                 dia.remove();
                 $('#mask').remove();
             });
@@ -123,7 +127,9 @@
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
+
             var content = CKEDITOR.instances.editor.getData();
+
             $.ajax({
                 type: "POST",
                 url: url,
@@ -134,7 +140,7 @@
                     needUpdate.append(res);
                 }
                 else {
-                    needUpdate.html(res);
+                    needUpdate.html(content);
                 }
                 dia.remove();
                 $('#mask').remove();
@@ -171,7 +177,7 @@
         positionDialog(dia);
 
         $('#title', dia).val(this.children(':nth-child(1)').text());
-        $('#editor', dia).val(this.children(':nth-child(2)').html());
+        $('#editor', dia).val(this.children(':nth-child(3)').html());
 
         CKEDITOR.replace('editor');
 
@@ -182,10 +188,13 @@
         $('form', dia).submit(function(e) {
             e.preventDefault();
             
+            var title = $('#title', dia).val();
+            var content = CKEDITOR.instances.editor.getData();
+
             var data = {
                 type: options.type,
-                title: $('#title', dia).val(), 
-                content: CKEDITOR.instances.editor.getData()
+                title: title,
+                content: content
             };
 
             $.ajax({
@@ -194,7 +203,8 @@
                 headers: {"Accept": "text/html"},
                 data: data 
             }).done(function(res) {
-                needUpdate.html(res);
+                needUpdate.children(':nth-child(1)').html(title);
+                needUpdate.children(':nth-child(3)').html(content);
                 dia.remove();
                 $('#mask').remove();
             });
