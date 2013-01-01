@@ -9,6 +9,13 @@
         return this;
     }
 
+    function confirm() {
+        var dia = $('#confirmForm');
+        positionDialog(dia);
+        dia.show();
+        return dia;
+    }
+
     function positionDialog(dialog) {
         dialog.css('left', ($(window).width() - 650)/2);
         $('body').prepend(dialog);
@@ -106,49 +113,6 @@
         return this;
     }
 
-
-    $.fn.oneItemDialog = function(url) {
-        mask();
-
-        var needUpdate = this;
-
-        var dia = $('#oneItemForm').clone();
-        positionDialog(dia);
-
-        if(!this.is('ul')) {
-            $('textarea', dia).html(this.html());
-        }
-
-        CKEDITOR.replace('editor');
-
-        dia.show();
-
-        addCancelListener(dia);
-
-        $('form', dia).submit(function(e) {
-            e.preventDefault();
-
-            var content = CKEDITOR.instances.editor.getData();
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                headers: {"Accept": "text/html"},
-                data: {content: content}
-            }).done(function(res) {
-                if(needUpdate.is("ul")) {
-                    needUpdate.append(res);
-                }
-                else {
-                    needUpdate.html(content);
-                }
-                dia.remove();
-                $('#mask').remove();
-            });
-        });
-        return this;
-    }
-
     $.fn.newPostDialog = function() {
         mask();
 
@@ -211,6 +175,76 @@
         });
 
         return this;
+    }
+
+    $.fn.oneItemDialog = function(url) {
+        mask();
+
+        var needUpdate = this;
+
+        var dia = $('#oneItemForm').clone();
+        positionDialog(dia);
+
+        if(!this.is('ul')) {
+            $('textarea', dia).html(this.html());
+        }
+
+        CKEDITOR.replace('editor');
+
+        dia.show();
+
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            e.preventDefault();
+
+            var content = CKEDITOR.instances.editor.getData();
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                headers: {"Accept": "text/html"},
+                data: {content: content}
+            }).done(function(res) {
+                if(needUpdate.is("ul")) {
+                    needUpdate.append(res);
+                }
+                else {
+                    needUpdate.html(content);
+                }
+                dia.remove();
+                $('#mask').remove();
+            });
+        });
+        return this;
+    }
+
+    $.fn.delDialog = function(url) {
+
+        mask();
+
+        var target = this;
+        var dia = confirm();
+        $('input[name="ok"]', dia).one('click', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: url,
+            }).done(function() {
+                target.closest('li').remove();
+                dia.hide();
+                $('#mask').remove();
+            });
+        });
+
+        $('input[name="cancel"]', dia).one('click', function(e) {
+            e.preventDefault();
+            console.log(url);
+
+            dia.hide();
+            $('#mask').remove();
+        });
     }
 
 })(jQuery);

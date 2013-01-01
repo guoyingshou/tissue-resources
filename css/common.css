@@ -58,10 +58,10 @@ table {
 
 body {
     background: #f7f7f7;
-    color: #333;
-    font: '宋体', 'Arial', 'Helvetica', 'sans-serif';
+    color: #000;
+    font-family: 宋体, Arial, Helvetica, sans-serif;
     text-align: left;
-	line-height: 1;
+	line-height: 130%;
 }
 
 a {

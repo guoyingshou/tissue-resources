@@ -1,28 +1,35 @@
-#planForm {
-    position: fixed;
-    background: #ccc;
-    border: 1px solid red;
-    width: 650px;
-    height: 260px;
-    top: 60px;
-    z-index: 100;
-}
-
-#topicForm, #topicEditForm, #postForm, #postEditForm, #oneItemForm {
-    position: fixed;
-    background: #ccc;
-    border: 1px solid red;
-    width: 650px;
-    height: 460px;
-    top: 60px;
-    z-index: 100;
-}
-
 #mask {
     position: fixed;
     left: 0px;
     top: 0px;
     background: #fff;
     z-index: 99;
+}
+
+#topicForm, #topicEditForm, #planForm, #postForm, #postEditForm, #oneItemForm, #confirmForm {
+    position: fixed;
+    background: #ccc;
+    border: 1px solid red;
+    /**
+    width: 650px;
+    height: 460px;
+    */
+    top: 60px;
+    z-index: 100;
+}
+
+#topicForm, #topicEditForm, #postForm, #postEditForm, #oneItemForm {
+    width: 650px;
+    height: 460px;
+}
+
+#planForm, #confirmForm {
+    width: 650px;
+    height: 180px;
+}
+
+#confirmForm div {
+    width: 320px;
+    margin: 2em auto;
 }
 
