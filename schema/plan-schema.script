@@ -1,0 +1,83 @@
+connect remote:www.tissue.com/test1 guo guo;
+
+drop class User;
+create class User extends OGraphVertex;
+
+drop class EdgeInvite;
+create class EdgeInvite extends OGraphEdge;
+
+drop class EdgeFriend;
+create class EdgeFriend extends OGraphEdge;
+
+#drop class Event;
+#create class Event extends OGraphVertex;
+
+drop class Topic;
+create class Topic extends OGraphVertex;
+
+drop class Plan;
+create class Plan extends OGraphVertex;
+
+drop class Post;
+create class Post extends OGraphVertex;
+
+drop class QuestionComment;
+create class QuestionComment extends OGraphVertex;
+
+drop class Answer;
+create class Answer extends OGraphVertex;
+
+drop class AnswerComment;
+create class AnswerComment extends OGraphVertex;
+
+drop class PostMessage;
+create class PostMessage extends OGraphVertex;
+
+drop class PostMessageComment;
+create class PostMessageComment extends OGraphVertex;
+
+drop class EdgeHost;
+create class EdgeHost extends OGraphEdge;
+
+drop class EdgeJoin;
+create class EdgeJoin extends OGraphEdge;
+
+drop class EdgeCreate;
+create class EdgeCreate extends OGraphEdge;
+
+drop class EdgePublish;
+create class EdgePublish extends OGraphEdge;
+
+create property Topic.title string;
+create property Topic.content string;
+create property Topic.tags embeddedset string;
+create property Topic.plans linkset Plan;
+
+create property Plan.topic link Topic;
+
+create property Post.type string;
+create property Post.title string;
+create property Post.content string;
+create property Post.plan link Plan;
+create property Post.messages linkset PostMessage;
+create property Post.comments linkset QuestionComment;
+create property Post.answers linkset Answer;
+
+create property PostMessage.post link Post;
+create property PostMessage.comments linkset PostMessageComment;
+
+create property PostMessageComment.postMessage link PostMessage;
+
+create property QuestionComment.question link Post;
+
+create property Answer.comments linkset AnswerComment;
+create property Answer.question link Post;
+
+create property AnswerComment.answer link answer;
+
+#create property Event.actor link User;
+#create property Event.type string;
+#create property Event.createTime datetime;
+#create property Event.notifies linkset User;
+
+
