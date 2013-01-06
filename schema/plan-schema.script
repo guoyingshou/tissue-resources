@@ -1,52 +1,44 @@
 connect remote:www.tissue.com/test1 guo guo;
 
 drop class User;
-create class User extends OGraphVertex;
-
-drop class EdgeInvite;
-create class EdgeInvite extends OGraphEdge;
-
-drop class EdgeFriend;
-create class EdgeFriend extends OGraphEdge;
-
-#drop class Event;
-#create class Event extends OGraphVertex;
-
 drop class Topic;
-create class Topic extends OGraphVertex;
-
 drop class Plan;
-create class Plan extends OGraphVertex;
-
 drop class Post;
-create class Post extends OGraphVertex;
-
 drop class QuestionComment;
-create class QuestionComment extends OGraphVertex;
-
 drop class Answer;
-create class Answer extends OGraphVertex;
-
 drop class AnswerComment;
-create class AnswerComment extends OGraphVertex;
-
 drop class PostMessage;
-create class PostMessage extends OGraphVertex;
-
 drop class PostMessageComment;
+
+create class User extends OGraphVertex;
+create class Topic extends OGraphVertex;
+create class Plan extends OGraphVertex;
+create class Post extends OGraphVertex;
+create class QuestionComment extends OGraphVertex;
+create class Answer extends OGraphVertex;
+create class AnswerComment extends OGraphVertex;
+create class PostMessage extends OGraphVertex;
 create class PostMessageComment extends OGraphVertex;
 
-drop class EdgeHost;
-create class EdgeHost extends OGraphEdge;
-
-drop class EdgeJoin;
-create class EdgeJoin extends OGraphEdge;
-
-drop class EdgeCreate;
-create class EdgeCreate extends OGraphEdge;
-
 drop class EdgePublish;
-create class EdgePublish extends OGraphEdge;
+drop class EdgeJoin;
+drop class EdgeHost;
+drop class EdgeCreate;
+drop class EdgeTopic;
+drop class EdgeFriend;
+drop class EdgeActivity;
+drop class EdgeInvite;
+drop class EdgeRoot;
+
+create class EdgeRoot extends OGraphEdge;
+create class EdgeInvite extends EdgeRoot;
+create class EdgeActivity extends EdgeRoot;
+create class EdgeFriend extends EdgeActivity;
+create class EdgeTopic extends EdgeActivity;
+create class EdgeCreate extends EdgeTopic;
+create class EdgeHost extends EdgeTopic;
+create class EdgeJoin extends EdgeTopic;
+create class EdgePublish extends EdgeTopic;
 
 create property Topic.title string;
 create property Topic.content string;
@@ -74,10 +66,4 @@ create property Answer.comments linkset AnswerComment;
 create property Answer.question link Post;
 
 create property AnswerComment.answer link answer;
-
-#create property Event.actor link User;
-#create property Event.type string;
-#create property Event.createTime datetime;
-#create property Event.notifies linkset User;
-
 
