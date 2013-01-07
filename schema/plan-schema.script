@@ -14,11 +14,16 @@ create class User extends OGraphVertex;
 create class Topic extends OGraphVertex;
 create class Plan extends OGraphVertex;
 create class Post extends OGraphVertex;
+create class Concept extends Post;
+create class Note extends Post;
+create class Tutorial extends Post;
+create class PostMessage extends OGraphVertex;
+create class PostMessageComment extends OGraphVertex;
+
+create class Question extends Post;
 create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
-create class PostMessage extends OGraphVertex;
-create class PostMessageComment extends OGraphVertex;
 
 drop class EdgePublish;
 drop class EdgeJoin;
@@ -39,6 +44,16 @@ create class EdgeCreate extends EdgeTopic;
 create class EdgeHost extends EdgeTopic;
 create class EdgeJoin extends EdgeTopic;
 create class EdgePublish extends EdgeTopic;
+create class EdgePost extends EdgePublish;
+create class EdgeConcept extends EdgePublish;
+create class EdgeNote extends EdgePublish;
+create class EdgeTutorial extends EdgePublish;
+create class EdgePostMessage extends EdgePublish;
+create class EdgePostMessageComment extends EdgePublish;
+create class EdgeQuestion extends EdgePublish;
+create class EdgeQuestionComment extends EdgePublish;
+create class EdgeAnswer extends EdgePublish;
+create class EdgeAnswerComment extends EdgePublish;
 
 create property Topic.title string;
 create property Topic.content string;
