@@ -1,8 +1,14 @@
-connect remote:www.tissue.com/test1 guo guo;
+
+create database remote:www.tissue.com/test1 guo guo local graph;
+#connect remote:www.tissue.com/test1 guo guo;
 
 drop class User;
 drop class Topic;
 drop class Plan;
+drop class Concept;
+drop class Note;
+drop class Tutorial;
+drop class Question;
 drop class Post;
 drop class QuestionComment;
 drop class Answer;
@@ -25,6 +31,16 @@ create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
 
+drop class EdgeConcept;
+drop class EdgeNote;
+drop class EdgeTutorial;
+drop class EdgeAnswer;
+drop class EdgeAnswerComment;
+drop class EdgeQuestion;
+drop class EdgeQuestionComment;
+drop class EdgePostMessageComment;
+drop class EdgePostMessage;
+drop class EdgePost;
 drop class EdgePublish;
 drop class EdgeJoin;
 drop class EdgeHost;

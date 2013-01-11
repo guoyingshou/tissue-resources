@@ -113,11 +113,24 @@ ul {
 #logo {
     margin-top: 20px;
     margin-bottom: 20px;
+    border-bottom: 5px solid #444;
 }
+
+#logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+#logo h1 a {
+    display: block;
+    width: 200px;
+}
+
+
 
 #logo div {
     overflow: hidden;
-    border-bottom: 5px solid #444;
 }
 
 #logo ul.menu {
