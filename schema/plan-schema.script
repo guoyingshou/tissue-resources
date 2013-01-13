@@ -31,6 +31,7 @@ create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
 
+drop class EdgeImpression;
 drop class EdgeConcept;
 drop class EdgeNote;
 drop class EdgeTutorial;
@@ -51,6 +52,7 @@ drop class EdgeActivity;
 drop class EdgeInvite;
 drop class EdgeRoot;
 
+create class EdgeImpression extends OGraphEdge;
 create class EdgeRoot extends OGraphEdge;
 create class EdgeInvite extends EdgeRoot;
 create class EdgeActivity extends EdgeRoot;

@@ -28,6 +28,22 @@
         });
     }
 
+    $.fn.registerDialog = function() {
+        mask();
+        var dia = $('#signupForm').clone();
+        positionDialog(dia);
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            //todo: validate data
+
+        });
+
+
+        return this;
+    }
+
     $.fn.newTopicDialog = function() {
 
         mask();
@@ -219,7 +235,7 @@
         return this;
     }
 
-    $.fn.delDialog = function(url) {
+    $.fn.delDialog = function() {
 
         mask();
 
@@ -230,7 +246,7 @@
 
             $.ajax({
                 type: "POST",
-                url: url,
+                url: target.data('action'),
             }).done(function() {
                 target.closest('li').remove();
                 dia.hide();

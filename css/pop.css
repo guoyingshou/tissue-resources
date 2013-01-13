@@ -6,19 +6,15 @@
     z-index: 99;
 }
 
-#topicForm, #topicEditForm, #planForm, #postForm, #postEditForm, #oneItemForm, #confirmForm {
+#signupForm, #topicForm, #topicEditForm, #planForm, #postForm, #postEditForm, #oneItemForm, #confirmForm {
     position: fixed;
     background: #ccc;
     border: 1px solid red;
-    /**
-    width: 650px;
-    height: 460px;
-    */
     top: 60px;
     z-index: 100;
 }
 
-#topicForm, #topicEditForm, #postForm, #postEditForm, #oneItemForm {
+#signupForm, #topicForm, #topicEditForm, #postForm, #postEditForm, #oneItemForm {
     width: 650px;
     height: 460px;
 }
