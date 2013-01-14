@@ -49,12 +49,10 @@ drop class EdgeCreate;
 drop class EdgeTopic;
 drop class EdgeFriend;
 drop class EdgeActivity;
-drop class EdgeInvite;
 drop class EdgeRoot;
 
 create class EdgeImpression extends OGraphEdge;
 create class EdgeRoot extends OGraphEdge;
-create class EdgeInvite extends EdgeRoot;
 create class EdgeActivity extends EdgeRoot;
 create class EdgeFriend extends EdgeActivity;
 create class EdgeTopic extends EdgeActivity;

@@ -44,6 +44,32 @@
         return this;
     }
 
+    $.fn.inviteDialog = function() {
+        mask();
+
+        var ele = this;
+
+        var dia = $('#inviteForm').clone();
+        positionDialog(dia);
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: ele.attr('href'),
+                headers: {"Accept": "text/html"},
+                data: {content: $('textarea', dia).val()}
+            }).done(function(res) {
+                ele.remove();
+                dia.remove();
+                $('#mask').remove();
+            });
+        });
+        return this;
+    }
+
     $.fn.newTopicDialog = function() {
 
         mask();

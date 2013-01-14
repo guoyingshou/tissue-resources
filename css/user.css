@@ -1,1 +1,7 @@
+ul.submenu-more {
+    float: left;
+}
 
+ul.submenu-action {
+    float: right;
+}

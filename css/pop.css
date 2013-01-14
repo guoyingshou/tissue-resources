@@ -6,7 +6,7 @@
     z-index: 99;
 }
 
-#signupForm, #topicForm, #topicEditForm, #planForm, #postForm, #postEditForm, #oneItemForm, #confirmForm {
+#signupForm, #inviteForm, #topicForm, #topicEditForm, #planForm, #postForm, #postEditForm, #oneItemForm, #confirmForm {
     position: fixed;
     background: #ccc;
     border: 1px solid red;
@@ -14,7 +14,7 @@
     z-index: 100;
 }
 
-#signupForm, #topicForm, #topicEditForm, #postForm, #postEditForm, #oneItemForm {
+#signupForm, #inviteForm, #topicForm, #topicEditForm, #postForm, #postEditForm, #oneItemForm {
     width: 650px;
     height: 460px;
 }
