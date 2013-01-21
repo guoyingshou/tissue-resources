@@ -119,7 +119,7 @@ ul {
 #logo h1 {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 1em;
+    margin-bottom: 0.6em;
 }
 
 #logo h1 a {
@@ -182,5 +182,17 @@ ul {
 
 #content {
     margin-right: 278px;
+}
+
+#logo h1 {
+    color: #333;
+    line-height: 38px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+h1 span {
+    font-size: 14px;
+    font-weight: 300;
 }
 
