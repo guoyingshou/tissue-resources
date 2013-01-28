@@ -182,8 +182,8 @@
         var dia = $('#postEditForm').clone();
         positionDialog(dia);
 
-        $('#title', dia).val(this.children(':nth-child(1)').text());
-        $('#editor', dia).val(this.children(':nth-child(2)').html());
+        $('#title', dia).val(this.children(':nth-child(2)').text());
+        $('#editor', dia).val(this.children(':nth-child(3)').html());
 
         CKEDITOR.replace('editor');
 
@@ -209,8 +209,8 @@
                 headers: {"Accept": "text/html"},
                 data: data 
             }).done(function(res) {
-                needUpdate.children(':nth-child(1)').html(title);
-                needUpdate.children(':nth-child(2)').html(content);
+                needUpdate.children(':nth-child(2)').html(title);
+                needUpdate.children(':nth-child(3)').html(content);
                 dia.remove();
                 $('#mask').remove();
             });

@@ -1,7 +1,6 @@
 /**
  * css rules for topic content.
  */
-div.topic-content {
-    margin-bottom: 2em;
+#content li {
+    margin-bottom: 0.5em;
 }
-

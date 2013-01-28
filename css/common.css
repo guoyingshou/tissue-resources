@@ -59,7 +59,10 @@ body {
 }
 
 a {
+    /**
     color: #2d374b;
+    */
+    color: #737373;
     text-decoration: none;
 }
 
@@ -117,11 +120,6 @@ ul {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 0.6em;
-}
-
-#logo h1 a {
-    display: block;
-    width: 200px;
 }
 
 #logo div {
@@ -191,3 +189,40 @@ h1 span {
     font-weight: 300;
 }
 
+/**
+ * Home side bar
+ */
+.slogan h3 {
+    color: #fff;
+    background: #a3a3a3;
+    font-weight: bold;
+    line-height: 36px;
+    height: 36px;
+    padding: 0 25px;
+}
+
+.slogan-item div {
+    padding: 0 25px;
+    color: #737373;
+    background: #ececec;
+    border-bottom: 1px solid #fff;
+    line-height: 28px;
+    height: 28px;
+}
+
+/**
+ * look and feel
+ */
+.ts {
+    font-size: 14px;
+    color: #d6d5d5;
+}
+
+.title {
+    font-weight: bold;
+}
+
+#content h3 {
+    margin-top: 0.4em;
+    margin-bottom: 0.8em;
+}
