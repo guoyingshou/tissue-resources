@@ -1,4 +1,7 @@
 /**
  * css rules for topic content.
  */
+div.topic-content {
+    margin-bottom: 2em;
+}
 

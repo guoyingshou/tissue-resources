@@ -1,4 +1,5 @@
 
+drop database remote:www.tissue.com/test1 guo guo;
 create database remote:www.tissue.com/test1 guo guo local graph;
 
 create class User extends OGraphVertex;
@@ -17,6 +18,9 @@ create class Question extends Post;
 create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
+
+create class EdgeImpression extends OGraphEdge;
+create class EdgeFriend extends OGraphEdge;
 
 create property Topic.title string;
 create property Topic.content string;
@@ -42,7 +46,7 @@ create property Question.answers linklist Answer;
 create property Question.comments linklist QuestionComment;
 create property QuestionComment.question link Post;
 
-create property Answer.question link Answer;
+create property Answer.question link Question;
 create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
 
