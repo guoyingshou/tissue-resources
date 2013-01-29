@@ -176,12 +176,12 @@ a {
 }
 
 #sidebar h4 {
-    padding: 5px 5px 5px 10px;
     margin-bottom: 5px;
-    text-align: center;
+    padding-top: 2px;
     font-size: 1.0em;
     font-weight: normal;
-    color: #6699cc;
+    color: #006699;
+    border-bottom: 2px solid #000;
 }
 
 #sidebar > div {

@@ -44,6 +44,32 @@
         return this;
     }
 
+    $.fn.editProfileDialog = function() {
+        mask();
+        var dia = $('#editProfileForm').clone();
+        positionDialog(dia);
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            //todo: validate data
+        });
+        return this;
+    }
+
+    $.fn.changePassDialog = function() {
+        mask();
+        var dia = $('#changePassForm').clone();
+        positionDialog(dia);
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            //todo: validate data
+        });
+        return this;
+    }
+
     $.fn.inviteDialog = function() {
         mask();
 
