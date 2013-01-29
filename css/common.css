@@ -85,12 +85,6 @@ a {
     border-bottom: 5px solid #444;
 }
 
-#logo h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 0.6em;
-}
-
 #logo div {
     overflow: hidden;
 }
@@ -118,6 +112,7 @@ a {
     line-height: 38px;
     font-size: 32px;
     font-weight: bold;
+    margin-bottom: 0.6em;
 }
 
 #logo h1 span {

@@ -1,9 +1,11 @@
 #content {
-    margin-right: 618px;
+    margin-right: 718px;
 }
 
 #mid {
-    width: 342px;
+    width: 442px;
     float: right;
     border: 1px solid #ddd;
+    padding-left: 10px;
+    margin-right: 2px;
 }
