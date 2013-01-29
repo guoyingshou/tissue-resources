@@ -58,56 +58,25 @@ body {
 	line-height: 1.5;
 }
 
-a {
-    /**
-    color: #2d374b;
-    */
-    color: #737373;
-    text-decoration: none;
-}
-
-#headerWrapper, #footerWrapper {
-    color: #fff;
-    background: #454546;
-}
-
-/**
-#header, #mainWrapper, #footer {
-*/
-.center {
-    width: 960px;
-    margin: 0 auto;
-}
-
-#header {
-    height: 31px;
-    padding-top: 20px;
-    overflow: hidden;
-}
-
 ul {
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
-#header ul.nav {
-    float: left;
-}
-
-#header ul.userbox {
-    float: right;
-}
-
-#header li {
-    float: left;
-    padding-right: 1em;
-}
-
-#header li a {
-    display: block;
-    color: #baaaaa;
+a {
+    color: #737373;
     text-decoration: none;
+}
+
+.wrapper {
+    color: #fff;
+    background: #454546;
+}
+
+.center {
+    width: 960px;
+    margin: 0 auto;
 }
 
 #logo {
@@ -144,6 +113,43 @@ ul {
     text-decoration: none;
 }
 
+#logo h1 {
+    color: #333;
+    line-height: 38px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#logo h1 span {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+#header {
+    height: 31px;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+#header ul.nav {
+    float: left;
+}
+
+#header ul.userbox {
+    float: right;
+}
+
+#header li {
+    float: left;
+    padding-right: 1em;
+}
+
+#header li a {
+    display: block;
+    color: #baaaaa;
+    text-decoration: none;
+}
+
 #contentWrapper {
     padding: 10px;
     overflow: hidden;
@@ -157,7 +163,7 @@ ul {
 /**
  * layout
  */
-#sidebar, #main {
+#sidebar, #mid, #main {
     min-height: 300px;
     padding-bottom: 10000px;
     margin-bottom: -10000px;
@@ -165,28 +171,28 @@ ul {
 
 #content {
     margin-top: 0.6em;
+    padding: 0 10px;
 }
 
 #sidebar {
     width: 276px;
     float: right;
-    background: #ddd;
+    border: 1px solid #ddd;
 }
 
-#content {
-    margin-right: 278px;
+#sidebar h4 {
+    padding: 5px 5px 5px 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 1.0em;
+    font-weight: normal;
+    color: #6699cc;
 }
 
-#logo h1 {
-    color: #333;
-    line-height: 38px;
-    font-size: 32px;
-    font-weight: bold;
-}
-
-h1 span {
-    font-size: 14px;
-    font-weight: 300;
+#sidebar > div {
+    padding: 0 15px;
+    background: #f0f0f0;
+    margin-bottom: 10px;
 }
 
 /**
@@ -222,7 +228,3 @@ h1 span {
     font-weight: bold;
 }
 
-#content h3 {
-    margin-top: 0.4em;
-    margin-bottom: 0.8em;
-}
