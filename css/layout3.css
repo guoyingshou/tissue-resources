@@ -5,7 +5,8 @@
 #mid {
     width: 442px;
     float: right;
-    border: 1px solid #ddd;
+    border-left: 1px solid #ddd;
     padding-left: 10px;
-    margin-right: 2px;
+    margin-right: 5px;
+    font-size: 14px;
 }

@@ -50,23 +50,85 @@ table {
  * reset end
  */
 
+#mask {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background: #fff;
+    z-index: 99;
+}
+
+.dialog {
+    position: fixed;
+    background: #ccc;
+    border: 1px solid red;
+    top: 60px;
+    z-index: 100;
+}
+
+.pop-normal {
+    width: 650px;
+    height: 460px;
+}
+
+.pop-medium {
+    width: 650px;
+    height: 180px;
+}
+
+.pop-small {
+    width: 320px;
+    margin: 2em auto;
+}
+/**
+ * popup end.
+ */
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('/fonts/icomoon/fonts/icomoon.eot');
+	src:url('/fonts/icomoon/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/icomoon/fonts/icomoon.svg#icomoon') format('svg'),
+		url('/fonts/icomoon/fonts/icomoon.woff') format('woff'),
+		url('/fonts/icomoon/fonts/icomoon.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+    font-size: 1.2em;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+    margin: 10px;
+}
+/**
+ * icon end.
+ */
+
 body {
-    background: #f7f7f7;
-    color: #000;
+    background: #f3f3f3;
+    color: #333;
     font-family: 宋体, Arial, Helvetica, sans-serif;
     text-align: left;
 	line-height: 1.5;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+a {
+   color: #737373;
+   text-decoration: none;
 }
 
-a {
-    color: #737373;
-    text-decoration: none;
+.title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content {
+    margin-bottom: 10px;
 }
 
 .wrapper {
@@ -102,15 +164,10 @@ a {
     margin-right: 1em;
 }
 
-#logo ul li a {
-    display: block;
-    text-decoration: none;
-}
-
 #logo h1 {
     color: #333;
     line-height: 38px;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 0.6em;
 }
@@ -146,7 +203,7 @@ a {
 }
 
 #contentWrapper {
-    padding: 10px;
+    padding: 10px 10px 10px 0;
     overflow: hidden;
 }
 
@@ -165,14 +222,17 @@ a {
 }
 
 #content {
-    margin-top: 0.6em;
-    padding: 0 10px;
+    padding-right: 10px;
+    color: #1a1a1a;
+    font-size: 14px;
 }
 
 #sidebar {
-    width: 276px;
     float: right;
-    border: 1px solid #ddd;
+    width: 276px;
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+    font-size: 14px;
 }
 
 #sidebar h4 {
@@ -185,7 +245,6 @@ a {
 }
 
 #sidebar > div {
-    padding: 0 15px;
     background: #f0f0f0;
     margin-bottom: 10px;
 }
@@ -213,13 +272,36 @@ a {
 
 /**
  * look and feel
+    color: #d6d5d5;
  */
 .ts {
-    font-size: 14px;
-    color: #d6d5d5;
+    color: #888;
+    font-size: 12px;
 }
 
-.title {
-    font-weight: bold;
+/**
+ * activity
+ */
+.activity-item {
+    position: relative;
+    padding-left: 62px;
+    margin-bottom: 12px;
+    padding-bottom: 5px;
 }
 
+.activity-item em {
+    margin: 0.4em;
+}
+
+.activity-icon {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    font-size: 24px; 
+    color: #bbb;
+}
+
+.activity-ts {
+    color: #bbb;
+    font-size: 12px;
+}
