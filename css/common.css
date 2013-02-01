@@ -109,6 +109,21 @@ table {
 	-webkit-font-smoothing: antialiased;
     margin: 10px;
 }
+
+.container-has-icon {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    color: #bbb;
+}
+
+.has-icon-before {
+    padding-left: 3em;
+}
 /**
  * icon end.
  */
@@ -308,7 +323,7 @@ ul.nav:after {
 .activity-item {
     position: relative;
     padding-left: 62px;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
     padding-bottom: 5px;
 }
 
