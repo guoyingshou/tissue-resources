@@ -11,13 +11,13 @@
 
     function confirm() {
         var dia = $('#confirmForm');
-        positionDialog(dia);
+        positionDialog(dia, 650);
         dia.show();
         return dia;
     }
 
-    function positionDialog(dialog) {
-        dialog.css('left', ($(window).width() - 650)/2);
+    function positionDialog(dialog, w) {
+        dialog.css('left', ($(window).width() - w)/2);
         $('body').prepend(dialog);
     }
 
@@ -28,26 +28,10 @@
         });
     }
 
-    $.fn.registerDialog = function() {
-        mask();
-        var dia = $('#signupForm').clone();
-        positionDialog(dia);
-        dia.show();
-        addCancelListener(dia);
-
-        $('form', dia).submit(function(e) {
-            //todo: validate data
-
-        });
-
-
-        return this;
-    }
-
     $.fn.editProfileDialog = function() {
         mask();
         var dia = $('#editProfileForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 420);
         dia.show();
         addCancelListener(dia);
 
@@ -60,7 +44,7 @@
     $.fn.changePassDialog = function() {
         mask();
         var dia = $('#changePassForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 420);
         dia.show();
         addCancelListener(dia);
 
@@ -76,7 +60,7 @@
         var ele = this;
 
         var dia = $('#inviteForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 650);
         dia.show();
         addCancelListener(dia);
 
@@ -101,7 +85,7 @@
         mask();
 
         var dia = $('#topicForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 650);
 
         CKEDITOR.replace('editor', {
             filebrowserUploadUrl: '/media/images',
@@ -127,10 +111,10 @@
         var needUpdate = this;
 
         var dia = $('#topicEditForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 650);
 
-        $('textarea', dia).val(this.children(':nth-child(1)').html());
         $('#tags', dia).val(this.children(':nth-child(2)').text());
+        $('textarea', dia).val(this.children(':nth-child(3)').html());
 
         CKEDITOR.replace('editor');
 
@@ -169,7 +153,7 @@
         mask();
 
         var dia = $('#planForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 650);
         dia.show();
 
         addCancelListener(dia);
@@ -185,7 +169,7 @@
         mask();
 
         var dia = $('#postForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 650);
 
         CKEDITOR.replace('editor');
 
@@ -206,7 +190,7 @@
         var needUpdate = this;
 
         var dia = $('#postEditForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 650);
 
         $('#title', dia).val(this.children(':nth-child(2)').text());
         $('#editor', dia).val(this.children(':nth-child(3)').html());
@@ -251,7 +235,7 @@
         var needUpdate = this;
 
         var dia = $('#oneItemForm').clone();
-        positionDialog(dia);
+        positionDialog(dia, 650);
 
         if(!this.is('ul')) {
             $('textarea', dia).html(this.html());

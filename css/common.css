@@ -54,40 +54,6 @@ table {
  * reset end
  */
 
-#mask {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    background: #fff;
-    z-index: 99;
-}
-
-.dialog {
-    position: fixed;
-    background: #ccc;
-    border: 1px solid red;
-    top: 60px;
-    z-index: 100;
-}
-
-.pop-normal {
-    width: 650px;
-    height: 460px;
-}
-
-.pop-medium {
-    width: 650px;
-    height: 180px;
-}
-
-.pop-small {
-    width: 320px;
-    margin: 2em auto;
-}
-/**
- * popup end.
- */
-
 @font-face {
 	font-family: 'icomoon';
 	src:url('/fonts/icomoon/fonts/icomoon.eot');
@@ -123,6 +89,11 @@ table {
 
 .has-icon-before {
     padding-left: 3em;
+}
+
+.cancel {
+    color: #fff;
+    float: right;
 }
 /**
  * icon end.
@@ -347,31 +318,32 @@ ul.nav:after {
 /**
  * login
  */
-#signinForm, #signupForm {
+.account {
     width: 420px;
     margin: 20px auto;
     font-size: 16px;
     border: 1px solid #D8DEE2;
 }
 
-#signinForm li, #signupForm li {
+.account li, .dialog li {
     margin: 12px;
 }
 
-#signinForm legend, #signupForm legend {
+.account legend, .dialog legend {
     color: #fff;
     background: #6c8393;
     padding-left: 1em;
     height: 32px;
     line-height: 32px;
+    width: 100%;
 }
 
-#signinForm label, #signupForm label {
+.account label, .dialog label {
     display: block;
     font-weight: bold;
 }
 
-#username, #password, #confirm, #displayName, #headline, #email {
+.sum {
     width: 100%;
     min-height: 24px;
     border: 1px solid #ccc;
@@ -379,4 +351,49 @@ ul.nav:after {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075) inset;
     color: #333;
 }
+
+/**
+ * pop up.
+ */
+#mask {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background: #fff;
+    z-index: 99;
+}
+
+.dialog {
+    position: fixed;
+    background: #f7f7f7;
+    border: 1px solid #D8DEE2;
+    top: 60px;
+    z-index: 100;
+}
+
+.pop-420 {
+    width: 420px;
+}
+
+.pop-650 {
+    width: 650px;
+}
+
+.pop-320 {
+    width: 320px;
+    margin: 2em auto;
+}
+
+fieldset.post-type {
+    margin-bottom: 1em;
+}
+
+fieldset.post-type label {
+    display: inline;
+}
+
+/**
+ * popup end.
+ */
+
 
