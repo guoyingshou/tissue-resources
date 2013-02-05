@@ -1,112 +1,148 @@
 (function($) {
 
-    function enable() {
-        var sum = 0;
-        $('form .sum').each(function() {
-            sum = sum + $(this).data("v");
+    function isEmpty() {
+        var empty = false;
+        $('.sum').each(function() {
+            if($(this).val() == '') {
+                if($(this).is('#password')) {
+                   $(this).prev().children('span.error-password-invalid').show();
+                }
+                else if($(this).is('#confirm')) {
+                   $(this).prev().children('span.error-confirm-mismatch').show();
+                }
+                else {
+                    $(this).prev().children('span.error-empty').show();
+                }
+                empty = true;
+            }
+            else {
+                if($(this).is('#password')) {
+                   $(this).prev().children('span.error-password-invalid').hide();
+                }
+                else if($(this).is('#confirm')) {
+                   $(this).prev().children('span.error-confirm-mismatch').hide();
+                }
+                else {
+                    $(this).prev().children('span.error-empty').hide();
+                }
+            }
         });
 
-        if(sum == 6) {
-            $('input[type="submit"]').removeAttr("disabled");
-        }
-        else {
-            $('input[type="submit"]').attr("disabled", true);
-        }
+        return empty;
     }
 
-    function isMatch() {
-
+    function isPasswordValid() {
         var password = $('#password');
-        var confirm = $('#confirm');
-        confirm.data("v", 0);
-
-        if(password.val() != confirm.val()) {
-            confirm.prev().children('span.mismatch').show();
+        if(password.val().length < 6) {
+            password.prev().children('span.error-password-invalid').show();
+            return false;
         }
         else {
-            confirm.prev().children('span.mismatch').hide();
-            confirm.data("v", 1);
+            password.prev().children('span.error-password-invalid').hide();
+            return true;
         }
     }
 
-    $.fn.checkEmpty = function() {
-        this.data("v", 0);
+    function isConfirmMatch() {
+        console.log($('#password').val());
+        console.log($('#confirm').val());
 
-        var v = this.prev().children('span.empty');
-        if(this.val() == "") {
-            v.show();
+        var match = $('#password').val() == $('#confirm').val();
+        if(match) {
+            $('#confirm').prev().children('span.error-confirm-mismatch').hide();
         }
         else {
-            v.hide();
-            this.data("v", 1);
+            $('#confirm').prev().children('span.error-confirm-mismatch').show();
         }
-        enable();
+        return match;
     }
 
-    $.fn.checkUsernameTaken = function() {
-        this.data("v", 0);
+    function isUsernameTaken() {
+        var taken = false;
 
-        var that = this;
-        var username = this.val();
-
+        var that = $('#username');
+        var username = that.val();
         $.ajax({
-            url: "/social/checkUsername",
+            url: "/social/preAddUsername",
             async: false,
             data: {
                 username: username
             }
         }).fail(function(res) {
-            that.prev().children('span.taken').show();
+            that.prev().children('span.error-username-taken').show();
+            taken = true;
         }).done(function(res) {
-            that.prev().children('span.taken').hide();
-            that.data("v", 1);
+            that.prev().children('span.error-username-taken').hide();
         });
-        enable();
+
+        return taken;
     }
 
-    $.fn.checkEmailTaken = function() {
-        this.data("v", 0);
+    function isValidEmail() {
+        var email = $('#email');
+        
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        if(!emailReg.test(email.val())) {
+            email.prev().children('span.error-email-format').show();
+            return false;
+        }
+        else {
+            email.prev().children('span.error-email-format').hide();
+            return true;
+        }
+    }
 
-        var that = this;
-        var email = this.val();
+    function isEmailTaken() {
+        var taken = false;
 
+        var that = $('#email');
+        var email = that.val();
         $.ajax({
-            url: "/social/checkEmail",
+            url: "/social/preAddEmail",
             async: false,
             data: {
                 email: email
             }
         }).fail(function(res) {
-            that.prev().children('span.taken').show();
+            that.prev().children('span.error-email-taken').show();
+            taken = true;
         }).done(function(res) {
-            that.prev().children('span.taken').hide();
-            that.data("v", 1);
+            that.prev().children('span.error-email-taken').hide();
         });
-        enable();
+
+        return taken;
     }
 
-    $.fn.checkLength = function() {
+    $.fn.validate = function() {
+        var submit = true;
 
-        this.data("v", 0);
-
-        var pass = this.val();
-        if(pass.length < 6) {
-            this.prev().children('span.short').show();
-        }
-        else {
-            this.prev().children('span.short').hide();
-            this.data("v", 1);
+        if(isEmpty()) {
+            submit = false;
         }
 
-        if($('#confirm').val() != "") {
-            isMatch();
+        if(!isPasswordValid()) {
+            submit = false;
         }
-        enable();
-    }
+       
+        if(!isConfirmMatch()) {
+            submit = false;
+        }
  
-    $.fn.checkMatch = function() {
-        isMatch();
-        enable();
+        if(isUsernameTaken()) {
+            submit = false;
+        }
+
+        if(!isValidEmail()) {
+            submit = false;
+        }
+
+        if(isEmailTaken()) {
+            submit = false;
+        }
+
+        if(submit) {
+            $('#signupForm').submit();
+        }
     }
 
 })(jQuery);

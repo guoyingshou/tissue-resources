@@ -12,8 +12,12 @@ div.post {
 
 ul.messages {
     margin-top: 1em;
+    padding-left: 1em;
+    border-left: 2px solid #ddd;
+}
+
+ul.messages a {
     margin-bottom: 1.5em;
-    border-bottom: 1px solid #000;
 }
 
 li.message-item {
@@ -22,7 +26,9 @@ li.message-item {
 }
 
 li.message-item ul {
-    padding-left: 1.2em;
+    margin-top: 1.5em;
+    padding-left: 1em;
+    border-left: 2px solid #ddd;
 }
 
 /**

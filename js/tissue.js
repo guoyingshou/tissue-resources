@@ -10,8 +10,9 @@
     }
 
     function confirm() {
-        var dia = $('#confirmForm');
-        positionDialog(dia, 650);
+        var dia = $('#confirmForm').clone();
+        positionDialog(dia, 320);
+        addCancelListener(dia);
         dia.show();
         return dia;
     }
@@ -23,6 +24,7 @@
 
     function addCancelListener(dialog) {
         $('a.cancel', dialog).on('click', function() {
+            $('span.op-error-info').hide();
             dialog.remove();
             $('#mask').remove();
         });
@@ -32,6 +34,7 @@
         mask();
         var dia = $('#editProfileForm').clone();
         positionDialog(dia, 420);
+
         dia.show();
         addCancelListener(dia);
 
@@ -97,7 +100,18 @@
         addCancelListener(dia);
 
         $('form', dia).submit(function(e) {
-            //todo: validate data
+            e.preventDefault();
+
+            var title = $('#title').val() == '';
+            var content = CKEDITOR.instances.editor.getData() == '';
+            var tags = $('#tags').val() == '';
+            
+            if(title || content || tags) {
+                $('span.op-error-info').show();
+            }
+            else {
+                this.submit();
+            }
         });
 
         return this;
@@ -112,11 +126,12 @@
 
         var dia = $('#topicEditForm').clone();
         positionDialog(dia, 650);
+        CKEDITOR.replace("editor");
 
         $('#tags', dia).val(this.children(':nth-child(2)').text());
         $('textarea', dia).val(this.children(':nth-child(3)').html());
 
-        CKEDITOR.replace('editor');
+        //CKEDITOR.replace('editor');
 
         dia.show();
 
@@ -165,25 +180,6 @@
         return this;
     }
 
-    $.fn.newPostDialog = function() {
-        mask();
-
-        var dia = $('#postForm').clone();
-        positionDialog(dia, 650);
-
-        CKEDITOR.replace('editor');
-
-        dia.show();
-
-        addCancelListener(dia);
-
-        $('form', dia).submit(function(e) {
-            //todo: validate input
-        });
-
-        return this;
-    }
-
     $.fn.editPostDialog = function(options) {
         mask();
 
@@ -191,11 +187,11 @@
 
         var dia = $('#postEditForm').clone();
         positionDialog(dia, 650);
+        CKEDITOR.replace('editor');
 
         $('#title', dia).val(this.children(':nth-child(2)').text());
         $('#editor', dia).val(this.children(':nth-child(3)').html());
 
-        CKEDITOR.replace('editor');
 
         dia.show();
 
@@ -223,6 +219,8 @@
                 needUpdate.children(':nth-child(3)').html(content);
                 dia.remove();
                 $('#mask').remove();
+            }).fail(function(res) {
+                $('span.op-error-info').show();   
             });
         });
 
@@ -236,12 +234,11 @@
 
         var dia = $('#oneItemForm').clone();
         positionDialog(dia, 650);
+        CKEDITOR.replace("editor");
 
         if(!this.is('ul')) {
             $('textarea', dia).html(this.html());
         }
-
-        CKEDITOR.replace('editor');
 
         dia.show();
 
@@ -285,17 +282,9 @@
                 url: target.data('action'),
             }).done(function() {
                 target.closest('li').remove();
-                dia.hide();
+                dia.remove();
                 $('#mask').remove();
             });
-        });
-
-        $('input[name="cancel"]', dia).one('click', function(e) {
-            e.preventDefault();
-            console.log(url);
-
-            dia.hide();
-            $('#mask').remove();
         });
     }
 

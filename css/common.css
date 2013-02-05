@@ -325,11 +325,11 @@ ul.nav:after {
     border: 1px solid #D8DEE2;
 }
 
-.account li, .dialog li {
+.input-form li, .dialog li {
     margin: 12px;
 }
 
-.account legend, .dialog legend {
+.input-form legend, .dialog legend {
     color: #fff;
     background: #6c8393;
     padding-left: 1em;
@@ -338,7 +338,7 @@ ul.nav:after {
     width: 100%;
 }
 
-.account label, .dialog label {
+.input-form label, .dialog label {
     display: block;
     font-weight: bold;
 }
@@ -390,6 +390,11 @@ fieldset.post-type {
 
 fieldset.post-type label {
     display: inline;
+}
+
+#confirmForm div {
+    padding: 20px;
+    border: 1px solid #ddd;
 }
 
 /**
