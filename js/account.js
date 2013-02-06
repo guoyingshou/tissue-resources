@@ -1,60 +1,16 @@
 (function($) {
 
-    function isEmpty() {
-        var empty = false;
-        $('.sum').each(function() {
-            if($(this).val() == '') {
-                if($(this).is('#password')) {
-                   $(this).prev().children('span.error-password-invalid').show();
-                }
-                else if($(this).is('#confirm')) {
-                   $(this).prev().children('span.error-confirm-mismatch').show();
-                }
-                else {
-                    $(this).prev().children('span.error-empty').show();
-                }
-                empty = true;
-            }
-            else {
-                if($(this).is('#password')) {
-                   $(this).prev().children('span.error-password-invalid').hide();
-                }
-                else if($(this).is('#confirm')) {
-                   $(this).prev().children('span.error-confirm-mismatch').hide();
-                }
-                else {
-                    $(this).prev().children('span.error-empty').hide();
-                }
-            }
-        });
-
-        return empty;
-    }
-
-    function isPasswordValid() {
-        var password = $('#password');
-        if(password.val().length < 6) {
-            password.prev().children('span.error-password-invalid').show();
-            return false;
-        }
-        else {
-            password.prev().children('span.error-password-invalid').hide();
+    function isUsernameEmpty() {
+        var username = $('#username');
+        var empty = username.val().length;
+        if(empty == 0) {
+            username.prev().children('span.error-empty').show();
             return true;
         }
-    }
-
-    function isConfirmMatch() {
-        console.log($('#password').val());
-        console.log($('#confirm').val());
-
-        var match = $('#password').val() == $('#confirm').val();
-        if(match) {
-            $('#confirm').prev().children('span.error-confirm-mismatch').hide();
-        }
         else {
-            $('#confirm').prev().children('span.error-confirm-mismatch').show();
+            username.prev().children('span.error-empty').hide();
+            return false;
         }
-        return match;
     }
 
     function isUsernameTaken() {
@@ -78,19 +34,62 @@
         return taken;
     }
 
-    function isValidEmail() {
+    $.fn.checkUsernameEmpty = function() {
+        isUsernameEmpty();
+    }
+
+    $.fn.checkUsernameTaken = function() {
+        isUsernameTaken();
+    }
+
+    function isPasswordValid() {
+        var password = $('#password');
+        if(password.val().length < 6) {
+            password.prev().children('span.error-password-invalid').show();
+            return false;
+        }
+        else {
+            password.prev().children('span.error-password-invalid').hide();
+            return true;
+        }
+    }
+
+    function isConfirmMatch() {
+        var match = $('#password').val() == $('#confirm').val();
+        if(match) {
+            $('#confirm').prev().children('span.error-confirm-mismatch').hide();
+        }
+        else {
+            $('#confirm').prev().children('span.error-confirm-mismatch').show();
+        }
+        return match;
+    }
+
+
+    $.fn.checkPassword = function() {
+        isPasswordValid();
+        isConfirmMatch(); 
+    };
+
+    function isEmailValid() {
         var email = $('#email');
         
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        if(!emailReg.test(email.val())) {
+        if(!emailReg.test(email.val()) || email.val().length < 6) {
+            email.prev().children('span.error-email-taken').hide();
             email.prev().children('span.error-email-format').show();
             return false;
         }
         else {
+            email.prev().children('span.error-email-taken').hide();
             email.prev().children('span.error-email-format').hide();
             return true;
         }
-    }
+    };
+
+    $.fn.checkEmailFormat = function() {
+        isEmailValid();
+    };
 
     function isEmailTaken() {
         var taken = false;
@@ -113,36 +112,82 @@
         return taken;
     }
 
-    $.fn.validate = function() {
-        var submit = true;
+    $.fn.checkEmailTaken = function() {
+        if(isEmailValid()) {
+            isEmailTaken();
+        }
+    };
 
-        if(isEmpty()) {
-            submit = false;
+    function isDisplayNameEmpty() {
+        var displayName = $('#displayName');
+        var empty = displayName.val().length;
+        if(empty == 0) {
+            displayName.prev().children('span.error-empty').show();
+            return true;
+        }
+        else {
+            displayName.prev().children('span.error-empty').hide();
+            return false;
+        }
+    }
+
+
+    $.fn.checkDisplayNameEmpty = function() {
+        isDisplayNameEmpty();
+    }
+
+    function isHeadlineEmpty() {
+        var headline = $('#headline');
+        var empty = headline.val().length;
+        if(empty == 0) {
+            headline.prev().children('span.error-empty').show();
+            return true;
+        }
+        else {
+            headline.prev().children('span.error-empty').hide();
+            return false;
+        }
+    }
+
+    $.fn.checkHeadlineEmpty = function() {
+        isHeadlineEmpty();
+    }
+
+    $.fn.validate = function() {
+
+        if(isUsernameEmpty()) {
+            return false;
+        }
+
+        if(isDisplayNameEmpty()) {
+            return false;
+        }
+
+        if(isHeadlineEmpty()) {
+            return false;
+        }
+
+        if(!isEmailValid()) {
+            return false;
         }
 
         if(!isPasswordValid()) {
-            submit = false;
-        }
-       
-        if(!isConfirmMatch()) {
-            submit = false;
-        }
- 
-        if(isUsernameTaken()) {
-            submit = false;
+            return false;
         }
 
-        if(!isValidEmail()) {
-            submit = false;
+        if(!isConfirmMatch()) {
+            return false;
+        }
+
+        if(isUsernameTaken()) {
+            return false;
         }
 
         if(isEmailTaken()) {
-            submit = false;
+            return false;
         }
 
-        if(submit) {
-            $('#signupForm').submit();
-        }
+        $('#signupForm').submit();
     }
 
 })(jQuery);
