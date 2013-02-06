@@ -187,7 +187,61 @@
             return false;
         }
 
+        //$('input[type="submit"]').attr("disabled", true);
         $('#signupForm').submit();
+    }
+
+    $.fn.editProfileDialog = function() {
+        mask();
+        var dia = $('#editProfileForm').clone();
+        positionDialog(dia, 420);
+
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            //todo: validate data
+        });
+        return this;
+    }
+
+    $.fn.changePassDialog = function() {
+        mask();
+        var dia = $('#changePassForm').clone();
+        positionDialog(dia, 420);
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            //todo: validate data
+        });
+        return this;
+    }
+
+    $.fn.inviteDialog = function() {
+        mask();
+
+        var ele = this;
+
+        var dia = $('#inviteForm').clone();
+        positionDialog(dia, 650);
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: ele.attr('href'),
+                headers: {"Accept": "text/html"},
+                data: {content: $('textarea', dia).val()}
+            }).done(function(res) {
+                ele.remove();
+                dia.remove();
+                $('#mask').remove();
+            });
+        });
+        return this;
     }
 
 })(jQuery);
