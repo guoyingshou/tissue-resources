@@ -187,7 +187,6 @@
             return false;
         }
 
-        //$('input[type="submit"]').attr("disabled", true);
         $('#signupForm').submit();
     }
 
