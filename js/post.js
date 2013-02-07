@@ -8,43 +8,100 @@
         return dia;
     }
 
-    $.fn.editPostDialog = function(options) {
+    $.fn.post = function() {
+        var typeEmpty, titleEmpty, contentEmpty;
+        if($('input[name="type"]').is(':checked')) {
+            $('legend span').hide();
+            typeEmpty = false;
+        }
+        else {
+            $('legend span').show();
+            typeEmpty = true;
+        }
+
+        if($.trim($('#title').val()).length == 0) {
+            $('label[for="title"] span').show();
+            titleEmpty = true;
+        }
+        else {
+            $('label[for="title"] span').hide();
+            titleEmpty = false;
+        }
+
+        var content = CKEDITOR.instances.editor.getData();
+        if($.trim(content).length == 0) {
+            $('label[for="editor"] span').show();
+            contentEmpty = true;
+        }
+        else {
+            $('label[for="editor"] span').hide();
+            contentEmpty = false;
+        }
+
+        return typeEmpty || titleEmpty || contentEmpty;
+    }
+
+    $.fn.editPostDialog = function() {
         mask();
 
-        var needUpdate = this;
+        var that = this;
 
         var dia = $('#postEditForm').clone();
         positionDialog(dia, 650);
         CKEDITOR.replace('editor');
 
-        $('#title', dia).val(this.children(':nth-child(2)').text());
-        $('#editor', dia).val(this.children(':nth-child(3)').html());
+        var titleOld = $.trim($('.title').text());
+        var contentOld = $.trim($('.content').html());
 
-
-        dia.show();
+        $('#title', dia).val(titleOld);
+        $('#editor', dia).val(contentOld);
 
         addCancelListener(dia);
+        dia.show();
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
             
+            var titleEmpty, contentEmpty;
+
             var title = $('#title', dia).val();
+            if($.trim(title).length == 0) {
+                $('label[for="title"] span').show();
+                titleEmpty = true;
+            }
+            else {
+                $('label[for="title"] span').hide();
+                titleEmpty = false;
+            }
+
             var content = CKEDITOR.instances.editor.getData();
+            if($.trim(content).length == 0) {
+                $('label[for="editor"] span').show();
+                contentEmpty = true;
+            }
+            else {
+                $('label[for="editor"] span').hide();
+                contentEmpty = false;
+            }
+
+            if(titleEmpty || contentEmpty) {
+                return false;
+            }
 
             var data = {
-                type: options.type,
+                type: that.data("type"),
                 title: title,
                 content: content
             };
 
             $.ajax({
                 type: "POST",
-                url: options.url,
+                url: that.data("action"),
                 headers: {"Accept": "text/html"},
                 data: data 
             }).done(function(res) {
-                needUpdate.children(':nth-child(2)').html(title);
-                needUpdate.children(':nth-child(3)').html(content);
+                $('div.title').html(title);
+                $('div.content').html(content);
                 dia.remove();
                 $('#mask').remove();
             }).fail(function(res) {
@@ -54,49 +111,6 @@
 
         return this;
     }
-
-    /**
-    $.fn.oneItemDialog = function(url) {
-        mask();
-
-        var needUpdate = this;
-
-        var dia = $('#oneItemForm').clone();
-        positionDialog(dia, 650);
-        CKEDITOR.replace("editor");
-
-        if(!this.is('ul')) {
-            $('textarea', dia).html(this.html());
-        }
-
-        dia.show();
-
-        addCancelListener(dia);
-
-        $('form', dia).submit(function(e) {
-            e.preventDefault();
-
-            var content = CKEDITOR.instances.editor.getData();
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                headers: {"Accept": "text/html"},
-                data: {content: content}
-            }).done(function(res) {
-                if(needUpdate.is("ul")) {
-                    needUpdate.append(res);
-                }
-                else {
-                    needUpdate.html(content);
-                }
-                dia.remove();
-                $('#mask').remove();
-            });
-        });
-        return this;
-    }
-    */
 
     $.fn.delDialog = function() {
 

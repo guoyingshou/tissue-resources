@@ -192,9 +192,8 @@
 
     $.fn.editProfileDialog = function() {
         mask();
-        var dia = $('#editProfileForm').clone();
+        var dia = $('#profileEditForm').clone();
         positionDialog(dia, 420);
-
         dia.show();
         addCancelListener(dia);
 
@@ -206,7 +205,7 @@
 
     $.fn.changePassDialog = function() {
         mask();
-        var dia = $('#changePassForm').clone();
+        var dia = $('#passChangeForm').clone();
         positionDialog(dia, 420);
         dia.show();
         addCancelListener(dia);

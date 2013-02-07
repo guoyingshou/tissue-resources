@@ -13,8 +13,7 @@ function positionDialog(dialog, w) {
 }
 
 function addCancelListener(dialog) {
-        $('a.cancel', dialog).on('click', function() {
-            //$('span.op-error-info').hide();
+        $('a.cancel', dialog).one('click', function() {
             dialog.remove();
             $('#mask').remove();
         });
@@ -61,5 +60,4 @@ function addCancelListener(dialog) {
         });
         return this;
     }
-
 })(jQuery);

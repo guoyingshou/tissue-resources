@@ -329,7 +329,7 @@ ul.nav:after {
     margin: 12px;
 }
 
-.input-form legend, .dialog legend {
+legend {
     color: #fff;
     background: #6c8393;
     padding-left: 1em;

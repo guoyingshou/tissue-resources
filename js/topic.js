@@ -26,7 +26,6 @@
 
     function isObjectiveEmpty() {
         var objective = CKEDITOR.instances.editor.getData();
-        console.log("len: " + objective.length);
         if(objective.length == 0) {
             $('#editor').prev().children('span.error-empty').show();
             return true;
@@ -49,31 +48,19 @@
             filebrowserBrowseUrl: '/media/browseImages'
         });
 
+        addCancelListener(dia);
         dia.show();
 
-        addCancelListener(dia);
-
-        $('input[type="submit"]').on('click', function(e) {
+        $('form', dia).submit(function(e) {
             e.preventDefault();
 
-            var submit = true;
-
             if(isTitleEmpty()) {
-                submit = false;
+                return false;
             }
-
             if(isTagsEmpty()) {
-                submit = false;
+                return false;
             }
-
             if(isObjectiveEmpty()) {
-                submit = false;
-            }
-
-            if(submit) {
-                $('form', dia).submit();
-            }
-            else {
                 return false;
             }
         });
@@ -83,26 +70,28 @@
 
         mask();
 
-        var needUpdate = this;
-
         var dia = $('#topicEditForm').clone();
         positionDialog(dia, 650);
         CKEDITOR.replace("editor");
 
-        $('#tags', dia).val(this.children(':nth-child(2)').text());
-        $('textarea', dia).val(this.children(':nth-child(3)').html());
-
-        //CKEDITOR.replace('editor');
-
-        dia.show();
+        $('#tags', dia).val($.trim($('div.tags').text()));
+        $('textarea', dia).val($.trim($('div.content').html()));
 
         addCancelListener(dia);
+        dia.show();
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
 
             var content = CKEDITOR.instances.editor.getData();
             var tags = $('#tags', dia).val();
+
+            if(isObjectiveEmpty()) {
+                return false;    
+            }
+            if(isTagsEmpty()) {
+                return false;    
+            }
 
             var data = {
                 content: content,
@@ -115,8 +104,8 @@
                 headers: {"Accept": "text/html"},
                 data: data 
             }).done(function(res) {
-                needUpdate.children(':nth-child(1)').html(content);
-                needUpdate.children(':nth-child(2)').html(tags);
+                $('div.content').html(content);
+                $('div.tags').html(tags);
                 dia.remove();
                 $('#mask').remove();
             });
