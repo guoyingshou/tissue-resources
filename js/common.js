@@ -1,3 +1,17 @@
+function isEmailValid() {
+        var email = $('#email');
+        
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        if(!emailReg.test(email.val()) || email.val().length < 6) {
+            email.prev().children('span').show();
+            return false;
+        }
+        else {
+            email.prev().children('span').hide();
+            return true;
+        }
+};
+
 function mask() {
         var mask = $('<div id="mask"></div>');
         mask.width($(window).width());

@@ -4,11 +4,11 @@
         var username = $('#username');
         var empty = username.val().length;
         if(empty == 0) {
-            username.prev().children('span.error-empty').show();
+            username.prev().children('span').show();
             return true;
         }
         else {
-            username.prev().children('span.error-empty').hide();
+            username.prev().children('span').hide();
             return false;
         }
     }
@@ -25,70 +25,51 @@
                 username: username
             }
         }).fail(function(res) {
-            that.prev().children('span.error-username-taken').show();
+            that.prev().children('span').show();
             taken = true;
         }).done(function(res) {
-            that.prev().children('span.error-username-taken').hide();
+            that.prev().children('span').hide();
         });
 
         return taken;
     }
 
-    $.fn.checkUsernameEmpty = function() {
-        isUsernameEmpty();
-    }
-
-    $.fn.checkUsernameTaken = function() {
-        isUsernameTaken();
-    }
-
-    function isPasswordValid() {
+    function isPasswordInvalid() {
         var password = $('#password');
         if(password.val().length < 6) {
-            password.prev().children('span.error-password-invalid').show();
-            return false;
-        }
-        else {
-            password.prev().children('span.error-password-invalid').hide();
+            password.prev().children('span').show();
             return true;
         }
+        else {
+            password.prev().children('span').hide();
+            return false;
+        }
     }
 
-    function isConfirmMatch() {
-        var match = $('#password').val() == $('#confirm').val();
-        if(match) {
-            $('#confirm').prev().children('span.error-confirm-mismatch').hide();
+    function isConfirmMismatch() {
+        var misMatch = $('#password').val() != $('#confirm').val();
+        console.log("misMatch: " + misMatch);
+        if(misMatch) {
+            $('#confirm').prev().children('span').show();
         }
         else {
-            $('#confirm').prev().children('span.error-confirm-mismatch').show();
+            $('#confirm').prev().children('span').hide();
         }
-        return match;
+        return misMatch;
     }
 
-
-    $.fn.checkPassword = function() {
-        isPasswordValid();
-        isConfirmMatch(); 
-    };
-
-    function isEmailValid() {
+    function isEmailInvalid() {
         var email = $('#email');
         
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         if(!emailReg.test(email.val()) || email.val().length < 6) {
-            email.prev().children('span.error-email-taken').hide();
-            email.prev().children('span.error-email-format').show();
-            return false;
-        }
-        else {
-            email.prev().children('span.error-email-taken').hide();
-            email.prev().children('span.error-email-format').hide();
+            email.prev().children('span').show();
             return true;
         }
-    };
-
-    $.fn.checkEmailFormat = function() {
-        isEmailValid();
+        else {
+            email.prev().children('span').hide();
+            return false;
+        }
     };
 
     function isEmailTaken() {
@@ -103,94 +84,93 @@
                 email: email
             }
         }).fail(function(res) {
-            that.prev().children('span.error-email-taken').show();
+            that.prev().children('span').show();
             taken = true;
         }).done(function(res) {
-            that.prev().children('span.error-email-taken').hide();
+            that.prev().children('span').hide();
         });
 
         return taken;
     }
 
-    $.fn.checkEmailTaken = function() {
-        if(isEmailValid()) {
-            isEmailTaken();
-        }
-    };
+    function isEmailOwned() {
+        var owned = false;
+
+        var that = $('#email');
+        var email = that.val();
+        $.ajax({
+            url: "/social/preUpdateEmail",
+            async: false,
+            data: {
+                email: email
+            }
+        }).fail(function(res) {
+            that.prev().children('span').show();
+            owned = true;
+        }).done(function(res) {
+            that.prev().children('span').hide();
+        });
+
+        return owned;
+    }
 
     function isDisplayNameEmpty() {
         var displayName = $('#displayName');
         var empty = displayName.val().length;
         if(empty == 0) {
-            displayName.prev().children('span.error-empty').show();
+            displayName.prev().children('span').show();
             return true;
         }
         else {
-            displayName.prev().children('span.error-empty').hide();
+            displayName.prev().children('span').hide();
             return false;
         }
-    }
-
-
-    $.fn.checkDisplayNameEmpty = function() {
-        isDisplayNameEmpty();
     }
 
     function isHeadlineEmpty() {
         var headline = $('#headline');
         var empty = headline.val().length;
         if(empty == 0) {
-            headline.prev().children('span.error-empty').show();
+            headline.prev().children('span').show();
             return true;
         }
         else {
-            headline.prev().children('span.error-empty').hide();
+            headline.prev().children('span').hide();
             return false;
         }
     }
 
-    $.fn.checkHeadlineEmpty = function() {
-        isHeadlineEmpty();
+    $.fn.isUsernameTaken = function() {
+        isUsernameTaken();
+    }
+
+    $.fn.isEmailTaken = function() {
+        isEmailTaken();
     }
 
     $.fn.validate = function() {
-
-        if(isUsernameEmpty()) {
+        if(isUsernameEmpty() || isDisplayNameEmpty() || isHeadlineEmpty() || isEmailInvalid() || isPasswordInvalid() || isConfirmMismatch() || isUsernameTaken() || isEmailTaken()) {
             return false;
         }
-
-        if(isDisplayNameEmpty()) {
-            return false;
-        }
-
-        if(isHeadlineEmpty()) {
-            return false;
-        }
-
-        if(!isEmailValid()) {
-            return false;
-        }
-
-        if(!isPasswordValid()) {
-            return false;
-        }
-
-        if(!isConfirmMatch()) {
-            return false;
-        }
-
-        if(isUsernameTaken()) {
-            return false;
-        }
-
-        if(isEmailTaken()) {
-            return false;
-        }
-
-        $('#signupForm').submit();
     }
 
-    $.fn.editProfileDialog = function() {
+    $.fn.changeContactDialog = function() {
+        mask();
+        var dia = $('#contactEditForm').clone();
+        positionDialog(dia, 420);
+        dia.show();
+        addCancelListener(dia);
+
+        $('form', dia).submit(function(e) {
+            if(isEmailInvalid() || isEmailOwned()) { 
+                return false;
+            }
+        });
+        return this;
+    }
+
+
+    $.fn.changeProfileDialog = function() {
         mask();
         var dia = $('#profileEditForm').clone();
         positionDialog(dia, 420);
@@ -198,6 +178,10 @@
         addCancelListener(dia);
 
         $('form', dia).submit(function(e) {
+            if(isDisplayNameEmpty() || isHeadlineEmpty()) {
+                return false;
+            }
+            
             //todo: validate data
         });
         return this;
@@ -211,7 +195,32 @@
         addCancelListener(dia);
 
         $('form', dia).submit(function(e) {
-            //todo: validate data
+            var passwordInvalid, confirmMismatch;
+
+            var password = $('#password');
+            var confirm = $('#confirm');
+
+            if(password.val().length < 6) {
+                $('label[for="password"] span').show();
+                passwordInvalid = true;
+            }
+            else {
+                $('label[for="password"] span').hide();
+                passwordInvalid = false;
+            }
+
+            if(confirm.val() != password.val()) {
+                $('label[for="confirm"] span').show();
+                confirmMismatch = true;
+            }
+            else {
+                $('label[for="password"] span').hide();
+                confirmMismatch = false;
+            }
+
+            if(passwordInvalid || confirmMismatch) {
+                return false;
+            }
         });
         return this;
     }

@@ -39,7 +39,6 @@
     $.fn.newTopicDialog = function() {
 
         mask();
-
         var dia = $('#topicForm').clone();
         positionDialog(dia, 650);
 
@@ -47,20 +46,11 @@
             filebrowserUploadUrl: '/media/images',
             filebrowserBrowseUrl: '/media/browseImages'
         });
-
         addCancelListener(dia);
         dia.show();
 
         $('form', dia).submit(function(e) {
-            e.preventDefault();
-
-            if(isTitleEmpty()) {
-                return false;
-            }
-            if(isTagsEmpty()) {
-                return false;
-            }
-            if(isObjectiveEmpty()) {
+            if(isTitleEmpty() || isTagsEmpty() || isObjectiveEmpty()) {
                 return false;
             }
         });
@@ -74,8 +64,9 @@
         positionDialog(dia, 650);
         CKEDITOR.replace("editor");
 
-        $('#tags', dia).val($.trim($('div.tags').text()));
+        $('#title', dia).val($.trim($('h1 a').text()));
         $('textarea', dia).val($.trim($('div.content').html()));
+        $('#tags', dia).val($.trim($('div.tags').text()));
 
         addCancelListener(dia);
         dia.show();
@@ -83,17 +74,16 @@
         $('form', dia).submit(function(e) {
             e.preventDefault();
 
+            var title = $('#title', dia).val();
             var content = CKEDITOR.instances.editor.getData();
             var tags = $('#tags', dia).val();
 
-            if(isObjectiveEmpty()) {
-                return false;    
-            }
-            if(isTagsEmpty()) {
+            if(isTitleEmpty() || isObjectiveEmpty() || isTagsEmpty()) {
                 return false;    
             }
 
             var data = {
+                title: title,
                 content: content,
                 tags: tags
             };
@@ -104,6 +94,7 @@
                 headers: {"Accept": "text/html"},
                 data: data 
             }).done(function(res) {
+                $('#logo h1 a').html(title);
                 $('div.content').html(content);
                 $('div.tags').html(tags);
                 dia.remove();
