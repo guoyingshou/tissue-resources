@@ -8,37 +8,49 @@
         return dia;
     }
 
-    $.fn.post = function() {
-        var typeEmpty, titleEmpty, contentEmpty;
+    function isTypeNotSelected() {
         if($('input[name="type"]').is(':checked')) {
             $('legend span').hide();
-            typeEmpty = false;
+            return false;
         }
         else {
             $('legend span').show();
-            typeEmpty = true;
+            return true;
         }
+    }
 
+    function isTitleEmpty() {
         if($.trim($('#title').val()).length == 0) {
             $('label[for="title"] span').show();
-            titleEmpty = true;
+            return true;
         }
         else {
             $('label[for="title"] span').hide();
-            titleEmpty = false;
+            return false;
         }
+    }
 
+    function isContentEmpty() {
         var content = CKEDITOR.instances.editor.getData();
         if($.trim(content).length == 0) {
             $('label[for="editor"] span').show();
-            contentEmpty = true;
+            return true;
         }
         else {
             $('label[for="editor"] span').hide();
-            contentEmpty = false;
+            return false;
         }
+    }
 
-        return typeEmpty || titleEmpty || contentEmpty;
+    $.fn.post = function() {
+        var typeNotSelected = isTypeNotSelected();
+        var titleEmpty = isTitleEmpty();
+        var contentEmpty = isContentEmpty();
+
+        if( typeNotSelected || titleEmpty || contentEmpty) {
+            return false;
+        }
+        return true;
     }
 
     $.fn.editPostDialog = function() {
@@ -62,31 +74,15 @@
         $('form', dia).submit(function(e) {
             e.preventDefault();
             
-            var titleEmpty, contentEmpty;
-
-            var title = $('#title', dia).val();
-            if($.trim(title).length == 0) {
-                $('label[for="title"] span').show();
-                titleEmpty = true;
-            }
-            else {
-                $('label[for="title"] span').hide();
-                titleEmpty = false;
-            }
-
-            var content = CKEDITOR.instances.editor.getData();
-            if($.trim(content).length == 0) {
-                $('label[for="editor"] span').show();
-                contentEmpty = true;
-            }
-            else {
-                $('label[for="editor"] span').hide();
-                contentEmpty = false;
-            }
+            var titleEmpty = isTitleEmpty();
+            var contentEmpty = isContentEmpty();
 
             if(titleEmpty || contentEmpty) {
                 return false;
             }
+
+            var title = $('#title', dia).val();
+            var content = CKEDITOR.instances.editor.getData();
 
             var data = {
                 type: that.data("type"),
