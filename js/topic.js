@@ -37,6 +37,7 @@
     }
 
     $.fn.newTopicDialog = function() {
+        var url = this.data("action");
 
         mask();
         var dia = $('#topicForm').clone();
@@ -53,20 +54,23 @@
             if(isTitleEmpty() || isTagsEmpty() || isObjectiveEmpty()) {
                 return false;
             }
+            $(this).attr("action", url);
         });
     }
 
-    $.fn.editTopicDialog = function(url) {
+    $.fn.editTopicDialog = function() {
+
+        var url = this.data("action");
 
         mask();
 
-        var dia = $('#topicEditForm').clone();
+        var dia = $('#topicForm').clone();
         positionDialog(dia, 650);
         CKEDITOR.replace("editor");
 
         $('#title', dia).val($.trim($('h1 a').text()));
         $('textarea', dia).val($.trim($('div.content').html()));
-        $('#tags', dia).val($.trim($('div.tags').text()));
+        $('#tags').val($.trim($('div.tags').text()).replace(/\s+/g, ' '));
 
         addCancelListener(dia);
         dia.show();

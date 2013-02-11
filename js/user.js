@@ -155,6 +155,7 @@
     }
 
     $.fn.changeContactDialog = function() {
+        var url = this.data("action");
         mask();
         var dia = $('#contactEditForm').clone();
         positionDialog(dia, 420);
@@ -165,12 +166,14 @@
             if(isEmailInvalid() || isEmailOwned()) { 
                 return false;
             }
+            $(this).attr("action", url);
         });
         return this;
     }
 
 
     $.fn.changeProfileDialog = function() {
+        var url = this.data("action");
         mask();
         var dia = $('#profileEditForm').clone();
         positionDialog(dia, 420);
@@ -181,13 +184,13 @@
             if(isDisplayNameEmpty() || isHeadlineEmpty()) {
                 return false;
             }
-            
-            //todo: validate data
+            $(this).attr("action", url);
         });
         return this;
     }
 
     $.fn.changePassDialog = function() {
+        var url = this.data("action");
         mask();
         var dia = $('#passChangeForm').clone();
         positionDialog(dia, 420);
@@ -221,6 +224,8 @@
             if(passwordInvalid || confirmMismatch) {
                 return false;
             }
+
+            $(this).attr("action", url);
         });
         return this;
     }

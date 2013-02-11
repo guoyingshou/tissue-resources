@@ -112,6 +112,11 @@ a {
    text-decoration: none;
 }
 
+ul.action a {
+   color: #888;
+   font-size: 14px;
+}
+
 .current {
     color: #e18728;
 }

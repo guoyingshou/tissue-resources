@@ -1,5 +1,5 @@
 
-drop database remote:www.tissue.com/test1 guo guo;
+#drop database remote:www.tissue.com/test1 guo guo;
 create database remote:www.tissue.com/test1 guo guo local graph;
 
 create class User extends OGraphVertex;
@@ -19,9 +19,6 @@ create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
 
-create class EdgeImpression extends OGraphEdge;
-create class EdgeFriend extends OGraphEdge;
-
 create property Topic.title string;
 create property Topic.content string;
 create property Topic.tags embeddedset string;
@@ -33,14 +30,13 @@ create property Post.type string;
 create property Post.title string;
 create property Post.content string;
 create property Post.plan link Plan;
-#create property Post.messages linkset PostMessage;
-#create property Post.comments linkset QuestionComment;
-#create property Post.answers linkset Answer;
-
 create property Cnt.messages linklist PostMessage;
 create property PostMessage.post link Cnt;
 create property PostMessage.comments linklist PostMessageComment;
 create property PostMessageComment.postMessage link PostMessage;
+#create property Post.messages linkset PostMessage;
+#create property Post.comments linkset QuestionComment;
+#create property Post.answers linkset Answer;
 
 create property Question.answers linklist Answer;
 create property Question.comments linklist QuestionComment;
@@ -49,4 +45,13 @@ create property QuestionComment.question link Post;
 create property Answer.question link Question;
 create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
+
+
+create class EdgeAction extends OGraphEdge;
+create class EdgeImpression extends EdgeAction;
+create class EdgeFriend extends EdgeAction;
+create class EdgePost extends EdgeAction;
+
+create property EdgeAction.label string;
+create property EdgeAction.createTime datetime;
 
