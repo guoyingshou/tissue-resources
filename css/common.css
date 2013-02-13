@@ -101,14 +101,14 @@ table {
 
 body {
     background: #f3f3f3;
-    color: #333;
+    color: #bbb;
     font-family: 宋体, Arial, Helvetica, sans-serif;
     text-align: left;
 	line-height: 1.5;
 }
 
 a {
-   color: #737373;
+   color: #bbb;
    text-decoration: none;
 }
 
@@ -193,27 +193,8 @@ ul.nav:after {
 
 #header {
     padding: 3px 0;
-    overflow: hidden;
+    min-height: 40px;
     line-height: 32px;
-}
-
-#header ul.nav {
-    float: left;
-}
-
-#header ul.userbox {
-    float: right;
-}
-
-#header li {
-    float: left;
-    padding-right: 1em;
-}
-
-#header li a {
-    display: block;
-    color: #baaaaa;
-    text-decoration: none;
 }
 
 #contentWrapper {
@@ -405,5 +386,86 @@ fieldset.post-type label {
 /**
  * popup end.
  */
+
+/**
+ * header navigation
+ */
+ul.nav-left {
+    float: left;
+}
+
+ul.nav-left li {
+    float: left;
+    padding-right: 1em;
+}
+
+ul.nav-right {
+    float: right;
+    position: relative; 
+}
+
+ul.nav-right li { 
+    font-weight: bold; 
+    float: left; 
+    zoom: 1; 
+}
+
+ul.nav-item a:hover {
+    color: #000; 
+}
+
+ul.nav-item a:active {
+    color: #ffa500; 
+}
+
+ul.nav-item li a {
+    /**
+    display: block; 
+    border-right: 1px solid #333;
+    */
+    padding: 4px 8px; 
+    color: #bbb; 
+}
+
+ul.nav-item li:last-child a {
+    border-right: none; 
+} /* Doesn't work in IE */
+
+ul.nav-item li.hover,
+ul.nav-item li:hover {
+    background: #F3D673; 
+    color: black; 
+    position: relative; 
+}
+
+ul.nav-item li.hover a {
+    color: black; 
+}
+
+/* 
+	LEVEL TWO
+*/
+ul.nav-item ul {
+    width: 120px; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+}
+
+ul.nav-item ul li {
+    font-size: 12px;
+    font-weight: normal; 
+    background: #f6f6f6; 
+    color: #000; 
+	border-bottom: 1px solid #ccc; 
+    float: none; 
+}
+									  
+/* IE 6 & 7 Needs Inline Block */
+ul.nav-item ul li a	{
+    border-right: none; 
+    width: 100%; 
+    display: inline-block; 
+} 
 
 
