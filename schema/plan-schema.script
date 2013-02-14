@@ -19,6 +19,13 @@ create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
 
+create property User.username string;
+create property User.password string;
+create property User.displayName string;
+create property User.email string;
+create property User.headline string;
+create property User.createTime datetime;
+
 create property Topic.title string;
 create property Topic.content string;
 create property Topic.tags embeddedset string;
@@ -45,7 +52,6 @@ create property QuestionComment.question link Post;
 create property Answer.question link Question;
 create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
-
 
 create class EdgeAction extends OGraphEdge;
 create class EdgeImpression extends EdgeAction;

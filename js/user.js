@@ -1,201 +1,46 @@
+/**
+ * Change displayName, headline event handlers.
+ */
 (function($) {
+     $(document).on('click', 'a.edit-profile', function(e) {
+         e.preventDefault();
+         $(this).changeProfileDialog();
+     });
 
-    function isUsernameEmpty() {
-        var username = $('#username');
-        var empty = username.val().length;
-        if(empty == 0) {
-            username.prev().children('span').show();
-            return true;
-        }
-        else {
-            username.prev().children('span').hide();
-            return false;
-        }
-    }
-
-    function isUsernameTaken() {
-        var taken = false;
-
-        var that = $('#username');
-        var username = that.val();
-        $.ajax({
-            url: "/social/preAddUsername",
-            async: false,
-            data: {
-                username: username
-            }
-        }).fail(function(res) {
-            that.prev().children('span').show();
-            taken = true;
-        }).done(function(res) {
-            that.prev().children('span').hide();
-        });
-
-        return taken;
-    }
-
-    function isPasswordInvalid() {
-        var password = $('#password');
-        if(password.val().length < 6) {
-            password.prev().children('span').show();
-            return true;
-        }
-        else {
-            password.prev().children('span').hide();
-            return false;
-        }
-    }
-
-    function isConfirmMismatch() {
-        var misMatch = $('#password').val() != $('#confirm').val();
-        console.log("misMatch: " + misMatch);
-        if(misMatch) {
-            $('#confirm').prev().children('span').show();
-        }
-        else {
-            $('#confirm').prev().children('span').hide();
-        }
-        return misMatch;
-    }
-
-    function isEmailInvalid() {
-        var email = $('#email');
-        
-        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        if(!emailReg.test(email.val()) || email.val().length < 6) {
-            email.prev().children('span').show();
-            return true;
-        }
-        else {
-            email.prev().children('span').hide();
-            return false;
-        }
-    };
-
-    function isEmailTaken() {
-        var taken = false;
-
-        var that = $('#email');
-        var email = that.val();
-        $.ajax({
-            url: "/social/preAddEmail",
-            async: false,
-            data: {
-                email: email
-            }
-        }).fail(function(res) {
-            that.prev().children('span').show();
-            taken = true;
-        }).done(function(res) {
-            that.prev().children('span').hide();
-        });
-
-        return taken;
-    }
-
-    function isEmailOwned() {
-        var owned = false;
-
-        var that = $('#email');
-        var email = that.val();
-        $.ajax({
-            url: "/social/preUpdateEmail",
-            async: false,
-            data: {
-                email: email
-            }
-        }).fail(function(res) {
-            that.prev().children('span').show();
-            owned = true;
-        }).done(function(res) {
-            that.prev().children('span').hide();
-        });
-
-        return owned;
-    }
-
-    function isDisplayNameEmpty() {
-        var displayName = $('#displayName');
-        var empty = displayName.val().length;
-        if(empty == 0) {
-            displayName.prev().children('span').show();
-            return true;
-        }
-        else {
-            displayName.prev().children('span').hide();
-            return false;
-        }
-    }
-
-    function isHeadlineEmpty() {
-        var headline = $('#headline');
-        var empty = headline.val().length;
-        if(empty == 0) {
-            headline.prev().children('span').show();
-            return true;
-        }
-        else {
-            headline.prev().children('span').hide();
-            return false;
-        }
-    }
-
-    $.fn.isUsernameTaken = function() {
-        isUsernameTaken();
-    }
-
-    $.fn.isEmailTaken = function() {
-        isEmailTaken();
-    }
-
-    $.fn.validate = function() {
-        if(isUsernameEmpty() || isDisplayNameEmpty() || isHeadlineEmpty() || isEmailInvalid() || isPasswordInvalid() || isConfirmMismatch() || isUsernameTaken() || isEmailTaken()) {
-            return false;
-        }
-    }
-
-    $.fn.changeContactDialog = function() {
+     $.fn.changeProfileDialog = function() {
         var url = this.data("action");
-        mask();
-        var dia = $('#contactEditForm').clone();
-        positionDialog(dia, 420);
-        dia.show();
-        addCancelListener(dia);
-
-        $('form', dia).submit(function(e) {
-            if(isEmailInvalid() || isEmailOwned()) { 
-                return false;
-            }
-            $(this).attr("action", url);
-        });
-        return this;
-    }
-
-
-    $.fn.changeProfileDialog = function() {
-        var url = this.data("action");
-        mask();
         var dia = $('#profileEditForm').clone();
-        positionDialog(dia, 420);
+        $.positionDialog(dia, 420);
+        $.addCancelListener(dia);
+        $.mask();
         dia.show();
-        addCancelListener(dia);
 
         $('form', dia).submit(function(e) {
-            if(isDisplayNameEmpty() || isHeadlineEmpty()) {
+            if($.isDisplayNameEmpty() || $.isHeadlineEmpty()) {
                 return false;
             }
             $(this).attr("action", url);
         });
         return this;
     }
+})(jQuery);
 
+/**
+ * Change password event handlers.
+ */
+(function($) {
+    $(document).on('click', 'a.change-pass', function(e) {
+        e.preventDefault();
+        $(this).changePassDialog();
+    });
+ 
     $.fn.changePassDialog = function() {
         var url = this.data("action");
-        mask();
         var dia = $('#passChangeForm').clone();
-        positionDialog(dia, 420);
+        $.positionDialog(dia, 420);
+        $.addCancelListener(dia);
+        $.mask();
         dia.show();
-        addCancelListener(dia);
 
         $('form', dia).submit(function(e) {
             var passwordInvalid, confirmMismatch;
@@ -229,31 +74,240 @@
         });
         return this;
     }
+})(jQuery);
+
+/**
+ *  Change contact event handlers
+ */
+(function($) {
+    $(document).on('click', 'a.edit-contact', function(e) {
+        e.preventDefault();
+        $(this).changeContactDialog();
+    });
+
+    $.fn.changeContactDialog = function() {
+        var url = this.data("action");
+        var dia = $('#contactEditForm').clone();
+        $.positionDialog(dia, 420);
+        $.addCancelListener(dia);
+        $.mask();
+        dia.show();
+
+        $('form', dia).submit(function(e) {
+            if($.isEmailInvalid() || $.isEmailOwned()) { 
+                return false;
+            }
+            $(this).attr("action", url);
+        });
+    }
+})(jQuery);
+
+/**
+ *  Singup Event Handlers
+ */
+(function($) {
+
+    $(document).on('focusout', '#username', function(e) {
+        return $.isUsernameTaken(); 
+    });
+
+    $(document).on('focusout', '#email', function(e) {
+        return $.isEmailTaken(); 
+    });
+
+    $(document).one('focusin', '#headline', function(e) {
+        $(this).val('');
+    });
+
+    $(document).on('submit', '#signupForm', function(e) {
+        return $(this).validate();
+    });
+ 
+    $.isUsernameEmpty = function() {
+        var username = $('#username');
+        var empty = username.val().length;
+        if(empty == 0) {
+            username.prev().children('span').show();
+            return true;
+        }
+        else {
+            username.prev().children('span').hide();
+            return false;
+        }
+    }
+
+    $.isUsernameTaken = function() {
+        var taken = false;
+
+        var that = $('#username');
+        var username = that.val();
+        $.ajax({
+            url: "/social/preAddUsername",
+            async: false,
+            data: {
+                username: username
+            }
+        }).fail(function(res) {
+            that.prev().children('span').show();
+            taken = true;
+        }).done(function(res) {
+            that.prev().children('span').hide();
+        });
+
+        return taken;
+    }
+
+    $.isPasswordInvalid = function() {
+        var password = $('#password');
+        if(password.val().length < 6) {
+            password.prev().children('span').show();
+            return true;
+        }
+        else {
+            password.prev().children('span').hide();
+            return false;
+        }
+    }
+
+    $.isConfirmMismatch = function() {
+        var misMatch = $('#password').val() != $('#confirm').val();
+        console.log("misMatch: " + misMatch);
+        if(misMatch) {
+            $('#confirm').prev().children('span').show();
+        }
+        else {
+            $('#confirm').prev().children('span').hide();
+        }
+        return misMatch;
+    }
+
+    $.isEmailInvalid = function() {
+        var email = $('#email');
+        
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        if(!emailReg.test(email.val()) || email.val().length < 6) {
+            email.prev().children('span').show();
+            return true;
+        }
+        else {
+            email.prev().children('span').hide();
+            return false;
+        }
+    };
+
+    $.isEmailTaken = function() {
+        var taken = false;
+
+        var that = $('#email');
+        var email = that.val();
+        $.ajax({
+            url: "/social/preAddEmail",
+            async: false,
+            data: {
+                email: email
+            }
+        }).fail(function(res) {
+            that.prev().children('span').show();
+            taken = true;
+        }).done(function(res) {
+            that.prev().children('span').hide();
+        });
+
+        return taken;
+    }
+
+    $.isEmailOwned = function() {
+        var owned = false;
+
+        var that = $('#email');
+        var email = that.val();
+        $.ajax({
+            url: "/social/preUpdateEmail",
+            async: false,
+            data: {
+                email: email
+            }
+        }).fail(function(res) {
+            that.prev().children('span').show();
+            owned = true;
+        }).done(function(res) {
+            that.prev().children('span').hide();
+        });
+
+        return owned;
+    }
+
+    $.isDisplayNameEmpty = function() {
+        console.log("xxxxxxxx");
+        var displayName = $('#displayName');
+        var empty = displayName.val().length;
+        if(empty == 0) {
+            displayName.prev().children('span').show();
+            return true;
+        }
+        else {
+            displayName.prev().children('span').hide();
+            return false;
+        }
+    }
+
+    $.isHeadlineEmpty = function() {
+        var headline = $('#headline');
+        var empty = headline.val().length;
+        if(empty == 0) {
+            headline.prev().children('span').show();
+            return true;
+        }
+        else {
+            headline.prev().children('span').hide();
+            return false;
+        }
+    }
+
+    $.fn.validate = function() {
+        if($.isUsernameEmpty() || $.isDisplayNameEmpty() || $.isHeadlineEmpty() || $.isEmailInvalid() || $.isPasswordInvalid() || $.isConfirmMismatch() || $.isUsernameTaken() || $.isEmailTaken()) {
+            return false;
+        }
+    }
+})(jQuery);
+
+/**
+ *  Invitation Event Handlers
+ */
+(function($) {
+    $(document).on('click', 'a.invite', function(e) {
+        e.preventDefault();
+        $(this).inviteDialog();
+    });
 
     $.fn.inviteDialog = function() {
-        mask();
-
-        var ele = this;
+        var that = this;
+        url = this.data('action');
 
         var dia = $('#inviteForm').clone();
-        positionDialog(dia, 650);
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
         dia.show();
-        addCancelListener(dia);
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
+
+            if($('#letter').val().length == 0) {
+                $('label[for="letter"] span').show();
+                return false;
+            }
+
             $.ajax({
                 type: "POST",
-                url: ele.attr('href'),
+                url: that.data('action'),
                 headers: {"Accept": "text/html"},
                 data: {content: $('textarea', dia).val()}
             }).done(function(res) {
-                ele.remove();
+                that.remove();
                 dia.remove();
                 $('#mask').remove();
             });
         });
-        return this;
     }
-
 })(jQuery);

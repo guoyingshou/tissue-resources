@@ -1,4 +1,5 @@
-function isEmailValid() {
+(function($) {
+    $.isEmailValid = function() {
         var email = $('#email');
         
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -10,28 +11,29 @@ function isEmailValid() {
             email.prev().children('span').hide();
             return true;
         }
-};
+    };
 
-function mask() {
+    $.mask = function() {
         var mask = $('<div id="mask"></div>');
         mask.width($(window).width());
         mask.height($(window).height());
         mask.css("opacity", 0.6);
         $('body').prepend(mask);
         return this;
-}
+    }
 
-function positionDialog(dialog, w) {
+    $.positionDialog = function(dialog, w) {
         dialog.css('left', ($(window).width() - w)/2);
         $('body').prepend(dialog);
-}
+    }
 
-function addCancelListener(dialog) {
+    $.addCancelListener = function(dialog) {
         $('a.cancel', dialog).one('click', function() {
             dialog.remove();
             $('#mask').remove();
         });
-}
+    }
+})(jQuery);
 
 (function($) {
     $.fn.oneItemDialog = function(url) {
