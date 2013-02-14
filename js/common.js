@@ -36,45 +36,41 @@
 })(jQuery);
 
 (function($) {
-    $.fn.oneItemDialog = function(url) {
-        mask();
 
-        var needUpdate = this;
+    $.fn.oneItemDialog = function() {
+
+        var that = this;
+        var url = this.data("action");
+        var target = $(this.data("target"));
 
         var dia = $('#oneItemForm').clone();
-        positionDialog(dia, 650);
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
+
         CKEDITOR.replace("editor");
-
-        if(!this.is('ul')) {
-            $('textarea', dia).html(this.html());
-        }
-
         dia.show();
-
-        addCancelListener(dia);
 
         $('form', dia).submit(function(e) {
             e.preventDefault();
 
             var content = CKEDITOR.instances.editor.getData();
-
             $.ajax({
                 type: "POST",
                 url: url,
                 headers: {"Accept": "text/html"},
                 data: {content: content}
             }).done(function(res) {
-                if(needUpdate.is("ul")) {
-                    needUpdate.append(res);
+                if(target.is("ul")) {
+                    target.append(res);
                 }
                 else {
-                    needUpdate.html(content);
+                    target.html(content);
                 }
                 dia.remove();
                 $('#mask').remove();
             });
         });
-        return this;
     }
 })(jQuery);
 

@@ -1,13 +1,27 @@
 (function($) {
+    $(document).on('click', 'a.topic-create', function(e) {
+        e.preventDefault();
+        $(this).newTopicDialog();
+    });
+
+    $(document).on('click', 'a.topic-edit', function(e) {
+        e.preventDefault();
+        $(this).editTopicDialog();
+    });
+ 
+    $(document).on('click', 'a.plan-create', function(e) {
+        e.preventDefault();
+        $('#planDia').newPlanDialog();
+    });
 
     function isTitleEmpty() {
         var title = $('#title');
         if(title.val().length == 0) {
-            title.prev().children('span.error-empty').show();
+            $('label[for="title"] span').show();
             return true;
         }
         else {
-            title.prev().children('span.error-empty').hide();
+            $('label[for="title"] span').hide();
             return false;
         }
     }
@@ -15,11 +29,11 @@
     function isTagsEmpty() {
         var tags = $('#tags');
         if(tags.val().length == 0) {
-            tags.prev().children('span.error-empty').show();
+            $('label[for="tags"] span').show();
             return true;
         }
         else {
-            tags.prev().children('span.error-empty').hide();
+            $('label[for="tags"] span').hide();
             return false;
         }
     }
@@ -27,11 +41,11 @@
     function isObjectiveEmpty() {
         var objective = CKEDITOR.instances.editor.getData();
         if(objective.length == 0) {
-            $('#editor').prev().children('span.error-empty').show();
+            $('label[for="editor"] span').show();
             return true;
         }
         else {
-            $('#editor').prev().children('span.error-empty').hide();
+            $('label[for="editor"] span').hide();
             return false;
         }
     }
@@ -39,15 +53,16 @@
     $.fn.newTopicDialog = function() {
         var url = this.data("action");
 
-        mask();
         var dia = $('#topicForm').clone();
-        positionDialog(dia, 650);
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
 
         CKEDITOR.replace('editor', {
             filebrowserUploadUrl: '/media/images',
             filebrowserBrowseUrl: '/media/browseImages'
         });
-        addCancelListener(dia);
+
+        $.mask();
         dia.show();
 
         $('form', dia).submit(function(e) {
@@ -59,20 +74,22 @@
     }
 
     $.fn.editTopicDialog = function() {
-
         var url = this.data("action");
-
-        mask();
-
         var dia = $('#topicForm').clone();
-        positionDialog(dia, 650);
+
+        var title = $('h1 a').text();
+        var tags = $('div.tags').text();
+        var content = $('div.content').html();
+
+        $('#title', dia).val($.trim(title));
+        $('#tags', dia).val($.trim(tags).replace(/\s+/g, ' '));
+        $('textarea', dia).val($.trim(content));
+
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
         CKEDITOR.replace("editor");
 
-        $('#title', dia).val($.trim($('h1 a').text()));
-        $('textarea', dia).val($.trim($('div.content').html()));
-        $('#tags').val($.trim($('div.tags').text()).replace(/\s+/g, ' '));
-
-        addCancelListener(dia);
+        $.mask();
         dia.show();
 
         $('form', dia).submit(function(e) {
@@ -109,20 +126,16 @@
     }
 
     $.fn.newPlanDialog = function() {
-
-        mask();
-
         var dia = $('#planForm').clone();
-        positionDialog(dia, 650);
-        dia.show();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
 
-        addCancelListener(dia);
+        $.mask();
+        dia.show();
 
         $('form', dia).submit(function(e) {
             //todo: validate input
         });
-
-        return this;
     }
 
 })(jQuery);
