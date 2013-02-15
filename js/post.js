@@ -1,9 +1,45 @@
+/**
+ * post CRUD event handlers.
+ */
+
+$(document).ready(function() {
+
+    $(document).on('click', 'a.del', function(e) {
+        e.preventDefault();
+        $(this).delDialog();
+    });
+
+    $('#post-form').on('submit', function(e) {
+        return $(this).post();
+    });
+
+    $(document).on('click', 'a.post-edit', function(e) {
+        e.preventDefault();
+        $(this).editPostDialog();
+    });
+ 
+    $(document).on('click', 'a.item-add', function(e) {
+        e.preventDefault();
+        $(this).oneItemDialog();
+    });
+
+    $(document).on('click', 'a.item-edit', function(e) {
+        e.preventDefault();
+        $(this).oneItemDialog(true);
+    });
+
+});
+
+
+/**
+ * real logic.
+ */
 (function($) {
 
     function confirm() {
         var dia = $('#confirmForm').clone();
-        positionDialog(dia, 320);
-        addCancelListener(dia);
+        $.positionDialog(dia, 320);
+        $.addCancelListener(dia);
         dia.show();
         return dia;
     }
@@ -54,24 +90,22 @@
     }
 
     $.fn.editPostDialog = function() {
-        mask();
 
         var that = this;
-
         var dia = $('#postEditForm').clone();
-        positionDialog(dia, 650);
-        CKEDITOR.replace('editor');
 
         var titleOld = $.trim($('.title').text());
         var contentOld = $.trim($('.content').html());
-
         $('#title', dia).val(titleOld);
         $('#editor', dia).val(contentOld);
 
-        addCancelListener(dia);
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
         dia.show();
+        CKEDITOR.replace('editor');
 
-        $('form', dia).submit(function(e) {
+        $(dia).submit(function(e) {
             e.preventDefault();
             
             var titleEmpty = isTitleEmpty();
@@ -96,21 +130,18 @@
                 headers: {"Accept": "text/html"},
                 data: data 
             }).done(function(res) {
-                $('div.title').html(title);
-                $('div.content').html(content);
                 dia.remove();
                 $('#mask').remove();
+                $('h3.title').html(title);
+                $('div.content').html(content);
             }).fail(function(res) {
                 $('span.op-error-info').show();   
             });
         });
-
-        return this;
     }
 
     $.fn.delDialog = function() {
-
-        mask();
+        $.mask();
 
         var target = this;
         var dia = confirm();
@@ -127,5 +158,4 @@
             });
         });
     }
-
 })(jQuery);

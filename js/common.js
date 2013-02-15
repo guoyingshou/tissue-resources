@@ -37,7 +37,7 @@
 
 (function($) {
 
-    $.fn.oneItemDialog = function() {
+    $.fn.oneItemDialog = function(edit) {
 
         var that = this;
         var url = this.data("action");
@@ -48,13 +48,17 @@
         $.addCancelListener(dia);
         $.mask();
 
+        if(edit) {
+            $('#editor').val(target.html());
+        }
         CKEDITOR.replace("editor");
         dia.show();
 
-        $('form', dia).submit(function(e) {
+        $('form', dia).on('submit', function(e) {
             e.preventDefault();
 
             var content = CKEDITOR.instances.editor.getData();
+
             $.ajax({
                 type: "POST",
                 url: url,
