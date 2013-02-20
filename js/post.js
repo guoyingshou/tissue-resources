@@ -4,26 +4,31 @@
 
 $(document).ready(function() {
 
-    $(document).on('click', 'a.del', function(e) {
-        e.preventDefault();
-        $(this).delDialog();
-    });
-
     $('#post-form').on('submit', function(e) {
         return $(this).post();
     });
 
-    $(document).on('click', 'a.post-edit', function(e) {
+    $(document).on('click', 'a.update-post', function(e) {
         e.preventDefault();
-        $(this).editPostDialog();
+        $(this).updatePostDialog();
     });
- 
-    $(document).on('click', 'a.item-add', function(e) {
+
+    $(document).on('click', 'a.delete-post', function(e) {
+        e.preventDefault();
+        $(this).deletePostDialog();
+    });
+
+    $(document).on('click', 'a.create-item', function(e) {
         e.preventDefault();
         $(this).oneItemDialog();
     });
+ 
+    $(document).on('click', 'a.delete-item', function(e) {
+        e.preventDefault();
+        $(this).deleteDialog();
+    });
 
-    $(document).on('click', 'a.item-edit', function(e) {
+    $(document).on('click', 'a.update-item', function(e) {
         e.preventDefault();
         $(this).oneItemDialog(true);
     });
@@ -89,7 +94,7 @@ $(document).ready(function() {
         return true;
     }
 
-    $.fn.editPostDialog = function() {
+    $.fn.updatePostDialog = function() {
 
         var that = this;
         var dia = $('#postEditForm').clone();
@@ -140,7 +145,27 @@ $(document).ready(function() {
         });
     }
 
-    $.fn.delDialog = function() {
+    $.fn.deletePostDialog = function() {
+        var url = this.data("action");
+            console.log(url);
+
+        var dia = $('#deletePostForm').clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            if($("#reason").val().length == 0) {
+                $('label[for="reason"] span').show();
+                return false;
+            }
+            $(this).attr("action", url);
+            console.log(url);
+        });
+    }
+
+    $.fn.deleteDialog = function() {
         $.mask();
 
         var target = this;

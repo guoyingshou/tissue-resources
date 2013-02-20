@@ -1,19 +1,33 @@
-(function($) {
-    $(document).on('click', 'a.topic-create', function(e) {
+/**
+ * Event handlers
+ */
+$(document).ready(function() {
+
+    $(document).on('click', 'a.create-topic', function(e) {
         e.preventDefault();
-        $(this).newTopicDialog();
+        $(this).createTopicDialog();
     });
 
-    $(document).on('click', 'a.topic-edit', function(e) {
+    $(document).on('click', 'a.update-topic', function(e) {
         e.preventDefault();
-        $(this).editTopicDialog();
+        $(this).updateTopicDialog();
+    });
+
+    $(document).on('click', 'a.delete-topic', function(e) {
+        e.preventDefault();
+        $(this).deleteTopicDialog();
     });
  
-    $(document).on('click', 'a.plan-create', function(e) {
+    $(document).on('click', 'a.create-plan', function(e) {
         e.preventDefault();
-        $('#planDia').newPlanDialog();
+        $(this).createPlanDialog();
     });
+});
 
+/**
+ * Bussiness logic
+ */
+(function($) {
     function isTitleEmpty() {
         var title = $('#title');
         if(title.val().length == 0) {
@@ -50,7 +64,7 @@
         }
     }
 
-    $.fn.newTopicDialog = function() {
+    $.fn.createTopicDialog = function() {
         var url = this.data("action");
 
         var dia = $('#topicForm').clone();
@@ -65,7 +79,7 @@
         $.mask();
         dia.show();
 
-        $('form', dia).submit(function(e) {
+        $(dia).submit(function(e) {
             if(isTitleEmpty() || isTagsEmpty() || isObjectiveEmpty()) {
                 return false;
             }
@@ -73,7 +87,7 @@
         });
     }
 
-    $.fn.editTopicDialog = function() {
+    $.fn.updateTopicDialog = function() {
         var url = this.data("action");
         var dia = $('#topicForm').clone();
 
@@ -92,7 +106,7 @@
         $.mask();
         dia.show();
 
-        $('form', dia).submit(function(e) {
+        $(dia).submit(function(e) {
             e.preventDefault();
 
             var title = $('#title', dia).val();
@@ -122,19 +136,36 @@
                 $('#mask').remove();
             });
         });
-        return this;
     }
 
-    $.fn.newPlanDialog = function() {
-        var dia = $('#planForm').clone();
+    $.fn.deleteTopicDialog = function() {
+        var url = this.data("action");
+
+        var dia = $('#deleteTopicForm').clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            if($("#reason").val().length == 0) {
+                $('label[for="reason"] span').show();
+                return false;
+            }
+            $(this).attr("action", url);
+        });
+    }
+
+    $.fn.createPlanDialog = function() {
+        var dia = $('#createPlanForm').clone();
         $.positionDialog(dia, 650);
         $.addCancelListener(dia);
 
         $.mask();
         dia.show();
 
-        $('form', dia).submit(function(e) {
-            //todo: validate input
+        $(dia).submit(function(e) {
+            //todo: need to validate input?
         });
     }
 
