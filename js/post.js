@@ -1,7 +1,6 @@
 /**
- * post CRUD event handlers.
+ * post action CRUD event handlers.
  */
-
 $(document).ready(function() {
 
     $('#post-form').on('submit', function(e) {
@@ -32,7 +31,6 @@ $(document).ready(function() {
         e.preventDefault();
         $(this).oneItemDialog(true);
     });
-
 });
 
 
@@ -97,10 +95,10 @@ $(document).ready(function() {
     $.fn.updatePostDialog = function() {
 
         var that = this;
-        var dia = $('#postEditForm').clone();
+        var dia = $('#updatePostForm').clone();
 
-        var titleOld = $.trim($('.title').text());
-        var contentOld = $.trim($('.content').html());
+        var titleOld = $.trim($('.item-title').text());
+        var contentOld = $.trim($('.item-content').html());
         $('#title', dia).val(titleOld);
         $('#editor', dia).val(contentOld);
 
@@ -124,7 +122,7 @@ $(document).ready(function() {
             var content = CKEDITOR.instances.editor.getData();
 
             var data = {
-                type: that.data("type"),
+                //type: that.data("type"),
                 title: title,
                 content: content
             };
@@ -137,10 +135,10 @@ $(document).ready(function() {
             }).done(function(res) {
                 dia.remove();
                 $('#mask').remove();
-                $('h3.title').html(title);
-                $('div.content').html(content);
+                $('h3.item-title').html(title);
+                $('div.item-content').html(content);
             }).fail(function(res) {
-                $('span.op-error-info').show();   
+                //$('span.op-error-info').show();   
             });
         });
     }

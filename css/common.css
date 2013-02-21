@@ -50,6 +50,11 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+a {
+    text-decoration: none;
+}
+
 /**
  * reset end
  */
@@ -107,16 +112,6 @@ body {
 	line-height: 1.5;
 }
 
-a {
-   color: #bbb;
-   text-decoration: none;
-}
-
-ul.action a {
-   color: #888;
-   font-size: 14px;
-}
-
 .current {
     color: #e18728;
 }
@@ -134,17 +129,6 @@ ul.action a {
     color: #fff;
     background: #454546;
 }
-
-/**
-ul.nav:after {
-    clear: both;
-    content: ".";
-    display: block;
-    height: 0;
-    visibility: hidden;
-    font-size: 0;
-}
-*/
 
 .center {
     width: 960px;
@@ -174,14 +158,35 @@ ul.nav:after {
     margin-right: 1.2em;
 }
 
-#logo li a {
+#logo .menu {
+    line-height: 28px;
+}
+
+#logo .menu a {
     display: block;
+    color: #888;
+}
+
+#logo .action a {
+    display: block;
+    color: #888;
+    font-size: 14px;
+}
+
+#logo .menu a:hover, #logo .action a:hover {
+    color: #97bde1;
+}
+
+.current {
+    color: #252525;
+    font-weight: bold;
+    font-size: 24px; 
 }
 
 #logo h1 {
     color: #333;
     line-height: 38px;
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 0.6em;
 }
@@ -263,15 +268,6 @@ ul.nav:after {
     border-bottom: 1px solid #fff;
     line-height: 28px;
     height: 28px;
-}
-
-/**
- * look and feel
-    color: #d6d5d5;
- */
-.ts {
-    color: #888;
-    font-size: 12px;
 }
 
 /**
@@ -467,5 +463,3 @@ ul.nav-item ul li a	{
     width: 100%; 
     display: inline-block; 
 } 
-
-
