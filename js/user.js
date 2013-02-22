@@ -142,6 +142,7 @@
         var that = $('#username');
         var username = that.val();
         $.ajax({
+            type: "post",
             url: "/social/preAddUsername",
             async: false,
             data: {
@@ -200,6 +201,7 @@
         var that = $('#email');
         var email = that.val();
         $.ajax({
+            type: "post",
             url: "/social/preAddEmail",
             async: false,
             data: {

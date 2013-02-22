@@ -2,6 +2,7 @@
 drop database remote:www.tissue.com/test1 guo guo;
 create database remote:www.tissue.com/test1 guo guo local graph;
 
+create class Account extends OGraphVertex;
 create class User extends OGraphVertex;
 create class About extends OGraphVertex;
 create class Topic extends OGraphVertex;
@@ -19,12 +20,16 @@ create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
 
-create property User.username string;
-create property User.password string;
+create property Account.username string;
+create property Account.password string;
+create property Account.email string;
+create property Account.user link User;
+create property Account.roles embeddedset string;
+
 create property User.displayName string;
-create property User.email string;
 create property User.headline string;
 create property User.createTime datetime;
+create property User.accounts linklist Account;
 
 create property Topic.title string;
 create property Topic.content string;
@@ -41,9 +46,6 @@ create property Cnt.messages linklist PostMessage;
 create property PostMessage.post link Cnt;
 create property PostMessage.comments linklist PostMessageComment;
 create property PostMessageComment.postMessage link PostMessage;
-#create property Post.messages linkset PostMessage;
-#create property Post.comments linkset QuestionComment;
-#create property Post.answers linkset Answer;
 
 create property Question.answers linklist Answer;
 create property Question.comments linklist QuestionComment;
