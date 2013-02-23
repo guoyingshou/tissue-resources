@@ -291,7 +291,7 @@
         }).done(function(res) {
             $('div.intention').remove();
         }).fail(function(res) {
-           console.log("fail");   
+            //to do
         });
     });
 
