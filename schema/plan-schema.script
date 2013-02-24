@@ -56,10 +56,10 @@ create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
 
 create class EdgeAction extends OGraphEdge;
-create class EdgeImpression extends EdgeAction;
+create class EdgeTopic extends EdgeAction;
 create class EdgeFriend extends EdgeAction;
 create class EdgePost extends EdgeAction;
-create class EdgeJoin extends EdgeAction;
+create class EdgeImpression extends EdgeAction;
 
 create property EdgeAction.label string;
 create property EdgeAction.createTime datetime;
