@@ -112,6 +112,11 @@ body {
 	line-height: 1.5;
 }
 
+.error {
+    color: red;
+    font-size: 12px;
+}
+
 .current {
     color: #e18728;
 }

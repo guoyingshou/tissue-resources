@@ -1,18 +1,19 @@
-(function($) {
-    $.isEmailValid = function() {
-        var email = $('#email');
-        
-        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        if(!emailReg.test(email.val()) || email.val().length < 6) {
-            email.prev().children('span').show();
-            return false;
-        }
-        else {
-            email.prev().children('span').hide();
-            return true;
-        }
-    };
+/**
+ * dropdown effect
+ */
+$(function() {
+    $("ul.nav-item li:has(ul)").hover(function() {
+       $(this).addClass("hover");
+       $('ul.dropdown-menu').show();
+    }, function() {
+       $(this).removeClass("hover");
+       $('ul.dropdown-menu').hide();
+    });
 
+    //$('ul.userbox li ul li:has(ul)').find('a:first').append(" &raquo; ");
+});
+
+(function($) {
     $.mask = function() {
         var mask = $('<div id="mask"></div>');
         mask.width($(window).width());
@@ -77,20 +78,3 @@
         });
     }
 })(jQuery);
-
-/**
- * dropdown effect
- */
-$(function() {
-    $("ul.nav-item li:has(ul)").hover(function() {
-       $(this).addClass("hover");
-       $('ul.dropdown-menu').show();
-    }, function() {
-       $(this).removeClass("hover");
-       $('ul.dropdown-menu').hide();
-    });
-
-    //$('ul.userbox li ul li:has(ul)').find('a:first').append(" &raquo; ");
-});
-
-
