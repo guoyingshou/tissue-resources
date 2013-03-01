@@ -42,11 +42,11 @@
  */
 (function($) {
 
-    $(document).on('focusout', '#username', function(e) {
+    $(document).on('focusout', '#signupForm #username', function(e) {
         return $.isUsernameTaken(); 
     });
 
-    $(document).on('focusout', '#email', function(e) {
+    $(document).on('focusout', '#signupForm #email', function(e) {
         return $.isEmailTaken(); 
     });
 
@@ -56,10 +56,8 @@
     $(document).on('click', 'a.process-invite', function(e) {
         e.preventDefault();
         var url = $(this).data("action");
-        $.ajax({
-            type: "POST",
-            url: url 
-        }).done(function(res) {
+        $.post(url)
+        .done(function(res) {
             $('div.intention').remove();
         }).fail(function(res) {
             //to do
@@ -73,6 +71,29 @@
  * plugin 
  */
 (function($) {
+
+    $.fn.updateEmailDialog = function() {
+        var url = this.data("action");
+        var dia = $('#updateEmailForm').clone();
+        $.positionDialog(dia, 420);
+        $.addCancelListener(dia);
+        $.mask();
+        dia.show();
+
+        $(dia).on('submit', function(e) {
+            e.preventDefault();
+            $.post(url, dia.serialize())
+            .done(function() {
+                $('#mask').remove();
+                dia.remove();
+                return true;
+            }).fail(function() {
+                $('#updateEmailFail').show();
+                return false;
+            });
+        });
+    }
+
      $.fn.updateProfileDialog = function() {
         var url = this.data("action");
         var dia = $('#updateProfileForm').clone();
@@ -82,10 +103,15 @@
         dia.show();
 
         $(dia).on('submit', function(e) {
-            if($.isDisplayNameEmpty() || $.isHeadlineEmpty()) {
+            e.preventDefault();
+            $.post(url, dia.serialize())
+            .done(function() {
+                $('#mask').remove();
+                dia.remove();
+            }).fail(function() {
+                $('#failUpdateProfile').show();
                 return false;
-            }
-            $(this).attr("action", url);
+            });
         });
     }
 
@@ -98,57 +124,20 @@
         dia.show();
 
         $(dia).on('submit', function(e) {
-            var passwordInvalid, confirmMismatch;
-
-            var password = $('#password');
-            var confirm = $('#confirm');
-
-            if(password.val().length < 6) {
-                $('label[for="password"] span').show();
-                passwordInvalid = true;
-            }
-            else {
-                $('label[for="password"] span').hide();
-                passwordInvalid = false;
-            }
-
-            if(confirm.val() != password.val()) {
-                $('label[for="confirm"] span').show();
-                confirmMismatch = true;
-            }
-            else {
-                $('label[for="password"] span').hide();
-                confirmMismatch = false;
-            }
-
-            if(passwordInvalid || confirmMismatch) {
+            e.preventDefault();
+            $.post(url, dia.serialize())
+            .done(function() {
+                $('#mask').remove();
+                dia.remove();
+            }).fail(function() {
+                $('#failUpdatePassword').show();
                 return false;
-            }
-
-            $(this).attr("action", url);
+            });
         });
         return this;
     }
 
-    $.fn.updateEmailDialog = function() {
-        var url = this.data("action");
-        var dia = $('#updateEmailForm').clone();
-        $.positionDialog(dia, 420);
-        $.addCancelListener(dia);
-        $.mask();
-        dia.show();
-
-        $(dia).on('submit', function(e) {
-            var email = $('#email').val();
-            if($.isEmailInvalid(email)) {
-                return false;
-            }
-            $(this).attr("action", url);
-        });
-    }
-
     $.fn.inviteDialog = function() {
-        var that = this;
         url = this.data('action');
 
         var dia = $('#inviteForm').clone();
@@ -160,20 +149,13 @@
         $(dia).on('submit', function(e) {
             e.preventDefault();
 
-            if($('#letter').val().length == 0) {
-                $('label[for="letter"] span').show();
-                return false;
-            }
-
-            $.ajax({
-                type: "POST",
-                url: that.data('action'),
-                headers: {"Accept": "text/html"},
-                data: {content: $('textarea', dia).val()}
-            }).done(function(res) {
-                that.remove();
+            $.post(url, dia.serialize())
+            .done(function(res) {
                 dia.remove();
                 $('#mask').remove();
+            }).fail(function() {
+                $('#failInvite').show();
+                return false;
             });
         });
     }
