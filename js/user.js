@@ -23,17 +23,15 @@
         $(this).inviteDialog();
     });
 
-    $(document).on('click', 'a.add-impression, a.add-resume', function(e) {
+    $(document).on('click', 'a.add-impression', function(e) {
         e.preventDefault();
-        $(this).oneItemDialog();
+        $(this).addImpressionDialog();
     });
 
-    /**
-    $(document).on('click', 'a.add-resume', function(e) {
+    $(document).on('click', 'a.add-about', function(e) {
         e.preventDefault();
-        $(this).oneItemDialog();
+        $(this).addAboutDialog();
     });
-    */
 
 })(jQuery);
 
@@ -103,15 +101,12 @@
         dia.show();
 
         $(dia).on('submit', function(e) {
-            e.preventDefault();
-            $.post(url, dia.serialize())
-            .done(function() {
-                $('#mask').remove();
-                dia.remove();
-            }).fail(function() {
-                $('#failUpdateProfile').show();
+            var x = $.isDisplayNameEmpty();
+            var y = $.isHeadlineEmpty();
+            if(x || y) {
                 return false;
-            });
+            }
+            $(this).attr("action", url);
         });
     }
 
@@ -138,6 +133,7 @@
     }
 
     $.fn.inviteDialog = function() {
+        var that = this;
         url = this.data('action');
 
         var dia = $('#inviteForm').clone();
@@ -151,6 +147,7 @@
 
             $.post(url, dia.serialize())
             .done(function(res) {
+                that.remove();
                 dia.remove();
                 $('#mask').remove();
             }).fail(function() {
@@ -160,12 +157,76 @@
         });
     }
 
+    $.fn.addImpressionDialog = function() {
+
+        var url = this.data("action");
+
+        var dia = $('#impressionForm').clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
+
+        CKEDITOR.replace("editor");
+        dia.show();
+
+        $(dia).on('submit', function(e) {
+            var content = CKEDITOR.instances.editor.getData();
+            if(content.length == 0) {
+                return false;
+            }
+            $(this).attr("action", url);
+        });
+    }
+
+    $.fn.addAboutDialog = function() {
+
+        var url = this.data("action");
+
+        var dia = $('#aboutForm').clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
+
+        CKEDITOR.replace("editor");
+        dia.show();
+
+        $(dia).on('submit', function(e) {
+            var content = CKEDITOR.instances.editor.getData();
+            if(content.length == 0) {
+                return false;
+            }
+            $(this).attr("action", url);
+        });
+    }
+
 })(jQuery);
 
 /**
  *  service
  */
 (function($) {
+
+    $.isDisplayNameEmpty = function() {
+        if($('#displayName').val().length == 0) {
+            $('#empty-displayName').show();
+            return true;
+        }
+        else {
+            $('#empty-displayName').hide();
+            return false;
+        }
+    }
+
+    $.isHeadlineEmpty = function() {
+        if($('#headline').val().length == 0) {
+            $('#empty-headline').show();
+            return true;
+        }
+        else {
+            $('#empty-headline').hide();
+            return false;
+        }
+    }
 
     $.isUsernameTaken = function() {
         var taken = false;

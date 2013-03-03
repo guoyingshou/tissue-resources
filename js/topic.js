@@ -58,7 +58,7 @@ $(document).ready(function() {
  * serivce
  */
 (function($) {
-    function isTitleEmpty() {
+    $.isTitleEmpty = function() {
         var title = $('#title');
         if(title.val().length == 0) {
             $('label[for="title"] span').show();
@@ -70,7 +70,7 @@ $(document).ready(function() {
         }
     }
 
-    function isTagsEmpty() {
+    $.isTagsEmpty = function() {
         var tags = $('#tags');
         if(tags.val().length == 0) {
             $('label[for="tags"] span').show();
@@ -82,7 +82,7 @@ $(document).ready(function() {
         }
     }
 
-    function isObjectiveEmpty() {
+    $.isObjectiveEmpty = function() {
         var objective = CKEDITOR.instances.editor.getData();
         if(objective.length == 0) {
             $('label[for="editor"] span').show();
@@ -102,7 +102,7 @@ $(document).ready(function() {
         return dia;
     }
 
-    function isTypeNotSelected() {
+    $.isTypeNotSelected = function() {
         if($('input[name="type"]').is(':checked')) {
             $('legend span').hide();
             return false;
@@ -113,18 +113,7 @@ $(document).ready(function() {
         }
     }
 
-    function isTitleEmpty() {
-        if($.trim($('#title').val()).length == 0) {
-            $('label[for="title"] span').show();
-            return true;
-        }
-        else {
-            $('label[for="title"] span').hide();
-            return false;
-        }
-    }
-
-    function isContentEmpty() {
+    $.isContentEmpty = function() {
         var content = CKEDITOR.instances.editor.getData();
         if($.trim(content).length == 0) {
             $('label[for="editor"] span').show();
@@ -159,7 +148,11 @@ $(document).ready(function() {
         dia.show();
 
         $(dia).submit(function(e) {
-            if(isTitleEmpty() || isTagsEmpty() || isObjectiveEmpty()) {
+            var titleEmpty = $.isTitleEmpty();
+            var objectiveEmpty = $.isObjectiveEmpty();
+            var tagsEmpty = $.isTagsEmpty();
+
+            if(titleEmpty || tagsEmpty || objectiveEmpty) {
                 return false;
             }
             $(this).attr("action", url);
@@ -188,13 +181,17 @@ $(document).ready(function() {
         $(dia).submit(function(e) {
             e.preventDefault();
 
+            var titleEmpty = $.isTitleEmpty();
+            var objectiveEmpty = $.isObjectiveEmpty();
+            var tagsEmpty = $.isTagsEmpty();
+
+            if(titleEmpty || objectiveEmpty || tagsEmpty) {
+                return false;    
+            }
+
             var title = $('#title', dia).val();
             var content = CKEDITOR.instances.editor.getData();
             var tags = $('#tags', dia).val();
-
-            if(isTitleEmpty() || isObjectiveEmpty() || isTagsEmpty()) {
-                return false;    
-            }
 
             var data = {
                 title: title,
@@ -213,6 +210,8 @@ $(document).ready(function() {
                 $('div.tags').html(tags);
                 dia.remove();
                 $('#mask').remove();
+            }).fail(function() {
+                
             });
         });
     }
@@ -326,10 +325,10 @@ $(document).ready(function() {
                 return false;
             }
             $(this).attr("action", url);
-            console.log(url);
         });
     }
 
+    /**
     $.fn.deleteDialog = function() {
         $.mask();
 
@@ -348,5 +347,6 @@ $(document).ready(function() {
             });
         });
     }
+    */
 
 })(jQuery);

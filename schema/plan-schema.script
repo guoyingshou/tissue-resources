@@ -64,3 +64,6 @@ create class EdgeImpression extends EdgeAction;
 create property EdgeAction.label string;
 create property EdgeAction.createTime datetime;
 
+create index Account.username unique;
+create index Account.email unique;
+
