@@ -140,45 +140,45 @@ body {
     margin: 0 auto;
 }
 
-#logo {
+#page-logo {
     margin-top: 20px;
     margin-bottom: 20px;
     border-bottom: 5px solid #444;
 }
 
-#logo div {
+#page-logo div {
     overflow: hidden;
 }
 
-#logo ul.menu {
+#page-logo ul.menu {
     float: left;
 }
 
-#logo ul.action {
+#page-logo ul.action {
     float: right;
 }
 
-#logo ul li {
+#page-logo ul li {
     float: left;
     margin-right: 1.2em;
 }
 
-#logo .menu {
+#page-logo .menu {
     line-height: 28px;
 }
 
-#logo .menu a {
+#page-logo .menu a {
     display: block;
     color: #888;
 }
 
-#logo .action a {
+#page-logo .action a {
     display: block;
     color: #888;
     font-size: 14px;
 }
 
-#logo .menu a:hover, #logo .action a:hover {
+#page-logo .menu a:hover, #page-logo .action a:hover {
     color: #97bde1;
 }
 
@@ -191,7 +191,7 @@ body {
     */
 }
 
-#logo h1 {
+#page-logo h1 {
     color: #333;
     line-height: 38px;
     font-size: 32px;
@@ -199,23 +199,23 @@ body {
     margin-bottom: 0.6em;
 }
 
-#logo h1 span {
+#page-logo h1 span {
     font-size: 14px;
     font-weight: normal;
 }
 
-#header {
+#page-header {
     padding: 3px 0;
     min-height: 40px;
     line-height: 32px;
 }
 
-#contentWrapper {
+#page-content-wrapper {
     padding: 10px 10px 10px 0;
     overflow: hidden;
 }
 
-#footer {
+#page-footer {
     margin-top: 2em;
     padding-bottom: 20px;
 }
@@ -223,19 +223,19 @@ body {
 /**
  * layout
  */
-#sidebar, #mid, #main {
+#page-sidebar, #page-mid, #page-main {
     min-height: 300px;
     padding-bottom: 10000px;
     margin-bottom: -10000px;
 }
 
-#content {
+#page-content {
     padding-right: 10px;
     color: #1a1a1a;
     font-size: 14px;
 }
 
-#sidebar {
+#page-sidebar {
     float: right;
     width: 276px;
     padding-left: 10px;
@@ -243,7 +243,7 @@ body {
     font-size: 14px;
 }
 
-#sidebar h4 {
+#page-sidebar h4 {
     margin-bottom: 5px;
     padding-top: 2px;
     font-size: 1.0em;
@@ -252,7 +252,7 @@ body {
     border-bottom: 2px solid #000;
 }
 
-#sidebar > div {
+#page-sidebar > div {
     background: #f0f0f0;
     margin-bottom: 10px;
 }
@@ -446,9 +446,9 @@ ul.nav-item li.hover a {
     color: black; 
 }
 
-/* 
-	LEVEL TWO
-*/
+/** 
+ * level 2
+ */
 ul.nav-item ul {
     width: 120px; 
     position: absolute; 

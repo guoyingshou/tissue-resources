@@ -3,6 +3,11 @@
  */
 $(document).ready(function() {
 
+    $(document).on('click', 'a.delete', function(e) {
+        e.preventDefault();
+        $(this).deleteDialog();
+    });
+ 
     $(document).on('click', 'a.create-topic', function(e) {
         e.preventDefault();
         $(this).createTopicDialog();
@@ -12,19 +17,20 @@ $(document).ready(function() {
         e.preventDefault();
         $(this).updateTopicDialog();
     });
-
-    $(document).on('click', 'a.delete-topic', function(e) {
-        e.preventDefault();
-        $(this).deleteTopicDialog();
-    });
  
     $(document).on('click', 'a.create-plan', function(e) {
         e.preventDefault();
         $(this).createPlanDialog();
     });
 
-    $(document).on('submit', '#post-form', function(e) {
-        return $(this).creaatePost();
+    $(document).on('submit', '#createPostForm', function(e) {
+        var typeNotSelected = $.isTypeNotSelected();
+        var titleEmpty = $.isTitleEmpty();
+        var contentEmpty = $.isContentEmpty();
+
+        if( typeNotSelected || titleEmpty || contentEmpty) {
+            return false;
+        }
     });
 
     $(document).on('click', 'a.update-post', function(e) {
@@ -32,106 +38,53 @@ $(document).ready(function() {
         $(this).updatePostDialog();
     });
 
-    $(document).on('click', 'a.delete-post', function(e) {
+    $(document).on('click', 'a.create-postMessage', function(e) {
         e.preventDefault();
-        $(this).deletePostDialog();
+        $(this).createPostMessageDialog();
     });
 
-    $(document).on('click', 'a.create-item', function(e) {
+    $(document).on('click', 'a.update-postMessage', function(e) {
         e.preventDefault();
-        $(this).oneItemDialog();
-    });
- 
-    $(document).on('click', 'a.delete-item', function(e) {
-        e.preventDefault();
-        $(this).deleteDialog();
+        $(this).updatePostMessageDialog();
     });
 
-    $(document).on('click', 'a.update-item', function(e) {
+    $(document).on('click', 'a.create-postMessageComment', function(e) {
         e.preventDefault();
-        $(this).oneItemDialog(true);
+        $(this).createPostMessageCommentDialog();
     });
+
+    $(document).on('click', 'a.update-postMessageComment', function(e) {
+        e.preventDefault();
+        $(this).updatePostMessageCommentDialog();
+    });
+
+    $(document).on('click', 'a.create-answer', function(e) {
+        e.preventDefault();
+        $(this).createAnswerDialog();
+    });
+
 
 });
-
-/**
- * serivce
- */
-(function($) {
-    $.isTitleEmpty = function() {
-        var title = $('#title');
-        if(title.val().length == 0) {
-            $('label[for="title"] span').show();
-            return true;
-        }
-        else {
-            $('label[for="title"] span').hide();
-            return false;
-        }
-    }
-
-    $.isTagsEmpty = function() {
-        var tags = $('#tags');
-        if(tags.val().length == 0) {
-            $('label[for="tags"] span').show();
-            return true;
-        }
-        else {
-            $('label[for="tags"] span').hide();
-            return false;
-        }
-    }
-
-    $.isObjectiveEmpty = function() {
-        var objective = CKEDITOR.instances.editor.getData();
-        if(objective.length == 0) {
-            $('label[for="editor"] span').show();
-            return true;
-        }
-        else {
-            $('label[for="editor"] span').hide();
-            return false;
-        }
-    }
-
-    function confirm() {
-        var dia = $('#confirmForm').clone();
-        $.positionDialog(dia, 320);
-        $.addCancelListener(dia);
-        dia.show();
-        return dia;
-    }
-
-    $.isTypeNotSelected = function() {
-        if($('input[name="type"]').is(':checked')) {
-            $('legend span').hide();
-            return false;
-        }
-        else {
-            $('legend span').show();
-            return true;
-        }
-    }
-
-    $.isContentEmpty = function() {
-        var content = CKEDITOR.instances.editor.getData();
-        if($.trim(content).length == 0) {
-            $('label[for="editor"] span').show();
-            return true;
-        }
-        else {
-            $('label[for="editor"] span').hide();
-            return false;
-        }
-    }
-
-})(jQuery);
 
 /**
  * plugin
  */
 (function($) {
 
+    $.fn.deleteDialog = function() {
+        var url = this.data("action");
+
+        var dia = $('#deleteConfirmForm').clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            $(this).attr("action", url);
+        });
+    }
+ 
     $.fn.createTopicDialog = function() {
         var url = this.data("action");
 
@@ -179,56 +132,12 @@ $(document).ready(function() {
         dia.show();
 
         $(dia).submit(function(e) {
-            e.preventDefault();
-
             var titleEmpty = $.isTitleEmpty();
             var objectiveEmpty = $.isObjectiveEmpty();
             var tagsEmpty = $.isTagsEmpty();
 
             if(titleEmpty || objectiveEmpty || tagsEmpty) {
                 return false;    
-            }
-
-            var title = $('#title', dia).val();
-            var content = CKEDITOR.instances.editor.getData();
-            var tags = $('#tags', dia).val();
-
-            var data = {
-                title: title,
-                content: content,
-                tags: tags
-            };
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                headers: {"Accept": "text/html"},
-                data: data 
-            }).done(function(res) {
-                $('#logo h1 a').html(title);
-                $('div.content').html(content);
-                $('div.tags').html(tags);
-                dia.remove();
-                $('#mask').remove();
-            }).fail(function() {
-                
-            });
-        });
-    }
-
-    $.fn.deleteTopicDialog = function() {
-        var url = this.data("action");
-
-        var dia = $('#deleteTopicForm').clone();
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            if($("#reason").val().length == 0) {
-                $('label[for="reason"] span').show();
-                return false;
             }
             $(this).attr("action", url);
         });
@@ -247,106 +156,177 @@ $(document).ready(function() {
         });
     }
 
-    $.fn.createPost = function() {
-        var typeNotSelected = isTypeNotSelected();
-        var titleEmpty = isTitleEmpty();
-        var contentEmpty = isContentEmpty();
-
-        if( typeNotSelected || titleEmpty || contentEmpty) {
-            return false;
-        }
-        return true;
-    }
-
     $.fn.updatePostDialog = function() {
-
-        var that = this;
+        var url = this.data("action");
         var dia = $('#updatePostForm').clone();
 
         var titleOld = $.trim($('.item-title').text());
         var contentOld = $.trim($('.item-content').html());
         $('#title', dia).val(titleOld);
-        $('#editor', dia).val(contentOld);
+        $('#content', dia).val(contentOld);
 
         $.positionDialog(dia, 650);
         $.addCancelListener(dia);
         $.mask();
         dia.show();
-        CKEDITOR.replace('editor');
+        CKEDITOR.replace('content');
 
         $(dia).submit(function(e) {
-            e.preventDefault();
-            
-            var titleEmpty = isTitleEmpty();
-            var contentEmpty = isContentEmpty();
-
+            var titleEmpty = $.isTitleEmpty();
+            var contentEmpty = $.isContentEmpty();
             if(titleEmpty || contentEmpty) {
                 return false;
             }
-
-            var title = $('#title', dia).val();
-            var content = CKEDITOR.instances.editor.getData();
-
-            var data = {
-                //type: that.data("type"),
-                title: title,
-                content: content
-            };
-
-            $.ajax({
-                type: "POST",
-                url: that.data("action"),
-                headers: {"Accept": "text/html"},
-                data: data 
-            }).done(function(res) {
-                dia.remove();
-                $('#mask').remove();
-                $('h3.item-title').html(title);
-                $('div.item-content').html(content);
-            }).fail(function(res) {
-                //$('span.op-error-info').show();   
-            });
+            dia.attr("action", url);
         });
     }
 
-    $.fn.deletePostDialog = function() {
-        var url = this.data("action");
-            console.log(url);
-
-        var dia = $('#deletePostForm').clone();
+    $.fn.createPostMessageDialog = function() {
+        var url = $(this).data("action");
+        var dia = $('#postMessageForm').clone();
         $.positionDialog(dia, 650);
         $.addCancelListener(dia);
+        CKEDITOR.replace('content');
         $.mask();
         dia.show();
 
         $(dia).submit(function(e) {
-            if($("#reason").val().length == 0) {
-                $('label[for="reason"] span').show();
-                return false;
-            }
             $(this).attr("action", url);
         });
     }
 
-    /**
-    $.fn.deleteDialog = function() {
+    $.fn.updatePostMessageDialog = function() {
+        var url = $(this).data("action");
+        var dia = $('#postMessageForm').clone();
+
+        var targetSelector = $(this).data("target");
+        var content = $.trim($(targetSelector).html());
+        $('#content', dia).val(content);
+
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        CKEDITOR.replace('content');
         $.mask();
+        dia.show();
 
-        var target = this;
-        var dia = confirm();
-        $('input[name="ok"]', dia).one('click', function(e) {
-            e.preventDefault();
-
-            $.ajax({
-                type: "POST",
-                url: target.data('action'),
-            }).done(function() {
-                target.closest('li').remove();
-                dia.remove();
-                $('#mask').remove();
-            });
+        $(dia).submit(function(e) {
+            $(this).attr("action", url);
         });
     }
-    */
+
+    $.fn.createPostMessageCommentDialog = function() {
+        var url = $(this).data("action");
+        var dia = $('#postMessageCommentForm').clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        CKEDITOR.replace('content');
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            $(this).attr("action", url);
+        });
+    }
+
+    $.fn.updatePostMessageCommentDialog = function() {
+        var url = $(this).data("action");
+        var dia = $('#postMessageCommentForm').clone();
+
+        var targetSelector = $(this).data("target");
+        var content = $.trim($(targetSelector).html());
+        $('#content', dia).val(content);
+
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        CKEDITOR.replace('content');
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            $(this).attr("action", url);
+        });
+    }
+
+    $.fn.createAnswerDialog = function() {
+        var url = $(this).data("action");
+        var dia = $('#answerForm').clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        CKEDITOR.replace('content');
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            $(this).attr("action", url);
+        });
+    }
+
 
 })(jQuery);
+
+/**
+ * serivce
+ */
+(function($) {
+    $.isTitleEmpty = function() {
+        var title = $('#title');
+        if(title.val().length == 0) {
+            $('label[for="title"] span').show();
+            return true;
+        }
+        else {
+            $('label[for="title"] span').hide();
+            return false;
+        }
+    }
+
+    $.isTagsEmpty = function() {
+        var tags = $('#tags');
+        if(tags.val().length == 0) {
+            $('label[for="tags"] span').show();
+            return true;
+        }
+        else {
+            $('label[for="tags"] span').hide();
+            return false;
+        }
+    }
+
+    $.isObjectiveEmpty = function() {
+        var objective = CKEDITOR.instances.editor.getData();
+        if(objective.length == 0) {
+            $('label[for="editor"] span').show();
+            return true;
+        }
+        else {
+            $('label[for="editor"] span').hide();
+            return false;
+        }
+    }
+
+    $.isTypeNotSelected = function() {
+        if($('input[name="type"]').is(':checked')) {
+            $('div.error span').hide();
+            return false;
+        }
+        else {
+            $('div.error span').show();
+            return true;
+        }
+    }
+
+    $.isContentEmpty = function() {
+        var content = CKEDITOR.instances.content.getData();
+        if($.trim(content).length == 0) {
+            $('label[for="content"] span').show();
+            return true;
+        }
+        else {
+            $('label[for="content"] span').hide();
+            return false;
+        }
+    }
+
+})(jQuery);
+
+
