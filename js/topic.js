@@ -40,29 +40,53 @@ $(document).ready(function() {
 
     $(document).on('click', 'a.create-postMessage', function(e) {
         e.preventDefault();
-        $(this).createPostMessageDialog();
+        $(this).createDialog("#postMessageForm");
     });
 
     $(document).on('click', 'a.update-postMessage', function(e) {
         e.preventDefault();
-        $(this).updatePostMessageDialog();
+        $(this).updateDialog("#postMessageForm");
     });
 
     $(document).on('click', 'a.create-postMessageComment', function(e) {
         e.preventDefault();
-        $(this).createPostMessageCommentDialog();
+        $(this).createDialog("#postMessageCommentForm");
     });
 
     $(document).on('click', 'a.update-postMessageComment', function(e) {
         e.preventDefault();
-        $(this).updatePostMessageCommentDialog();
+        $(this).updateDialog("#postMessageCommentForm");
     });
 
     $(document).on('click', 'a.create-answer', function(e) {
         e.preventDefault();
-        $(this).createAnswerDialog();
+        $(this).createDialog("#answerForm");
     });
 
+    $(document).on('click', 'a.update-answer', function(e) {
+        e.preventDefault();
+        $(this).updateDialog("#answerForm");
+    });
+
+    $(document).on('click', 'a.create-answerComment', function(e) {
+        e.preventDefault();
+        $(this).createDialog("#answerCommentForm");
+    });
+
+    $(document).on('click', 'a.update-answerComment', function(e) {
+        e.preventDefault();
+        $(this).updateDialog("#answerCommentForm");
+    });
+
+    $(document).on('click', 'a.create-questionComment', function(e) {
+        e.preventDefault();
+        $(this).createDialog("#questionCommentForm");
+    });
+
+    $(document).on('click', 'a.update-questionComment', function(e) {
+        e.preventDefault();
+        $(this).updateDialog("#questionCommentForm");
+    });
 
 });
 
@@ -71,6 +95,40 @@ $(document).ready(function() {
  */
 (function($) {
 
+    $.fn.createDialog = function(formSelector) {
+        console.log("xxx");
+        var url = $(this).data("action");
+        var dia = $(formSelector).clone();
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        CKEDITOR.replace('content');
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            $(this).attr("action", url);
+        });
+    }
+
+    $.fn.updateDialog = function(formSelector) {
+        var url = $(this).data("action");
+        dia = $(formSelector).clone();
+
+        var targetSelector = $(this).data("target");
+        var content = $.trim($(targetSelector).html());
+        $('#content', dia).val(content);
+
+        $.positionDialog(dia, 650);
+        $.addCancelListener(dia);
+        CKEDITOR.replace('content');
+        $.mask();
+        dia.show();
+
+        $(dia).submit(function(e) {
+            $(this).attr("action", url);
+        });
+    }
+ 
     $.fn.deleteDialog = function() {
         var url = this.data("action");
 
@@ -180,87 +238,6 @@ $(document).ready(function() {
             dia.attr("action", url);
         });
     }
-
-    $.fn.createPostMessageDialog = function() {
-        var url = $(this).data("action");
-        var dia = $('#postMessageForm').clone();
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        CKEDITOR.replace('content');
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            $(this).attr("action", url);
-        });
-    }
-
-    $.fn.updatePostMessageDialog = function() {
-        var url = $(this).data("action");
-        var dia = $('#postMessageForm').clone();
-
-        var targetSelector = $(this).data("target");
-        var content = $.trim($(targetSelector).html());
-        $('#content', dia).val(content);
-
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        CKEDITOR.replace('content');
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            $(this).attr("action", url);
-        });
-    }
-
-    $.fn.createPostMessageCommentDialog = function() {
-        var url = $(this).data("action");
-        var dia = $('#postMessageCommentForm').clone();
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        CKEDITOR.replace('content');
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            $(this).attr("action", url);
-        });
-    }
-
-    $.fn.updatePostMessageCommentDialog = function() {
-        var url = $(this).data("action");
-        var dia = $('#postMessageCommentForm').clone();
-
-        var targetSelector = $(this).data("target");
-        var content = $.trim($(targetSelector).html());
-        $('#content', dia).val(content);
-
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        CKEDITOR.replace('content');
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            $(this).attr("action", url);
-        });
-    }
-
-    $.fn.createAnswerDialog = function() {
-        var url = $(this).data("action");
-        var dia = $('#answerForm').clone();
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        CKEDITOR.replace('content');
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            $(this).attr("action", url);
-        });
-    }
-
 
 })(jQuery);
 

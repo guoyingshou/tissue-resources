@@ -23,34 +23,6 @@
         $(this).inviteDialog();
     });
 
-    $(document).on('click', 'a.add-impression', function(e) {
-        e.preventDefault();
-        $(this).addImpressionDialog();
-    });
-
-    $(document).on('click', 'a.add-about', function(e) {
-        e.preventDefault();
-        $(this).addAboutDialog();
-    });
-
-})(jQuery);
-
-/**
- * handler
- */
-(function($) {
-
-    $(document).on('focusout', '#signupForm #username', function(e) {
-        return $.isUsernameTaken(); 
-    });
-
-    $(document).on('focusout', '#signupForm #email', function(e) {
-        return $.isEmailTaken(); 
-    });
-
-    $(document).on('submit', '#signupForm', function(e) {
-    });
- 
     $(document).on('click', 'a.process-invite', function(e) {
         e.preventDefault();
         var url = $(this).data("action");
@@ -62,8 +34,25 @@
         });
     });
 
-})(jQuery);
+    $(document).on('click', 'a.add-impression', function(e) {
+        e.preventDefault();
+        $(this).addImpressionDialog();
+    });
 
+    $(document).on('click', 'a.add-about', function(e) {
+        e.preventDefault();
+        $(this).addAboutDialog();
+    });
+
+    $(document).on('focusout', '#signupForm #username', function(e) {
+        $.isUsernameTaken(); 
+    });
+
+    $(document).on('focusout', '#signupForm #email', function(e) {
+        $.isEmailTaken(); 
+    });
+
+})(jQuery);
 
 /**
  * plugin 
@@ -272,25 +261,5 @@
         return taken;
     }
 
-    $.isEmailOwned = function() {
-        var owned = false;
-
-        var that = $('#email');
-        var email = that.val();
-        $.ajax({
-            url: "/social/preUpdateEmail",
-            async: false,
-            data: {
-                email: email
-            }
-        }).fail(function(res) {
-            that.prev().children('span').show();
-            owned = true;
-        }).done(function(res) {
-            that.prev().children('span').hide();
-        });
-
-        return owned;
-    }
-
 })(jQuery);
+
