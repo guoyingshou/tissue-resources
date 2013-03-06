@@ -150,8 +150,8 @@ $(document).ready(function() {
         $.positionDialog(dia, 650);
         $.addCancelListener(dia);
 
-        CKEDITOR.replace('editor', {
-            filebrowserUploadUrl: '/media/images',
+        CKEDITOR.replace('content', {
+            filebrowserUploadUrl: '/media/images/_create',
             filebrowserBrowseUrl: '/media/browseImages'
         });
 
@@ -184,7 +184,11 @@ $(document).ready(function() {
 
         $.positionDialog(dia, 650);
         $.addCancelListener(dia);
-        CKEDITOR.replace("editor");
+
+        CKEDITOR.replace('content', {
+            filebrowserUploadUrl: '/media/images/_create',
+            filebrowserBrowseUrl: '/media/browseImages'
+        });
 
         $.mask();
         dia.show();
@@ -270,13 +274,13 @@ $(document).ready(function() {
     }
 
     $.isObjectiveEmpty = function() {
-        var objective = CKEDITOR.instances.editor.getData();
+        var objective = CKEDITOR.instances.content.getData();
         if(objective.length == 0) {
-            $('label[for="editor"] span').show();
+            $('label[for="content"] span').show();
             return true;
         }
         else {
-            $('label[for="editor"] span').hide();
+            $('label[for="content"] span').hide();
             return false;
         }
     }

@@ -47,10 +47,6 @@ a.action {
     font-size: 12px;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
 li.message, li.answer {
     margin-top: 2em;
     padding-top: 1em;
