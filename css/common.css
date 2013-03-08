@@ -51,15 +51,21 @@ table {
 	border-spacing: 0;
 }
 
-a {
+a:link, a:visited {
+    color: #2532a7;
     text-decoration: none;
 }
 
-h1 a {
+#page-logo {
+    padding-top: 10px;
+}
+
+#page-logo a {
     letter-spacing: -3px;
 }
-h1 a:visited, h1 a:link, h1 a:hover, h1: a:active {
-    color: black;
+
+#page-logo a:link, #page-logo a:visited {
+    color: #35302b;
     text-decoration: none;
 }
 
@@ -148,7 +154,6 @@ body {
 
 #page-menu-wrapper {
     overflow: hidden;
-    border-top: 1px solid #444;
     color: red;
 }
 
@@ -185,7 +190,6 @@ body {
 }
 
 #page-menu ul.menu li {
-    width: 8em;
     float: left;
     line-height: 28px;
 }
@@ -194,9 +198,17 @@ body {
     float: right;
 }
 
+#page-menu ul.action li a {
+    color: #fff;
+    background: #398fd1;
+    border: 1px solid #ccc;
+    font-size: 12px;
+}
+
 #page-menu a {
-    display: block;
     color: red;
+    display: block;
+    padding: 0 10px;
 }
 
 #page-footer {

@@ -155,7 +155,7 @@
         $.addCancelListener(dia);
         $.mask();
 
-        CKEDITOR.replace("editor");
+        CKEDITOR.replace("content");
         dia.show();
 
         $(dia).on('submit', function(e) {
