@@ -3,19 +3,21 @@ drop database remote:www.tissue.com/test1 guo guo;
 create database remote:www.tissue.com/test1 guo guo local graph;
 
 create class Account extends OGraphVertex;
+create class Verification extends OGraphVertex;
+create class Reset extends OGraphVertex;
+
 create class User extends OGraphVertex;
+
 create class About extends OGraphVertex;
+
 create class Topic extends OGraphVertex;
 create class Plan extends OGraphVertex;
+
 create class Post extends OGraphVertex;
-create class Cnt extends Post;
-create class Concept extends Cnt;
-create class Note extends Cnt;
-create class Tutorial extends Cnt;
 create class PostMessage extends OGraphVertex;
 create class PostMessageComment extends OGraphVertex;
 
-create class Question extends Post;
+create class Question extends OGraphVertex;
 create class QuestionComment extends OGraphVertex;
 create class Answer extends OGraphVertex;
 create class AnswerComment extends OGraphVertex;
@@ -31,6 +33,8 @@ create property User.headline string;
 create property User.createTime datetime;
 create property User.accounts linklist Account;
 
+create property Verification.account link Account;
+
 create property Topic.title string;
 create property Topic.content string;
 create property Topic.tags embeddedset string;
@@ -42,24 +46,26 @@ create property Post.type string;
 create property Post.title string;
 create property Post.content string;
 create property Post.plan link Plan;
-create property Cnt.messages linklist PostMessage;
-create property PostMessage.post link Cnt;
+create property Post.messages linklist PostMessage;
+create property PostMessage.post link Post;
 create property PostMessage.comments linklist PostMessageComment;
 create property PostMessageComment.postMessage link PostMessage;
 
 create property Question.answers linklist Answer;
 create property Question.comments linklist QuestionComment;
-create property QuestionComment.question link Post;
+create property QuestionComment.question link Question;
 
 create property Answer.question link Question;
 create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
 
 create class EdgeAction extends OGraphEdge;
-create class EdgeTopic extends EdgeAction;
+create class EdgeInvitation extends EdgeAction;
 create class EdgeFriend extends EdgeAction;
-create class EdgePost extends EdgeAction;
 create class EdgeImpression extends EdgeAction;
+
+create class EdgeTopic extends EdgeAction;
+create class EdgePost extends EdgeAction;
 
 create property EdgeAction.label string;
 create property EdgeAction.createTime datetime;
