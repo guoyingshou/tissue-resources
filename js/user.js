@@ -18,17 +18,18 @@
         $(this).updateEmailDialog();
     });
 
-    $(document).on('click', 'a.invite', function(e) {
+    $(document).on('click', 'a.create-invitation', function(e) {
         e.preventDefault();
-        $(this).inviteDialog();
+        $(this).invitationDialog();
     });
 
-    $(document).on('click', 'a.process-invite', function(e) {
+    $(document).on('click', 'a.process-invitation', function(e) {
         e.preventDefault();
         var url = $(this).data("action");
+        var targetSelector = $(this).data("target");
         $.post(url)
         .done(function(res) {
-            $('div.intention').remove();
+            $(targetSelector).remove();
         }).fail(function(res) {
             //to do
         });
@@ -121,11 +122,11 @@
         return this;
     }
 
-    $.fn.inviteDialog = function() {
+    $.fn.invitationDialog = function() {
         var that = this;
         url = this.data('action');
 
-        var dia = $('#inviteForm').clone();
+        var dia = $('#invitationForm').clone();
         $.positionDialog(dia, 650);
         $.addCancelListener(dia);
         $.mask();
@@ -159,7 +160,7 @@
         dia.show();
 
         $(dia).on('submit', function(e) {
-            var content = CKEDITOR.instances.editor.getData();
+            var content = CKEDITOR.instances.content.getData();
             if(content.length == 0) {
                 return false;
             }

@@ -2,26 +2,29 @@
 drop database remote:www.tissue.com/test1 guo guo;
 create database remote:www.tissue.com/test1 guo guo local graph;
 
+create class UserGeneratedContent extends OGraphVertex;
+create class About extends UserGeneratedContent;
+
+create class User extends OGraphVertex;
 create class Account extends OGraphVertex;
 create class Verification extends OGraphVertex;
 create class Reset extends OGraphVertex;
 
-create class User extends OGraphVertex;
-
-create class About extends OGraphVertex;
-
 create class Plan extends OGraphVertex;
-create class Post extends OGraphVertex;
-create class Topic extends Post;
+create class UserGeneratedContent2 extends UserGeneratedContent;
+create class Topic extends UserGeneratedContent2;
+create class Post extends UserGeneratedContent2;
 create class Question extends Post;
 create class Article extends Post;
+create class Concept extends Article;
+create class Note extends Article;
+create class Tutorial extends Article;
 
-create class Comment extends OGraphVertex;
-create class Message extends Comment;
-create class MessageReply extends Comment;
-create class QuestionComment extends Comment;
-create class Answer extends Comment;
-create class AnswerComment extends Comment;
+create class Message extends UserGeneratedContent;
+create class MessageReply extends UserGeneratedContent;
+create class QuestionComment extends UserGeneratedContent;
+create class Answer extends UserGeneratedContent;
+create class AnswerComment extends UserGeneratedContent;
 
 create property Account.username string;
 create property Account.password string;
@@ -36,24 +39,22 @@ create property User.accounts linklist Account;
 
 create property Verification.account link Account;
 
-# plan related
-create property Post.title string;
-create property Post.content string;
-create property Post.type string;
-create property Post.Account link account;
+create property UserGeneratedContent.content string;
+create property UserGeneratedContent.type string;
+create property UserGeneratedContent.Account link account;
+
+create property UserGeneratedContent2.title string;
 
 create property Topic.tags embeddedset string;
 create property Topic.plans linklist Plan;
-
 create property Plan.topic link Topic;
+create property Post.plan link Plan;
 
-create property Article.plan link Plan;
 create property Article.messages linklist Message;
 create property Message.article link Article;
 create property Message.replies linklist MessageReply;
 create property MessageReply.message link Message;
 
-create property Question.plan link Plan;
 create property Question.comments linklist QuestionComment;
 create property Question.answers linklist Answer;
 create property QuestionComment.question link Question;
