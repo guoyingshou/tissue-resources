@@ -177,11 +177,11 @@
         $.addCancelListener(dia);
         $.mask();
 
-        CKEDITOR.replace("editor");
+        CKEDITOR.replace("content");
         dia.show();
 
         $(dia).on('submit', function(e) {
-            var content = CKEDITOR.instances.editor.getData();
+            var content = CKEDITOR.instances.content.getData();
             if(content.length == 0) {
                 return false;
             }
