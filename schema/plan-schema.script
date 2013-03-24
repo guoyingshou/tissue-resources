@@ -38,6 +38,7 @@ create property User.createTime datetime;
 create property User.accounts linklist Account;
 
 create property Verification.account link Account;
+create property Reset.account link Account;
 
 create property UserGeneratedContent.content string;
 create property UserGeneratedContent.type string;
@@ -64,16 +65,14 @@ create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
 
 create class EdgeAction extends OGraphEdge;
-create class EdgeInvitation extends EdgeAction;
-create class EdgeFriend extends EdgeAction;
-create class EdgeImpression extends EdgeAction;
-
-create class EdgeTopic extends EdgeAction;
-create class EdgePost extends EdgeAction;
+create class EdgeInvite extends EdgeAction;
+create class EdgeConnect extends EdgeAction;
+create class EdgeCreate extends EdgeAction;
 
 create property EdgeAction.label string;
 create property EdgeAction.createTime datetime;
 
 create index Account.username unique;
 create index Account.email unique;
+create index EdgeAction.createTime unique;
 

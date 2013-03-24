@@ -2,4 +2,65 @@
     margin-bottom: 0.5em;
 }
 
+div.post:after, div.response:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    font-size: 0;
+}
+
+div.post {
+    padding-bottom: 1em;
+}
+
+.item-ts {
+    color: #888;
+    font-size: 12px;
+}
+
+.item-title {
+    color: #413f3f;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.3em;
+    margin-bottom: 10px;
+}
+
+.item-content p {
+    margin-bottom: 10px;
+}
+
+.response a {
+    display: block;
+    margin-left: 1em;
+    float: right;
+    text-decoration: none;
+}
+
+.item-ts {
+    margin-bottom: 0.5em;
+}
+
+.item-ts a {
+    text-decoration: none;
+}
+
+a.action {
+    font-size: 12px;
+}
+
+li.message, li.answer {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 2px solid black;
+}
+
+.comment {
+    padding-left: 2em;
+    padding-top: 1em;
+    font-size: 12px;
+    border-top: 1px dotted black;
+}
 

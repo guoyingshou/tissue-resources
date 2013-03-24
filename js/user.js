@@ -3,36 +3,9 @@
  */
 (function($) {
  
-    $(document).on('click', 'a.update-profile', function(e) {
-         e.preventDefault();
-         $(this).updateProfileDialog();
-    });
-
-    $(document).on('click', 'a.update-password', function(e) {
-        e.preventDefault();
-        $(this).updatePasswordDialog();
-    });
- 
-    $(document).on('click', 'a.update-email', function(e) {
-        e.preventDefault();
-        $(this).updateEmailDialog();
-    });
-
     $(document).on('click', 'a.create-invitation', function(e) {
         e.preventDefault();
         $(this).invitationDialog();
-    });
-
-    $(document).on('click', 'a.process-invitation', function(e) {
-        e.preventDefault();
-        var url = $(this).data("action");
-        var targetSelector = $(this).data("target");
-        $.post(url)
-        .done(function(res) {
-            $(targetSelector).remove();
-        }).fail(function(res) {
-            //to do
-        });
     });
 
     $(document).on('click', 'a.add-impression', function(e) {
@@ -59,68 +32,6 @@
  * plugin 
  */
 (function($) {
-
-    $.fn.updateEmailDialog = function() {
-        var url = this.data("action");
-        var dia = $('#updateEmailForm').clone();
-        $.positionDialog(dia, 420);
-        $.addCancelListener(dia);
-        $.mask();
-        dia.show();
-
-        $(dia).on('submit', function(e) {
-            e.preventDefault();
-            $.post(url, dia.serialize())
-            .done(function() {
-                $('#mask').remove();
-                dia.remove();
-                return true;
-            }).fail(function() {
-                $('#updateEmailFail').show();
-                return false;
-            });
-        });
-    }
-
-     $.fn.updateProfileDialog = function() {
-        var url = this.data("action");
-        var dia = $('#updateProfileForm').clone();
-        $.positionDialog(dia, 420);
-        $.addCancelListener(dia);
-        $.mask();
-        dia.show();
-
-        $(dia).on('submit', function(e) {
-            var x = $.isDisplayNameEmpty();
-            var y = $.isHeadlineEmpty();
-            if(x || y) {
-                return false;
-            }
-            $(this).attr("action", url);
-        });
-    }
-
-    $.fn.updatePasswordDialog = function() {
-        var url = this.data("action");
-        var dia = $('#updatePasswordForm').clone();
-        $.positionDialog(dia, 420);
-        $.addCancelListener(dia);
-        $.mask();
-        dia.show();
-
-        $(dia).on('submit', function(e) {
-            e.preventDefault();
-            $.post(url, dia.serialize())
-            .done(function() {
-                $('#mask').remove();
-                dia.remove();
-            }).fail(function() {
-                $('#failUpdatePassword').show();
-                return false;
-            });
-        });
-        return this;
-    }
 
     $.fn.invitationDialog = function() {
         var that = this;
