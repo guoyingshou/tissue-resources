@@ -1,21 +1,7 @@
-/**
- * shared by all 
- */
 $(document).ready(function() {
     $(document).on('click', 'a.delete', function(e) {
         e.preventDefault();
         $(this).deleteDialog();
-    });
-});
-
-/**
- * topic/plan
- */
-$(document).ready(function() {
-
-    $(document).on('click', 'a.create-plan', function(e) {
-        e.preventDefault();
-        $(this).createPlanDialog();
     });
 });
 
@@ -83,9 +69,6 @@ $(document).ready(function() {
 
 });
 
-/**
- * plugins shared by all
- */
 (function($) {
 
     $.fn.createDialog = function(formSelector) {
@@ -132,27 +115,6 @@ $(document).ready(function() {
 
         $(dia).submit(function(e) {
             $(this).attr("action", url);
-        });
-    }
-
-})(jQuery);
-
-
-/**
- * topic plugin
- */
-(function($) {
-
-    $.fn.createPlanDialog = function() {
-        var dia = $('#createPlanForm').clone();
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            //todo: need to validate input?
         });
     }
 
