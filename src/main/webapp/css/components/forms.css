@@ -1,0 +1,27 @@
+form {
+    border: 1px solid #6E8290;
+}
+
+legend {
+    width: 100%;
+    padding: 10px 20px;
+    color: #fff;
+    background: #6C8393;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+}
+
+input[type="text"], input[type="password"], textarea {
+    width: 100%;
+    min-height: 34px;
+    padding: 7px 8px;
+}
+
+.standalone-medium {
+    width: 680px;
+    margin: 0 auto;
+}

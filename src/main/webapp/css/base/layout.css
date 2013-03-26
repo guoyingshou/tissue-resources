@@ -1,5 +1,8 @@
 .layout2-content {
+    /**
     margin-right: 278px;
+    */
+    width: 684px;
 }
 
 .layout3-content {
@@ -11,7 +14,14 @@
     float: right;
     border-left: 1px solid #ddd;
     padding-left: 10px;
+    padding-bottom: 10000px;
+    margin-bottom: -10000px;
     margin-right: 5px;
     font-size: 14px;
 }
 
+div, form, ul, li, input, legend {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

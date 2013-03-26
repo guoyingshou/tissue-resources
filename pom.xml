@@ -35,6 +35,7 @@
                               <cssSourceFile>modules/aside.css</cssSourceFile>
                               <cssSourceFile>components/activity.css</cssSourceFile>
                               <cssSourceFile>components/dialog.css</cssSourceFile>
+                              <cssSourceFile>components/forms.css</cssSourceFile>
                           </cssSourceFiles>
                           <cssFinalFile>style.css</cssFinalFile>
 
