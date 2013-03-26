@@ -1,0 +1,43 @@
+#mask {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background: #fff;
+    z-index: 99;
+}
+
+.dialog {
+    position: fixed;
+    background: #f7f7f7;
+    border: 1px solid #D8DEE2;
+    top: 60px;
+    z-index: 100;
+}
+
+.pop-420 {
+    width: 420px;
+}
+
+.pop-650 {
+    width: 650px;
+}
+
+.pop-320 {
+    width: 320px;
+    margin: 2em auto;
+}
+
+fieldset.post-type {
+    margin-bottom: 1em;
+}
+
+fieldset.post-type label {
+    display: inline;
+}
+
+#confirmForm div {
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+

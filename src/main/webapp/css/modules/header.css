@@ -1,0 +1,46 @@
+#page-header-wrapper {
+    height: 40px;
+    color: #fff;
+    background: #454546;
+}
+
+#page-header {
+    width: 960px;
+    margin: 0 auto;
+    padding: 3px 0;
+    line-height: 32px;
+}
+
+ul.nav-left {
+    float: left;
+}
+
+ul.nav-left li {
+    float: left;
+    padding-right: 1em;
+}
+
+ul.nav-right {
+    float: right;
+    position: relative; 
+}
+
+ul.nav-right li { 
+    font-weight: bold; 
+    float: left; 
+    zoom: 1; 
+}
+
+ul.nav-item a:hover {
+    color: #000; 
+}
+
+ul.nav-item a:active {
+    color: #ffa500; 
+}
+
+ul.nav-item li a {
+    padding: 4px 8px; 
+    color: #fff; 
+}
+

@@ -1,8 +1,12 @@
-#main-content {
+.layout2-content {
+    margin-right: 278px;
+}
+
+.layout3-content {
     margin-right: 718px;
 }
 
-#main-mid {
+.layout3-mid {
     width: 442px;
     float: right;
     border-left: 1px solid #ddd;
@@ -10,3 +14,4 @@
     margin-right: 5px;
     font-size: 14px;
 }
+

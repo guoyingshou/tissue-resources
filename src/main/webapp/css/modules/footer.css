@@ -1,0 +1,12 @@
+#page-footer-wrapper {
+    color: #fff;
+    background: #454546;
+}
+
+#page-footer {
+    width: 960px;
+    margin: 0 auto;
+    height: 56px;
+    padding-bottom: 20px;
+}
+

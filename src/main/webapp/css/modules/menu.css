@@ -1,0 +1,35 @@
+#page-menu-wrapper {
+    overflow: hidden;
+    color: red;
+}
+
+#page-menu {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#page-menu ul.menu li {
+    float: left;
+    line-height: 28px;
+}
+
+#page-menu ul.action li {
+    float: right;
+}
+
+#page-menu ul.action li a {
+    color: #fff;
+    background: #398fd1;
+    border: 1px solid #ccc;
+    font-size: 12px;
+}
+ 
+#page-menu a {
+    color: red;
+    display: block;
+    padding: 0 10px;
+}
+
+.current {
+    font-size: 18px;
+}

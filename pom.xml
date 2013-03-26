@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.tissue</groupId>
+  <artifactId>resources</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <build>
+    <plugins>
+          <plugin>
+              <groupId>com.samaxes.maven</groupId>
+              <artifactId>minify-maven-plugin</artifactId>
+              <version>1.7</version>
+              <executions>
+                  <execution>
+                      <id>default-minify</id>
+                      <phase>process-resources</phase>
+                      <configuration>
+                          <charset>utf-8</charset>
+                          <jsEngine>closure</jsEngine>
+
+                          <cssSourceDir>css</cssSourceDir>
+                          <cssSourceFiles>
+                              <cssSourceFile>base/reset.css</cssSourceFile>
+                              <cssSourceFile>base/layout.css</cssSourceFile>
+                              <cssSourceFile>base/typography.css</cssSourceFile>
+                              <cssSourceFile>modules/header.css</cssSourceFile>
+                              <cssSourceFile>modules/logo.css</cssSourceFile>
+                              <cssSourceFile>modules/menu.css</cssSourceFile>
+                              <cssSourceFile>modules/footer.css</cssSourceFile>
+                              <cssSourceFile>modules/main.css</cssSourceFile>
+                              <cssSourceFile>modules/aside.css</cssSourceFile>
+                              <cssSourceFile>components/activity.css</cssSourceFile>
+                              <cssSourceFile>components/dialog.css</cssSourceFile>
+                          </cssSourceFiles>
+                          <cssFinalFile>style.css</cssFinalFile>
+
+                          <jsSourceDir>js</jsSourceDir>
+                          <jsSourceFiles>
+                              <jsSourceFile>topic.js</jsSourceFile>
+                              <jsSourceFile>user.js</jsSourceFile>
+                              <jsSourceFile>common.js</jsSourceFile>
+                          </jsSourceFiles>
+                          <jsFinalFile>tissue.js</jsFinalFile>
+                      </configuration>
+                      <goals>
+                          <goal>minify</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
+
+    </plugins>
+  </build>
+
+  <name>tissue-resources project</name>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>java.net plugin</id>
+      <name>Java.net plugin Repository for Maven 2</name>
+      <url>http://download.java.net/maven/2</url>
+      <snapshots>
+        <updatePolicy>never</updatePolicy>
+      </snapshots>
+    </pluginRepository>
+
+    <pluginRepository>
+      <id>apache.snapshots</id>
+      <name>Apache Snapshot</name>
+      <url>http://repository.apache.org/content/groups/snapshots-group</url>
+      <snapshots>
+          <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>

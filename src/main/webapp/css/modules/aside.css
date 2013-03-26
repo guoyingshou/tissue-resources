@@ -1,0 +1,23 @@
+#main-sidebar {
+    float: right;
+    width: 276px;
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+    font-size: 14px;
+}
+
+#main-sidebar h4 {
+    margin-bottom: 5px;
+    padding-top: 2px;
+    font-size: 1.0em;
+    font-weight: normal;
+    color: #006699;
+    border-bottom: 2px solid #000;
+}
+
+#main-sidebar > div {
+    background: #f0f0f0;
+    margin-bottom: 10px;
+}
+
+
