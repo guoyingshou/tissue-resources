@@ -3,33 +3,28 @@
     color: red;
 }
 
-#page-menu {
-    width: 960px;
-    margin: 0 auto;
-}
-
-#page-menu ul.menu li {
+.menu li {
     float: left;
     line-height: 28px;
+    margin-right: 10px;
 }
 
-#page-menu ul.action li {
+.menu a {
+    color: red;
+}
+
+.action li {
     float: right;
 }
 
-#page-menu ul.action li a {
+.action a {
     color: #fff;
     background: #398fd1;
     border: 1px solid #ccc;
     font-size: 12px;
+    margin-left: 10px;
 }
  
-#page-menu a {
-    color: red;
-    display: block;
-    padding: 0 10px;
-}
-
 .current {
     font-size: 18px;
 }

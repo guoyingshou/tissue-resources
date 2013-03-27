@@ -1,3 +1,13 @@
+#signupForm, #signinForm, #resetRequestForm, #resetPasswordForm {
+    width: 400px;
+    margin: 0 auto;
+}
+
+#topicForm {
+    width: 680px;
+    margin: 0 auto;
+}
+
 form {
     border: 1px solid #6E8290;
 }
@@ -21,7 +31,3 @@ input[type="text"], input[type="password"], textarea {
     padding: 7px 8px;
 }
 
-.standalone-medium {
-    width: 680px;
-    margin: 0 auto;
-}

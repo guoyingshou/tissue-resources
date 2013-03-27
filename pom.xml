@@ -27,12 +27,15 @@
                               <cssSourceFile>base/reset.css</cssSourceFile>
                               <cssSourceFile>base/layout.css</cssSourceFile>
                               <cssSourceFile>base/typography.css</cssSourceFile>
+
                               <cssSourceFile>modules/header.css</cssSourceFile>
                               <cssSourceFile>modules/logo.css</cssSourceFile>
                               <cssSourceFile>modules/menu.css</cssSourceFile>
-                              <cssSourceFile>modules/footer.css</cssSourceFile>
                               <cssSourceFile>modules/main.css</cssSourceFile>
-                              <cssSourceFile>modules/aside.css</cssSourceFile>
+                              <cssSourceFile>modules/content.css</cssSourceFile>
+                              <cssSourceFile>modules/sidebar.css</cssSourceFile>
+                              <cssSourceFile>modules/footer.css</cssSourceFile>
+
                               <cssSourceFile>components/activity.css</cssSourceFile>
                               <cssSourceFile>components/dialog.css</cssSourceFile>
                               <cssSourceFile>components/forms.css</cssSourceFile>

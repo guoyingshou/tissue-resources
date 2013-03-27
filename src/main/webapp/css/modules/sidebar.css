@@ -1,13 +1,3 @@
-#main-sidebar {
-    float: right;
-    width: 276px;
-    border-left: 1px solid #ddd;
-    font-size: 14px;
-    padding-left: 10px;
-    padding-bottom: 10000px;
-    margin-bottom: -10000px;
-}
-
 #main-sidebar h4 {
     margin-bottom: 5px;
     padding-top: 2px;
