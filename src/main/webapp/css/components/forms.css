@@ -1,4 +1,4 @@
-#signupForm, #signinForm, #resetRequestForm, #resetPasswordForm {
+#signupForm, #signinForm, #resetRequestForm, #resetPasswordForm, #invitationForm, #impressionForm, #aboutForm {
     width: 400px;
     margin: 0 auto;
 }

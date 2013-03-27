@@ -1,14 +1,3 @@
-#page-header-wrapper {
-    height: 40px;
-    color: #fff;
-    background: #454546;
-}
-
-#page-header {
-    padding: 3px 0;
-    line-height: 32px;
-}
-
 ul.nav-left {
     float: left;
 }

@@ -1,0 +1,21 @@
+body {
+    background: #f3f3f3;
+    color: #bbb;
+    font-family: 宋体, Arial, Helvetica, sans-serif;
+    text-align: left;
+	line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+div, form, legend, ul, li, input, textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.error {
+    color: red;
+}
