@@ -1,4 +1,13 @@
+#page-menu {
+    overflow: hidden;
+}
+
+.menu {
+    float: left;
+}
+
 .menu li {
+    display: block;
     float: left;
     line-height: 28px;
     margin-right: 10px;
@@ -8,7 +17,12 @@
     color: red;
 }
 
+.action {
+    float: right;
+}
+
 .action li {
+    display: block;
     float: right;
 }
 
