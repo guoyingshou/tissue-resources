@@ -1,4 +1,7 @@
-#signupForm, #signinForm, #resetRequestForm, #resetPasswordForm, #invitationForm, #impressionForm, #aboutForm {
+#signupForm, #signinForm, #resetRequestForm, #resetPasswordForm, 
+#invitationForm, #impressionForm, 
+#aboutForm, 
+#createPlanForm {
     width: 400px;
     margin: 0 auto;
 }

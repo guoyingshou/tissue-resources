@@ -1,0 +1,33 @@
+.article, .question {
+    margin-bottom: 15px;
+}
+
+.title {
+    color: #3f4547;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 28px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 7px solid #6ba5bd;
+}
+
+.content {
+    color: #171715;
+    margin-top: 20px;
+    min-height: 130px;
+}
+
+.response {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.message, .answer {
+    border-top: 1px solid #6ba5bd;
+}
+
+.reply, .question-comment, .answer-comment {
+    border-top: 1px dotted #6ba5bd;
+}

@@ -41,14 +41,16 @@
                               <cssSourceFile>components/activity.css</cssSourceFile>
                               <cssSourceFile>components/dialog.css</cssSourceFile>
                               <cssSourceFile>components/forms.css</cssSourceFile>
+                              <cssSourceFile>components/post.css</cssSourceFile>
                           </cssSourceFiles>
                           <cssFinalFile>style.css</cssFinalFile>
 
                           <jsSourceDir>js</jsSourceDir>
                           <jsSourceFiles>
-                              <jsSourceFile>topic.js</jsSourceFile>
-                              <jsSourceFile>user.js</jsSourceFile>
                               <jsSourceFile>common.js</jsSourceFile>
+                              <jsSourceFile>article.js</jsSourceFile>
+                              <jsSourceFile>question.js</jsSourceFile>
+                              <jsSourceFile>user.js</jsSourceFile>
                           </jsSourceFiles>
                           <jsFinalFile>tissue.js</jsFinalFile>
                       </configuration>

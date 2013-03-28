@@ -19,3 +19,9 @@ div, form, legend, ul, li, input, textarea {
 .error {
     color: red;
 }
+
+.ts {
+    color: #bbb;
+    font-size: 12px;
+}
+

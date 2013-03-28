@@ -20,3 +20,18 @@
     margin: 10px;
 }
 
+.icon-container {
+    position: relative;
+    padding-left: 62px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.icon {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    font-size: 24px; 
+    color: #bbb;
+}
+
