@@ -1,3 +1,8 @@
+#page-nav {
+    padding: 3px 0;
+    line-height: 32px;
+}
+
 ul.nav-left {
     float: left;
 }

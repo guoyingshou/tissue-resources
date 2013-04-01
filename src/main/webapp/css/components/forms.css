@@ -18,8 +18,11 @@ form {
 legend {
     width: 100%;
     padding: 10px 20px;
-    color: #fff;
+    color: #000;
     background: #6C8393;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#cfd1cf'); 
+    background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#cfd1cf)); 
+    background: -moz-linear-gradient(top,  #f5f5f5,  #cfd1cf); 
     font-size: 16px;
     font-weight: bold;
 }

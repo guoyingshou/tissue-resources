@@ -1,5 +1,5 @@
 
-drop database remote:www.tissue.com/test1 guo guo;
+#drop database remote:www.tissue.com/test1 guo guo;
 create database remote:www.tissue.com/test1 guo guo local graph;
 
 create class UserGeneratedContent extends OGraphVertex;

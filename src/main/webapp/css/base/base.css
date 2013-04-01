@@ -8,6 +8,7 @@ body {
 
 a {
     text-decoration: none;
+    color: #333;
 }
 
 div, form, legend, ul, li, input, textarea {

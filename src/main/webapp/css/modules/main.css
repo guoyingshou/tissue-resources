@@ -1,16 +1,38 @@
+#page-main-wrapper {
+    background: #fff;
+}
+
+#page-main {
+    color: #1a1a1a;
+    font-size: 14px;
+    padding-right: 10px;
+    min-height: 480px;
+}
+
 #main-content {
     width: 670px;
     float: left;
 }
 
+#main-sidebar, #content-topics, #content-posts {
+    padding-bottom: 10000px;
+    margin-bottom: -10000px;
+    margin-left: 2px;
+    border-left: 1px solid #ddd;
+}
+
 #main-sidebar {
     width: 276px;
     float: right;
-    border-left: 1px solid #ddd;
-    font-size: 14px;
-    padding-left: 10px;
-    padding-bottom: 10000px;
-    margin-bottom: -10000px;
+}
+
+#main-sidebar h4 {
+    margin-bottom: 5px;
+    padding-top: 2px;
+    font-size: 1.0em;
+    font-weight: normal;
+    color: #006699;
+    border-bottom: 2px solid #000;
 }
 
 #content-topics {
@@ -22,3 +44,5 @@
     width: 432px;
     float: left;
 }
+
+

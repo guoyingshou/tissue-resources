@@ -32,10 +32,7 @@
                               <cssSourceFile>modules/nav.css</cssSourceFile>
                               <cssSourceFile>modules/logo.css</cssSourceFile>
                               <cssSourceFile>modules/menu.css</cssSourceFile>
-
                               <cssSourceFile>modules/main.css</cssSourceFile>
-                              <cssSourceFile>modules/sidebar.css</cssSourceFile>
-
                               <cssSourceFile>modules/footer.css</cssSourceFile>
 
                               <cssSourceFile>components/activity.css</cssSourceFile>

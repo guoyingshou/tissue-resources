@@ -1,4 +1,7 @@
-.activity-item em {
-    margin: 0.4em;
+.activities a {
+    text-decoration: underline;
+    color: #cc0000;
 }
+
+
 
