@@ -1,0 +1,9 @@
+.active, .archived {
+    padding: 0 14px;
+    line-height: 26px;
+    margin-bottom: 14px;
+}
+
+.plan {
+    margin-top: 5px;
+}

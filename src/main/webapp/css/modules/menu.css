@@ -1,5 +1,11 @@
+/**
+#page-menu-wrapper {
+}
+*/
+
 #page-menu {
     overflow: hidden;
+    padding-top: 12px;
 }
 
 .menu {

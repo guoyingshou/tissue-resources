@@ -3,7 +3,7 @@
 #aboutForm, 
 #createPlanForm {
     width: 400px;
-    margin: 0 auto;
+    margin: 60px auto;
 }
 
 #topicForm {
@@ -29,11 +29,17 @@ legend {
 
 label {
     display: block;
+    margin: 8px;
 }
 
 input[type="text"], input[type="password"], textarea {
     width: 100%;
     min-height: 34px;
     padding: 7px 8px;
+}
+
+input[type="submit"] {
+    margin: 10px;
+    padding: 3px 4px;
 }
 

@@ -35,9 +35,14 @@
                               <cssSourceFile>modules/main.css</cssSourceFile>
                               <cssSourceFile>modules/footer.css</cssSourceFile>
 
-                              <cssSourceFile>components/activity.css</cssSourceFile>
                               <cssSourceFile>components/dialog.css</cssSourceFile>
                               <cssSourceFile>components/forms.css</cssSourceFile>
+                              <cssSourceFile>components/lists.css</cssSourceFile>
+
+                              <cssSourceFile>components/user.css</cssSourceFile>
+                              <cssSourceFile>components/activity.css</cssSourceFile>
+
+                              <cssSourceFile>components/plan.css</cssSourceFile>
                               <cssSourceFile>components/post.css</cssSourceFile>
                           </cssSourceFiles>
                           <cssFinalFile>style.css</cssFinalFile>
@@ -45,8 +50,6 @@
                           <jsSourceDir>js</jsSourceDir>
                           <jsSourceFiles>
                               <jsSourceFile>common.js</jsSourceFile>
-                              <jsSourceFile>article.js</jsSourceFile>
-                              <jsSourceFile>question.js</jsSourceFile>
                               <jsSourceFile>user.js</jsSourceFile>
                           </jsSourceFiles>
                           <jsFinalFile>tissue.js</jsFinalFile>

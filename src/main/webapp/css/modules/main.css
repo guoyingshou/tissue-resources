@@ -1,12 +1,13 @@
 #page-main-wrapper {
     background: #fff;
+    padding: 1em;
 }
 
 #page-main {
     color: #1a1a1a;
     font-size: 14px;
-    padding-right: 10px;
     min-height: 480px;
+    padding: 5px;
 }
 
 #main-content {
@@ -18,7 +19,6 @@
     padding-bottom: 10000px;
     margin-bottom: -10000px;
     margin-left: 2px;
-    border-left: 1px solid #ddd;
 }
 
 #main-sidebar {
@@ -36,13 +36,12 @@
 }
 
 #content-topics {
-    width: 232px;
+    width: 330px;
     float: left;
 }
 
 #content-posts {
-    width: 432px;
+    width: 330px;
     float: left;
 }
-
 

@@ -15,10 +15,9 @@
 
 .content {
     color: #171715;
-    margin-top: 20px;
-    min-height: 130px;
 }
 
+/**
 .response {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -31,3 +30,4 @@
 .reply, .question-comment, .answer-comment {
     border-top: 1px dotted #6ba5bd;
 }
+*/

@@ -14,19 +14,6 @@
     z-index: 100;
 }
 
-.pop-420 {
-    width: 420px;
-}
-
-.pop-650 {
-    width: 650px;
-}
-
-.pop-320 {
-    width: 320px;
-    margin: 2em auto;
-}
-
 fieldset.post-type {
     margin-bottom: 1em;
 }
@@ -40,4 +27,7 @@ fieldset.post-type label {
     border: 1px solid #ddd;
 }
 
-
+.info {
+    width: 400px;
+    margin: 60px auto;
+}

@@ -1,0 +1,17 @@
+.topics li, .users li {
+    margin-bottom: 1em;
+}
+
+.site-objective li {
+    text-align:center;
+    margin-bottom: 1em;
+    background: #efeff0;
+    line-height: 36px;
+}
+
+.replies {
+    margin-bottom: 2em;
+    border: 1px solid #bbb;
+    padding: 1em;
+}
+

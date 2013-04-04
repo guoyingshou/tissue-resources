@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    $(document).on('click', 'a.delete', function(e) {
+    $(document).on('click', 'a.pop', function(e) {
         e.preventDefault();
-        $(this).deleteDialog();
+        $(this).dialog();
     });
 });
 
 (function($) {
-    $.mask = function() {
+    mask = function() {
         var mask = $('<div id="mask"></div>');
         mask.width($(window).width());
         mask.height($(window).height());
@@ -15,28 +15,41 @@ $(document).ready(function() {
         return this;
     }
 
-    $.positionDialog = function(dialog, w) {
-        dialog.css('left', ($(window).width() - w)/2);
-        $('body').prepend(dialog);
-    }
+    $.fn.dialog = function() {
 
-    $.addCancelListener = function(dialog) {
-        $('a.cancel', dialog).one('click', function() {
-            dialog.remove();
+        var formselector = this.data("form-selector");
+        var url = this.data("action");
+        var editorname = this.data("editor-name");
+        var targetselector = this.data("target-selector");
+        var width = this.data("dialog-width");
+        if(typeof width == 'undefined') {
+            width = 650;
+        }
+
+        if(typeof editorname != 'undefined') {
+           if(typeof targetselector != 'undefined') {
+                var content = $.trim($(targetselector).html());
+                $("#"+editorname).val(content);
+            }
+
+            var editor = CKEDITOR.instances[editorname];
+            if(editor) {
+                editor.destroy();
+                editor = null;
+            }
+            CKEDITOR.replace(editorname);
+        }
+
+        var dia = $(formselector);
+        dia.css('left', ($(window).width() - width) / 2);
+        $('body').prepend(dia);
+ 
+        $('a.cancel', dia).one('click', function() {
+            dia.hide();
             $('#mask').remove();
         });
-    }
-})(jQuery);
 
-(function($) {
-
-    $.fn.createDialog = function(formSelector) {
-        var url = $(this).data("action");
-        var dia = $(formSelector).clone();
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        CKEDITOR.replace('content');
-        $.mask();
+        mask();
         dia.show();
 
         $(dia).submit(function(e) {
@@ -44,38 +57,6 @@ $(document).ready(function() {
         });
     }
 
-    $.fn.updateDialog = function(formSelector) {
-        var url = $(this).data("action");
-        dia = $(formSelector).clone();
-
-        var targetSelector = $(this).data("target");
-        var content = $.trim($(targetSelector).html());
-        $('#content', dia).val(content);
-
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        CKEDITOR.replace('content');
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            $(this).attr("action", url);
-        });
-    }
- 
-    $.fn.deleteDialog = function() {
-        var url = this.data("action");
-
-        var dia = $('#deleteConfirmForm').clone();
-        $.positionDialog(dia, 650);
-        $.addCancelListener(dia);
-        $.mask();
-        dia.show();
-
-        $(dia).submit(function(e) {
-            $(this).attr("action", url);
-        });
-    }
 })(jQuery);
 
 
