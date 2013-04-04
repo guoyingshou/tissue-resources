@@ -17,17 +17,14 @@
     color: #171715;
 }
 
-/**
-.response {
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
 .message, .answer {
-    border-top: 1px solid #6ba5bd;
+    background: #edefc9;
 }
 
-.reply, .question-comment, .answer-comment {
-    border-top: 1px dotted #6ba5bd;
+.member {
 }
-*/
+
+.replies, .question-comment, .answer-comment {
+    padding-left: 3em;
+}
+

@@ -9,9 +9,11 @@
     line-height: 36px;
 }
 
-.replies {
-    margin-bottom: 2em;
-    border: 1px solid #bbb;
-    padding: 1em;
+.messages > li, .answers > li {
+    margin-top: 3em;
 }
 
+.replies li, .answers li {
+    border-bottom: 1px dotted #bbb;
+    margin-bottom: 2px;
+}

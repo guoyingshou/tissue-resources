@@ -20,17 +20,19 @@ $(document).ready(function() {
         var formselector = this.data("form-selector");
         var url = this.data("action");
         var editorname = this.data("editor-name");
-        var targetselector = this.data("target-selector");
+        //var targetselector = this.data("target-selector");
         var width = this.data("dialog-width");
         if(typeof width == 'undefined') {
             width = 650;
         }
 
         if(typeof editorname != 'undefined') {
+            /**
            if(typeof targetselector != 'undefined') {
                 var content = $.trim($(targetselector).html());
                 $("#"+editorname).val(content);
             }
+            */
 
             var editor = CKEDITOR.instances[editorname];
             if(editor) {
