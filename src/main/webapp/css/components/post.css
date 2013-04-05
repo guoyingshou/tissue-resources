@@ -1,5 +1,7 @@
 .article, .question {
     margin-bottom: 15px;
+    min-height: 320px;
+    background: #ccc;
 }
 
 .title {
@@ -10,21 +12,32 @@
     margin-top: 15px;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 7px solid #6ba5bd;
+    border-bottom: 7px solid #999;
 }
 
-.content {
+.article .content {
     color: #171715;
+    margin-top: 1em;
 }
 
 .message, .answer {
-    background: #edefc9;
+    padding: 5px;
+}
+
+.owner {
+    margin-bottom: 5px;
 }
 
 .member {
+    overflow: hidden;
+    background: #ccc;
 }
 
 .replies, .question-comment, .answer-comment {
     padding-left: 3em;
+    background: #ccc;
 }
 
+ul.messages .member a {
+    float:right;
+}

@@ -11,9 +11,6 @@
 
 .messages > li, .answers > li {
     margin-top: 3em;
+    padding: 15px 0;
 }
 
-.replies li, .answers li {
-    border-bottom: 1px dotted #bbb;
-    margin-bottom: 2px;
-}
