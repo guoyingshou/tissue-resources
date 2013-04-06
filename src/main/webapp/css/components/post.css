@@ -1,7 +1,6 @@
 .article, .question {
-    margin-bottom: 15px;
-    min-height: 320px;
-    background: #ccc;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #999;
 }
 
 .title {
@@ -15,29 +14,47 @@
     border-bottom: 7px solid #999;
 }
 
-.article .content {
-    color: #171715;
-    margin-top: 1em;
+.messages > li, .answers > li {
+    line-height: 24px;
+    margin: 0 0 24px;
 }
 
-.message, .answer {
-    padding: 5px;
+.replies > li, .question-comments > li, .answer-comments > li {
+    padding-left: 2em;
+    line-height: 24px;
+    margin: 0 0 18px;
 }
 
 .owner {
-    margin-bottom: 5px;
-}
-
-.member {
+    margin-top: 0.8em;
+    margin-bottom: 1.2em;
     overflow: hidden;
-    background: #ccc;
+    border-bottom: 1px solid #e7e7e7;
 }
 
-.replies, .question-comment, .answer-comment {
-    padding-left: 3em;
-    background: #ccc;
+.article div.ts, .messages div.ts, .question div.ts, answers div.ts {
+    float: left;
 }
 
-ul.messages .member a {
+.owner-action, .member-action {
     float:right;
 }
+
+.member-action {
+    margin-left: 1em;
+}
+
+.question-comments {
+    margin-top: 24px;
+    padding-left: 2em;
+}
+
+.article > .content {
+    margin-bottom: 40px;
+}
+
+/**
+.reply, .question-comment, .answer-comment {
+    border-top: 1px dotted #ddd;
+}
+*/
