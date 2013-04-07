@@ -25,14 +25,14 @@
     margin: 0 0 18px;
 }
 
-.owner {
+.meta {
     margin-top: 0.8em;
     margin-bottom: 1.2em;
     overflow: hidden;
     border-bottom: 1px solid #e7e7e7;
 }
 
-.article div.ts, .messages div.ts, .question div.ts, answers div.ts {
+.article div.owner, .messages div.owner, .question div.owner, answers div.owner {
     float: left;
 }
 

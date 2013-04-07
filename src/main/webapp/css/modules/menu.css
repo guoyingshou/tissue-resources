@@ -35,16 +35,16 @@
     background: #f2861d;
 }
 
-.action {
+.plan-meta, .plan-meta ul, .menu-action {
     float: right;
 }
 
-.action li {
+.plan-meta li {
     display: block;
     float: right;
 }
 
-.action a:link, .action a:visited {
+.menu-action a:link, .menu-action a:visited {
     color: #fff;
     background: #398fd1;
     border: 1px solid #ccc;
