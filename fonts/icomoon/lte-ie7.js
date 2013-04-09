@@ -1,29 +1,31 @@
-/* Use this script if you need to support IE 7 and IE 6. */
+/* Load this script using conditional IE comments if you need to support IE 7 and IE 6. */
 
 window.onload = function() {
 	function addIcon(el, entity) {
 		var html = el.innerHTML;
-		el.innerHTML = '<span style="font-family: \'icomoon\'">' + entity + '</span>' + html;
+		el.innerHTML = '<span style="font-family: \'eightyshades\'">' + entity + '</span>' + html;
 	}
 	var icons = {
-			'icon-user' : '&#xe005;',
-			'icon-user-2' : '&#xe002;',
-			'icon-pencil' : '&#xe000;',
+			'icon-grid' : '&#xe000;',
 			'icon-users' : '&#xe001;',
-			'icon-cog' : '&#xe003;',
-			'icon-trashcan' : '&#xe004;',
-			'icon-time' : '&#xe006;',
-			'icon-plus' : '&#xe007;',
-			'icon-minus' : '&#xe008;',
-			'icon-envelope' : '&#xf003;',
-			'icon-question' : '&#xe009;',
-			'icon-loop' : '&#xe01c;',
-			'icon-list' : '&#xe00a;'
+			'icon-grid-alt' : '&#xe002;',
+			'icon-menu' : '&#xe003;',
+			'icon-compose' : '&#xe004;',
+			'icon-gallery' : '&#xe005;',
+			'icon-question' : '&#xe006;',
+			'icon-calculator' : '&#xe007;',
+			'icon-windows' : '&#xe008;',
+			'icon-newspaper' : '&#xe009;',
+			'icon-browser' : '&#xe00a;',
+			'icon-comments' : '&#xe00b;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
-	for (i = 0; i < els.length; i += 1) {
+	for (i = 0; ; i += 1) {
 		el = els[i];
+		if(!el) {
+			break;
+		}
 		attr = el.getAttribute('data-icon');
 		if (attr) {
 			addIcon(el, attr);

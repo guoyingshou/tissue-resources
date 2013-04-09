@@ -30,7 +30,13 @@ label {
     margin: 8px;
 }
 
-input[type="text"], input[type="password"], textarea {
+textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 7px 8px;
+}
+
+input[type="text"], input[type="password"] {
     width: 100%;
     min-height: 34px;
     padding: 7px 8px;

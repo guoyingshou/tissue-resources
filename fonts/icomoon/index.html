@@ -20,23 +20,24 @@
 		padding: 0;
 	}
 	.glyph {
-		font-size: 20px;
+		font-size: 16px;
 		float: left;
 		text-align: center;
 		background: #eee;
 		padding: .75em;
 		margin: .75em 1.5em .75em 0;
-		width: 7em;
+		width: 7.5em;
 		border-radius: .25em;
 		box-shadow: inset 0 0 0 1px #f8f8f8, 0 0 0 1px #CCC;
 	}
 	.glyph input {
+		font-family: consolas, monospace;
+		font-size: 13px;
 		width: 100%;
 		text-align: center;
-		font-family: consolas, monospace;
-	}
-	.glyph input, .mtm {
-		margin-top: .75em;
+		border: 0;
+		box-shadow: 0 0 0 1px #ccc;
+		padding: .125em;
 	}
 	.w-main {
 		width: 80%;
@@ -71,7 +72,7 @@
 	}
 	a:hover, a:focus {color: #000;}
 	.box1 {
-		font-size: 20px;
+		font-size: 16px;
 		display: inline-block;
 		width: 15em;
 		padding: .25em .5em;
@@ -88,14 +89,6 @@
 		<p>The generated SVG font can be imported back to <a href="http://icomoon.io/app">IcoMoon</a> for modification.</p>
 	</header>
 	<div class="glyph">
-		<div class="fs1" aria-hidden="true" data-icon="&#xe005;"></div>
-		<input type="text" readonly="readonly" value="&amp;#xe005;" />
-	</div>
-	<div class="glyph">
-		<div class="fs1" aria-hidden="true" data-icon="&#xe002;"></div>
-		<input type="text" readonly="readonly" value="&amp;#xe002;" />
-	</div>
-	<div class="glyph">
 		<div class="fs1" aria-hidden="true" data-icon="&#xe000;"></div>
 		<input type="text" readonly="readonly" value="&amp;#xe000;" />
 	</div>
@@ -104,12 +97,20 @@
 		<input type="text" readonly="readonly" value="&amp;#xe001;" />
 	</div>
 	<div class="glyph">
+		<div class="fs1" aria-hidden="true" data-icon="&#xe002;"></div>
+		<input type="text" readonly="readonly" value="&amp;#xe002;" />
+	</div>
+	<div class="glyph">
 		<div class="fs1" aria-hidden="true" data-icon="&#xe003;"></div>
 		<input type="text" readonly="readonly" value="&amp;#xe003;" />
 	</div>
 	<div class="glyph">
 		<div class="fs1" aria-hidden="true" data-icon="&#xe004;"></div>
 		<input type="text" readonly="readonly" value="&amp;#xe004;" />
+	</div>
+	<div class="glyph">
+		<div class="fs1" aria-hidden="true" data-icon="&#xe005;"></div>
+		<input type="text" readonly="readonly" value="&amp;#xe005;" />
 	</div>
 	<div class="glyph">
 		<div class="fs1" aria-hidden="true" data-icon="&#xe006;"></div>
@@ -124,20 +125,16 @@
 		<input type="text" readonly="readonly" value="&amp;#xe008;" />
 	</div>
 	<div class="glyph">
-		<div class="fs1" aria-hidden="true" data-icon="&#xf003;"></div>
-		<input type="text" readonly="readonly" value="&amp;#xf003;" />
-	</div>
-	<div class="glyph">
 		<div class="fs1" aria-hidden="true" data-icon="&#xe009;"></div>
 		<input type="text" readonly="readonly" value="&amp;#xe009;" />
 	</div>
 	<div class="glyph">
-		<div class="fs1" aria-hidden="true" data-icon="&#xe01c;"></div>
-		<input type="text" readonly="readonly" value="&amp;#xe01c;" />
-	</div>
-	<div class="glyph">
 		<div class="fs1" aria-hidden="true" data-icon="&#xe00a;"></div>
 		<input type="text" readonly="readonly" value="&amp;#xe00a;" />
+	</div>
+	<div class="glyph">
+		<div class="fs1" aria-hidden="true" data-icon="&#xe00b;"></div>
+		<input type="text" readonly="readonly" value="&amp;#xe00b;" />
 	</div>
 	</section>
 	<div class="clear"></div>
@@ -146,56 +143,52 @@
 		<h1>Class Names</h1>
 	</header>
 	<span class="box1">
-		<span aria-hidden="true" class="icon-user"></span>
-		&nbsp;icon-user
-	</span>
-	<span class="box1">
-		<span aria-hidden="true" class="icon-user-2"></span>
-		&nbsp;icon-user-2
-	</span>
-	<span class="box1">
-		<span aria-hidden="true" class="icon-pencil"></span>
-		&nbsp;icon-pencil
+		<span aria-hidden="true" class="icon-grid"></span>
+		&nbsp;icon-grid
 	</span>
 	<span class="box1">
 		<span aria-hidden="true" class="icon-users"></span>
 		&nbsp;icon-users
 	</span>
 	<span class="box1">
-		<span aria-hidden="true" class="icon-cog"></span>
-		&nbsp;icon-cog
+		<span aria-hidden="true" class="icon-grid-alt"></span>
+		&nbsp;icon-grid-alt
 	</span>
 	<span class="box1">
-		<span aria-hidden="true" class="icon-trashcan"></span>
-		&nbsp;icon-trashcan
+		<span aria-hidden="true" class="icon-menu"></span>
+		&nbsp;icon-menu
 	</span>
 	<span class="box1">
-		<span aria-hidden="true" class="icon-time"></span>
-		&nbsp;icon-time
+		<span aria-hidden="true" class="icon-compose"></span>
+		&nbsp;icon-compose
 	</span>
 	<span class="box1">
-		<span aria-hidden="true" class="icon-plus"></span>
-		&nbsp;icon-plus
-	</span>
-	<span class="box1">
-		<span aria-hidden="true" class="icon-minus"></span>
-		&nbsp;icon-minus
-	</span>
-	<span class="box1">
-		<span aria-hidden="true" class="icon-envelope"></span>
-		&nbsp;icon-envelope
+		<span aria-hidden="true" class="icon-gallery"></span>
+		&nbsp;icon-gallery
 	</span>
 	<span class="box1">
 		<span aria-hidden="true" class="icon-question"></span>
 		&nbsp;icon-question
 	</span>
 	<span class="box1">
-		<span aria-hidden="true" class="icon-loop"></span>
-		&nbsp;icon-loop
+		<span aria-hidden="true" class="icon-calculator"></span>
+		&nbsp;icon-calculator
 	</span>
 	<span class="box1">
-		<span aria-hidden="true" class="icon-list"></span>
-		&nbsp;icon-list
+		<span aria-hidden="true" class="icon-windows"></span>
+		&nbsp;icon-windows
+	</span>
+	<span class="box1">
+		<span aria-hidden="true" class="icon-newspaper"></span>
+		&nbsp;icon-newspaper
+	</span>
+	<span class="box1">
+		<span aria-hidden="true" class="icon-browser"></span>
+		&nbsp;icon-browser
+	</span>
+	<span class="box1">
+		<span aria-hidden="true" class="icon-comments"></span>
+		&nbsp;icon-comments
 	</span>
 	</section>
 	<footer>
