@@ -53,3 +53,7 @@
     margin-bottom: 40px;
 }
 
+#main-content p img {
+    display: block;
+    margin: 0 auto;
+}
