@@ -1,6 +1,8 @@
 #page-main-wrapper {
     background: #fff;
     padding: 1em;
+    border-top: 10px solid #f1f4f3;
+
 }
 
 #page-main {

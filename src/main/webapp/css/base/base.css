@@ -1,5 +1,7 @@
 body {
+    /**
     background: #f3f3f3;
+    */
     color: #bbb;
     font-family: 宋体, Arial, Helvetica, sans-serif;
     text-align: left;
@@ -26,3 +28,6 @@ form, legend, ul, li, input, textarea {
     font-size: 12px;
 }
 
+.ts a {
+    color: #3399cc;
+}

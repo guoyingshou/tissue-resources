@@ -3,8 +3,6 @@
 }
 
 #page-nav-wrapper, #page-footer-wrapper {
-    color: #fff;
-    background: #454546;
     height: 40px;
 }
 
@@ -21,9 +19,7 @@
 }
 
 #page-main-wrapper {
-    border-top: 1px solid #444;
     min-height: 480px;
-    padding: 10px 10px 10px 0;
 }
 
 #page-footer-wrapper {

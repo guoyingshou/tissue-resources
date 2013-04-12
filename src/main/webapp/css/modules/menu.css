@@ -1,8 +1,3 @@
-/**
-#page-menu-wrapper {
-}
-*/
-
 #page-menu {
     overflow: hidden;
     padding-top: 12px;
@@ -21,6 +16,11 @@
 }
 
 .menu a:link, .menu a:visited {
+    font-size: 16px;
+    color: #3399cc;
+    display: block;
+    padding: 0.25em 0.5em 0.25em 1em;
+    /**
     color: #444;
     background: #ddd;
     margin: 3px;
@@ -28,11 +28,16 @@
     border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
+    */
 }
 
 .menu a:hover, .menu a:active {
+    font-size: 16px;
+    color: #ed1c24;
+    /**
     color: #fff;
     background: #f2861d;
+    */
 }
 
 .plan-meta, .plan-meta ul, .menu-action {
@@ -56,6 +61,7 @@
     -moz-border-radius: 6px 6px 6px 6px;
 }
  
-.current {
+.menu a.current {
     font-size: 18px;
+    color: #ed1c24;
 }
