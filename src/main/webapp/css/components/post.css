@@ -1,6 +1,7 @@
 .article, .question {
-    margin-bottom: 40px;
-    border-bottom: 2px solid #999;
+    margin: 2.5em 0 0.5em;
+    padding: 0 0 3em;
+    border-bottom: 1px dotted #d8d8d8;
 }
 
 .title {
@@ -11,7 +12,7 @@
     margin-top: 15px;
     margin-bottom: 10px;
     padding-bottom: 10px;
-    border-bottom: 7px solid #999;
+    border-bottom: 1px dotted #d8d8d8;
 }
 
 .messages > li, .answers > li {
@@ -26,10 +27,11 @@
 }
 
 .meta {
-    margin-top: 0.8em;
-    margin-bottom: 1.2em;
     overflow: hidden;
-    border-bottom: 1px solid #e7e7e7;
+    height: 1.8em;
+    line-height: 1.8em;
+    font-size: 0.833em;
+    margin-bottom: 1.8em;
 }
 
 .owner {
@@ -49,9 +51,6 @@
     padding-left: 2em;
 }
 
-.article > .content {
-    margin-bottom: 40px;
-}
 
 #main-content p img {
     display: block;

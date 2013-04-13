@@ -13,8 +13,11 @@
 }
 
 #main-content {
-    width: 670px;
     float: left;
+    width: 650px;
+    padding-right: 1em;
+    border-right: 7px solid #f1f4f3;
+    min-height: 480px;
 }
 
 #main-sidebar, #content-topics, #content-posts {
@@ -38,12 +41,14 @@
 }
 
 #content-topics {
-    width: 330px;
+    width: 300px;
     float: left;
+    padding-right: 1em;
 }
 
 #content-posts {
-    width: 330px;
+    width: 300px;
     float: left;
+    padding-lef: 1em;
 }
 

@@ -19,25 +19,12 @@
     font-size: 16px;
     color: #3399cc;
     display: block;
-    padding: 0.25em 0.5em 0.25em 1em;
-    /**
-    color: #444;
-    background: #ddd;
-    margin: 3px;
-    padding: 4px;
-    border-radius: 6px 6px 6px 6px;
-    -webkit-border-radius: 6px 6px 6px 6px;
-    -moz-border-radius: 6px 6px 6px 6px;
-    */
+    padding: 0 0.5em 0.25em 0;
 }
 
 .menu a:hover, .menu a:active {
     font-size: 16px;
     color: #ed1c24;
-    /**
-    color: #fff;
-    background: #f2861d;
-    */
 }
 
 .plan-meta, .plan-meta ul, .menu-action {
