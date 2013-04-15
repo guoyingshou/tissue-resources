@@ -9,8 +9,16 @@
     line-height: 32px;
 }
 
-ul.nav-left {
-    float: left;
+#page-nav a:link, #page-nav a:visited {
+    padding: 4px 8px; 
+    color: #fff; 
+}
+#page-nav a:hover, #page-nav a:active {
+    color: #ffa500; 
+}
+
+#page-nav ul {
+    font-weight: bold; 
 }
 
 ul.nav-left li {
@@ -24,21 +32,9 @@ ul.nav-right {
 }
 
 ul.nav-right li { 
-    font-weight: bold; 
     float: left; 
     zoom: 1; 
 }
 
-ul.nav-item a:hover {
-    color: #000; 
-}
 
-ul.nav-item a:active {
-    color: #ffa500; 
-}
-
-ul.nav-item li a {
-    padding: 4px 8px; 
-    color: #fff; 
-}
 

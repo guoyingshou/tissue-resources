@@ -1,0 +1,23 @@
+a.topic-title {
+    color: #ed1c24;
+}
+
+.tags {
+   overflow: hidden;
+   margin-bottom: 1em;
+}
+
+a.tag:link, a.tag:visited {
+    float:left;
+    margin: 0 10px 10px 0;
+    padding: 0 10px;
+    background: #f3f3f3;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+a.tag:hover, a.tag:active {
+    color: #fff;
+    background: #cc0000;
+}

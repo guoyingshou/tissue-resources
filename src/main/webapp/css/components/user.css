@@ -1,7 +1,22 @@
-.user a.delete {
-    /**
-    color: #447bc6;
-    */
-    color: #80aa29;
-    margin: 3em;
+/**
+ * global
+ */
+a.username {
+    color: #3399cc;
+}
+
+/**
+ * friends page
+ */
+
+.friends li {
+    margin: 0 0 1.5em 0;
+}
+
+.displayName a.pop {
+    float: right;
+}
+
+.friends .headline {
+    margin-top: 1em; 
 }

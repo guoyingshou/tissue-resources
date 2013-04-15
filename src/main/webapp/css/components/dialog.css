@@ -22,7 +22,7 @@ fieldset.post-type label {
     display: inline;
 }
 
-#confirmForm div {
+#confirmForm div.message {
     padding: 20px;
     border: 1px solid #ddd;
 }

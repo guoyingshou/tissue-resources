@@ -1,5 +1,5 @@
 .article, .question {
-    margin: 2.5em 0 0.5em;
+    margin: 2.5em 0 5em;
     padding: 0 0 3em;
     border-bottom: 1px dotted #d8d8d8;
 }
@@ -17,7 +17,8 @@
 
 .messages > li, .answers > li {
     line-height: 24px;
-    margin: 0 0 24px;
+    margin: 0 0 28px;
+    border-bottom: 1px dotted #d8d8d8;
 }
 
 .replies > li, .question-comments > li, .answer-comments > li {
@@ -26,12 +27,20 @@
     margin: 0 0 18px;
 }
 
-.meta {
+.post-meta, .meta {
     overflow: hidden;
     height: 1.8em;
     line-height: 1.8em;
     font-size: 0.833em;
+    padding-right: 1em;
+}
+
+.post-meta {
     margin-bottom: 1.8em;
+}
+
+.meta {
+    margin-bottom: 0.8em;
 }
 
 .owner {
@@ -48,11 +57,19 @@
 
 .question-comments {
     margin-top: 24px;
-    padding-left: 2em;
 }
 
+.answer, .message {
+    margin-bottom: 1em;
+}
 
 #main-content p img {
     display: block;
     margin: 0 auto;
+}
+
+.content pre {
+    background: #f6f7fa;
+    white-space: pre-wrap;
+    padding: 1em;
 }

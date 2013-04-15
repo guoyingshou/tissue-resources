@@ -27,7 +27,6 @@
                               <cssSourceFile>base/normalize.css</cssSourceFile>
                               <cssSourceFile>base/base.css</cssSourceFile>
                               <cssSourceFile>base/layout.css</cssSourceFile>
-                              <cssSourceFile>base/typography.css</cssSourceFile>
 
                               <cssSourceFile>modules/nav.css</cssSourceFile>
                               <cssSourceFile>modules/logo.css</cssSourceFile>
@@ -42,6 +41,7 @@
                               <cssSourceFile>components/user.css</cssSourceFile>
                               <cssSourceFile>components/activity.css</cssSourceFile>
 
+                              <cssSourceFile>components/topic.css</cssSourceFile>
                               <cssSourceFile>components/plan.css</cssSourceFile>
                               <cssSourceFile>components/post.css</cssSourceFile>
                           </cssSourceFiles>

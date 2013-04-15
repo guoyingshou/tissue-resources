@@ -31,3 +31,11 @@
     margin: 0 auto;
     overflow: hidden;
 }
+
+.pager {
+    margin-top: 1em;
+}
+
+.pager span {
+    margin-right: 0.6em;
+}
