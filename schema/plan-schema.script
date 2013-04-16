@@ -29,12 +29,12 @@ create class AnswerComment extends UserGeneratedContent;
 create property Account.username string;
 create property Account.password string;
 create property Account.email string;
+create property Account.createTime datetime;
 create property Account.user link User;
 create property Account.roles embeddedset string;
 
 create property User.displayName string;
 create property User.headline string;
-create property User.createTime datetime;
 create property User.accounts linklist Account;
 
 create property Verification.account link Account;
@@ -74,5 +74,6 @@ create property EdgeAction.createTime datetime;
 
 create index Account.username unique;
 create index Account.email unique;
+create index Account.createTime unique;
 create index EdgeAction.createTime unique;
 

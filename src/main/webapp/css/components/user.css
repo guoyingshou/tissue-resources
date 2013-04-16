@@ -1,11 +1,4 @@
 /**
- * global
- */
-a.username {
-    color: #3399cc;
-}
-
-/**
  * friends page
  */
 
@@ -19,4 +12,15 @@ a.username {
 
 .friends .headline {
     margin-top: 1em; 
+}
+
+/**
+ * invitations page
+ */
+.invitations li div {
+    margin-top: 0.6em;
+}
+
+.invitations .action a {
+    margin-right: 2em;
 }

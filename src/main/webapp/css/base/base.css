@@ -23,8 +23,6 @@
 .icon-container {
     position: relative;
     padding-left: 48px;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
 }
 
 .icon {
@@ -47,6 +45,10 @@ a:link, a:visited {
     color: #333;
 }
 
+a.username {
+    color: #3399cc;
+}
+
 form, legend, ul, li, input, textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -62,3 +64,9 @@ form, legend, ul, li, input, textarea {
     font-size: 12px;
 }
 
+.topic-title, .post-title, .headline {
+    max-height: 56px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
