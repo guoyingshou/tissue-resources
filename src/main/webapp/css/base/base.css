@@ -40,13 +40,21 @@ body {
 	line-height: 1.5;
 }
 
+.pager {
+    margin-top: 1em;
+}
+
+.pager span {
+    margin-right: 0.3em;
+}
+
 a:link, a:visited {
     text-decoration: none;
     color: #333;
 }
 
 a.username {
-    color: #3399cc;
+    color: #398fd1;
 }
 
 form, legend, ul, li, input, textarea {
@@ -57,6 +65,8 @@ form, legend, ul, li, input, textarea {
 
 .error {
     color: red;
+    padding: 0 0 0 1em;
+    font-size: 12px;
 }
 
 .ts {

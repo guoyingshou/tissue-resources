@@ -1,6 +1,8 @@
 
-#drop database remote:www.tissue.com/test1 guo guo;
+drop database remote:www.tissue.com/test1 guo guo;
 create database remote:www.tissue.com/test1 guo guo local graph;
+
+#connect remote:www.tissue.com/test2 guo guo;
 
 create class UserGeneratedContent extends OGraphVertex;
 create class About extends UserGeneratedContent;
@@ -48,6 +50,8 @@ create property UserGeneratedContent2.title string;
 
 create property Topic.tags embeddedset string;
 create property Topic.plans linklist Plan;
+create property Topic.createTime datetime;
+
 create property Plan.topic link Topic;
 create property Post.plan link Plan;
 
@@ -65,9 +69,19 @@ create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
 
 create class EdgeAction extends OGraphEdge;
+
 create class EdgeInvite extends EdgeAction;
 create class EdgeConnect extends EdgeAction;
+
 create class EdgeCreate extends EdgeAction;
+
+create class EdgeCreateAbout extends EdgeCreate;
+create class EdgeCreateImpression extends EdgeCreate;
+
+create class EdgeCreateTopic extends EdgeCreate;
+create class EdgeCreatePlan extends EdgeCreate;
+create class EdgeCreateMember extends EdgeCreate;
+create class EdgeCreatePost extends EdgeCreate;
 
 create property EdgeAction.label string;
 create property EdgeAction.createTime datetime;
@@ -75,5 +89,15 @@ create property EdgeAction.createTime datetime;
 create index Account.username unique;
 create index Account.email unique;
 create index Account.createTime unique;
+
 create index EdgeAction.createTime unique;
+create index EdgeCreate.createTime unique;
+
+create index EdgeCreateImpression.createTime unique;
+
+create index EdgeCreateTopic.createTime unique;
+create index EdgeCreatePlan.createTime unique;
+create index EdgeCreatePost.createTime unique;
+
+#create index Topic.createTime unique;
 

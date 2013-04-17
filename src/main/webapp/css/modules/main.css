@@ -6,7 +6,7 @@
 }
 
 #page-main {
-    color: #1a1a1a;
+    color: #111;
     font-size: 14px;
     min-height: 480px;
     padding: 5px;
@@ -36,11 +36,11 @@
 }
 
 #main-sidebar h2 {
-    margin-bottom: 5px;
+    margin-bottom: 1em;
     padding-top: 2px;
     font-size: 1.0em;
     font-weight: normal;
-    color: #006699;
+    color: #398fd1;
     border-bottom: 2px solid #000;
 }
 
@@ -52,13 +52,13 @@
 }
 
 #content-topics {
-    width: 300px;
+    width: 272px;
     float: left;
     padding-right: 1em;
 }
 
 #content-posts {
-    width: 300px;
+    width: 328px;
     float: left;
     padding-lef: 1em;
 }
