@@ -34,7 +34,7 @@
 }
 
 body {
-    color: #bbb;
+    color: #222;
     font-family: 宋体, Arial, Helvetica, sans-serif;
     text-align: left;
 	line-height: 1.5;
@@ -50,7 +50,7 @@ body {
 
 a:link, a:visited {
     text-decoration: none;
-    color: #333;
+    color: #222;
 }
 
 a.username {
@@ -63,7 +63,7 @@ form, legend, ul, li, input, textarea {
     box-sizing: border-box;
 }
 
-.error {
+.error, .alert {
     color: red;
     padding: 0 0 0 1em;
     font-size: 12px;
@@ -74,9 +74,3 @@ form, legend, ul, li, input, textarea {
     font-size: 12px;
 }
 
-.topic-title, .post-title, .headline {
-    max-height: 56px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}

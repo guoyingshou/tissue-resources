@@ -4,17 +4,6 @@
     border-bottom: 1px dotted #d8d8d8;
 }
 
-.title {
-    color: #3f4547;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 28px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px dotted #d8d8d8;
-}
-
 .messages > li, .answers > li {
     line-height: 24px;
     margin: 0 0 28px;
