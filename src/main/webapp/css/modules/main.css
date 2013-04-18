@@ -36,8 +36,8 @@
 }
 
 #main-content p {
-    margin: 15px;
-    line-height: 23px;
+    margin: 1em 1em 1em 0;
+    line-height: 1.8;
 }
 
 #main-content p strong {
