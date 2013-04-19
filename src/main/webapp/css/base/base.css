@@ -54,7 +54,7 @@ a:link, a:visited {
 }
 
 a.username {
-    color: #398fd1;
+    color: #ff8400;
 }
 
 form, legend, ul, li, input, textarea {
@@ -63,7 +63,7 @@ form, legend, ul, li, input, textarea {
     box-sizing: border-box;
 }
 
-.error, .alert {
+.error, .alert, .constraint {
     color: red;
     padding: 0 0 0 1em;
     font-size: 12px;

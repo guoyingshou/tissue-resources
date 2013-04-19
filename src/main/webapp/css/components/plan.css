@@ -1,3 +1,7 @@
 .plan li {
     border-bottom: 1px dotted #ddd;
 }
+
+.plan li div {
+    margin-top: 5px;
+}

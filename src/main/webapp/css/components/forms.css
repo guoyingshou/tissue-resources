@@ -17,9 +17,6 @@ legend {
     width: 100%;
     padding: 3px 10px;
     color: #000;
-    /**
-    background: #ccc;
-    */
     background: #6C8393;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#cfd1cf'); 
     background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#cfd1cf)); 
@@ -50,8 +47,11 @@ input[type="submit"] {
     padding: 3px 4px;
 }
 
+/**
 form a:link, .constraint {
-    color: #398fd1;
+*/
+form a:link, form a:visited {
+    color: red;
     font-size: 12px;
     font-weight: 400;
 }
