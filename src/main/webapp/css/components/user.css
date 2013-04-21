@@ -4,6 +4,7 @@
 
 .friends li {
     margin: 0 0 1.5em 0;
+    padding-right: 1em;
 }
 
 .displayName a.pop {

@@ -59,6 +59,10 @@
     float: right;
 }
 
+#main-sidebar .active-plans, #main-sidebar .archived-plans {
+    padding: 0 1em;
+}
+
 #main-sidebar h2 {
     margin-bottom: 1em;
     padding-top: 2px;
