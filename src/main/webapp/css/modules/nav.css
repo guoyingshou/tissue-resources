@@ -16,27 +16,34 @@
     color: #fff; 
 }
 #page-nav a:hover, #page-nav a:active {
-    color: #ffa500; 
+    color: #cc0000;
+}
+
+#page-nav a.alert:link, #page-nav a.alert:visited {
+    color: #ffa500;
+}
+
+#page-nav a.alert:hover, #page-nav a.alert:active {
+    color: #cc0000;
 }
 
 #page-nav ul {
     font-weight: bold; 
 }
 
-ul.nav-left li {
+#page-nav ul.nav-left li {
     float: left;
     padding-right: 1em;
 }
 
-ul.nav-right {
+#page-nav ul.nav-right {
     float: right;
     position: relative; 
 }
 
-ul.nav-right li { 
+#page-nav ul.nav-right li { 
     float: left; 
     zoom: 1; 
 }
-
 
 

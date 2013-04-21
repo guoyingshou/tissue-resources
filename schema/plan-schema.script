@@ -1,8 +1,8 @@
 
-drop database remote:www.tissue.com/test1 guo guo;
-create database remote:www.tissue.com/test1 guo guo local graph;
-
+#drop database remote:www.tissue.com/test1 guo guo;
+#create database remote:www.tissue.com/test1 guo guo local graph;
 #connect remote:www.tissue.com/test2 guo guo;
+connect remote:123.125.150.160/daronglu tissue t2i4s6sue;
 
 create class UserGeneratedContent extends OGraphVertex;
 create class About extends UserGeneratedContent;

@@ -50,7 +50,7 @@ body {
 
 a:link, a:visited {
     text-decoration: none;
-    color: #222;
+    color: #195580;
 }
 
 a.username {
@@ -70,7 +70,7 @@ form, legend, ul, li, input, textarea {
 }
 
 .ts {
-    color: #bbb;
-    font-size: 12px;
+    color: #999;
+    font-size: 13px;
 }
 

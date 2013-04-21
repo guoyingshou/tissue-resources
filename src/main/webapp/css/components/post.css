@@ -37,11 +37,11 @@
 }
 
 .owner-action, .member-action {
+    margin-left: 1em;
     float:right;
 }
 
 .member-action {
-    margin-left: 1em;
 }
 
 .question-comments {

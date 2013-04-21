@@ -16,7 +16,7 @@
 
 .menu a:link, .menu a:visited {
     font-size: 16px;
-    color: #398fd1;
+    color: #195580;
     display: block;
     padding: 0 0.5em 0.25em 0;
 }
@@ -35,6 +35,10 @@
     float: right;
 }
 
+.plan-meta li.plan-info {
+    margin-right: 2em;
+}
+
 .menu-action a:link, .menu-action a:visited {
     color: #fff;
     background: #398fd1;
@@ -42,7 +46,7 @@
     font-size: 14px;
     line-height: 20px;
     margin-left: 10px;
-    padding: 2px 5px;
+    padding: 6px 10px;
     border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
