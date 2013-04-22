@@ -47,11 +47,6 @@
     margin-bottom: 1em;
 }
 
-#main-content p img {
-    display: block;
-    margin: 0 auto;
-}
-
 .content pre {
     background: #f6f7fa;
     white-space: pre-wrap;

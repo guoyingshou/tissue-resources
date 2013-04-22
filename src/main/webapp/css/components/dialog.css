@@ -18,6 +18,10 @@ fieldset.post-type {
     margin-bottom: 1em;
 }
 
+fieldset.post-type legend {
+    margin-bottom: 1em;
+}
+
 fieldset.post-type label {
     display: inline;
 }

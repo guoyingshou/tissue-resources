@@ -21,3 +21,36 @@
     font-style: italic;
     line-height: 1.6em;
 }
+
+#main-content .content table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+
+#main-content .content table caption {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+#main-content .content table th {
+    background: #b9c9fe;
+    border-bottom: 1px solid #fff;
+    border-top: 4px solid #aabcfe;
+    color: #003399;
+    padding: 8px;
+}
+
+#main-content .content table td {
+    background: #e8edff;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid transparent;
+    color: #666699;
+    padding: 8px;
+}
+ 
+#main-content p img {
+    display: block;
+}
+
+

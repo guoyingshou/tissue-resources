@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'eightyshades';
-	src:url('/fonts/eightyshades.eot');
-	src:url('/fonts/eightyshades.eot?#iefix') format('embedded-opentype'),
-		url('/fonts/eightyshades.woff') format('woff'),
-		url('/fonts/eightyshades.ttf') format('truetype'),
-		url('/fonts/eightyshades.svg#eightyshades') format('svg');
+	src:url('/tissue/fonts/eightyshades.eot');
+	src:url('/tissue/fonts/eightyshades.eot?#iefix') format('embedded-opentype'),
+		url('/tissue/fonts/eightyshades.woff') format('woff'),
+		url('/tissue/fonts/eightyshades.ttf') format('truetype'),
+		url('/tissue/fonts/eightyshades.svg#eightyshades') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
