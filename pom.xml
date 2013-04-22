@@ -34,6 +34,8 @@
                               <cssSourceFile>modules/main.css</cssSourceFile>
                               <cssSourceFile>modules/footer.css</cssSourceFile>
 
+                              <cssSourceFile>components/ckeditor.css</cssSourceFile>
+
                               <cssSourceFile>components/dialog.css</cssSourceFile>
                               <cssSourceFile>components/forms.css</cssSourceFile>
                               <cssSourceFile>components/lists.css</cssSourceFile>

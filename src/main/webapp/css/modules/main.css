@@ -16,6 +16,11 @@
     text-decoration: underline;
 }
 
+#page-main li {
+    margin-bottom: 0.6em;
+    line-height: 1.8;
+}
+
 #main-content {
     float: left;
     width: 650px;

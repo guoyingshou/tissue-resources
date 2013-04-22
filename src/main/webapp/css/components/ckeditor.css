@@ -1,0 +1,23 @@
+#main-content .content ul {
+    list-style-type: disc;
+    padding-left: 2em;
+    margin: 0 0 28px;
+    line-height: 24px;
+}
+
+#main-content .content ol {
+    list-style: decimal;
+    padding-left: 2em;
+    margin: 0 0 28px;
+    line-height: 24px;
+}
+
+#main-content .content blockquote {
+    border-left-width: 5px;
+    border-style: solid;
+    padding-left: 20px;
+    padding-right: 8px;
+    border-color: #ccc;
+    font-style: italic;
+    line-height: 1.6em;
+}
