@@ -1,18 +1,17 @@
 
 #drop database remote:www.tissue.com/test1 guo guo;
-#create database remote:www.tissue.com/test1 guo guo local graph;
-#connect remote:www.tissue.com/test2 guo guo;
-connect remote:123.125.150.160/daronglu tissue t2i4s6sue;
+create database remote:www.tissue.com/test1 guo guo local graph;
+#connect remote:www.tissue.com/test1 guo guo;
 
-create class UserGeneratedContent extends OGraphVertex;
+create class UserGeneratedContent extends V;
 create class About extends UserGeneratedContent;
 
-create class User extends OGraphVertex;
-create class Account extends OGraphVertex;
-create class Verification extends OGraphVertex;
-create class Reset extends OGraphVertex;
+create class User extends V;
+create class Account extends V;
+create class Verification extends V;
+create class Reset extends V;
 
-create class Plan extends OGraphVertex;
+create class Plan extends V;
 create class UserGeneratedContent2 extends UserGeneratedContent;
 create class Topic extends UserGeneratedContent2;
 create class Post extends UserGeneratedContent2;
@@ -50,7 +49,6 @@ create property UserGeneratedContent2.title string;
 
 create property Topic.tags embeddedset string;
 create property Topic.plans linklist Plan;
-create property Topic.createTime datetime;
 
 create property Plan.topic link Topic;
 create property Post.plan link Plan;
@@ -68,7 +66,7 @@ create property Answer.question link Question;
 create property Answer.comments linklist AnswerComment;
 create property AnswerComment.answer link answer;
 
-create class EdgeAction extends OGraphEdge;
+create class EdgeAction extends E;
 
 create class EdgeInvite extends EdgeAction;
 create class EdgeConnect extends EdgeAction;
@@ -83,7 +81,7 @@ create class EdgeCreatePlan extends EdgeCreate;
 create class EdgeCreateMember extends EdgeCreate;
 create class EdgeCreatePost extends EdgeCreate;
 
-create property EdgeAction.label string;
+create property EdgeAction.catetory string;
 create property EdgeAction.createTime datetime;
 
 create index Account.username unique;
@@ -99,5 +97,4 @@ create index EdgeCreateTopic.createTime unique;
 create index EdgeCreatePlan.createTime unique;
 create index EdgeCreatePost.createTime unique;
 
-#create index Topic.createTime unique;
 

@@ -40,19 +40,6 @@
     border-bottom: 1px dotted #d8d8d8;
 }
 
-#main-content p {
-    margin: 1em 1em 1em 0;
-    line-height: 1.8;
-}
-
-#main-content p strong {
-    font-weight: 700;
-}
-
-#main-content p em {
-    font-style: italic;
-}
-
 #main-sidebar, #content-topics, #content-posts {
     padding-bottom: 10000px;
     margin-bottom: -10000px;

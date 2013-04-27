@@ -49,8 +49,32 @@
     padding: 8px;
 }
  
+#main-content p {
+    margin: 1em 1em 1em 0;
+    line-height: 1.8;
+}
+
 #main-content p img {
     display: block;
 }
 
+#main-content p strong {
+    font-weight: 700;
+}
+
+#main-content p em {
+    font-style: italic;
+}
+
+#main-content p sup {
+    position: relative;
+    top: -5px;
+    font-size: 12px;
+}
+
+#main-content p sub {
+    position: relative;
+    top: 5px;
+    font-size: 12px;
+}
 
