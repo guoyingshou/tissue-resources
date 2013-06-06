@@ -1,3 +1,4 @@
+/**
 (function($) {
  
     $(document).on('focusout', '#signupForm #username', function(e) {
@@ -58,3 +59,4 @@
 
 })(jQuery);
 
+*/

@@ -63,8 +63,14 @@ form, legend, ul, li, input, textarea {
     box-sizing: border-box;
 }
 
-.error, .alert, .constraint {
+.error, .alert {
     color: red;
+    padding: 0 0 0 1em;
+    font-size: 12px;
+}
+
+.constraint {
+    color: blue;
     padding: 0 0 0 1em;
     font-size: 12px;
 }

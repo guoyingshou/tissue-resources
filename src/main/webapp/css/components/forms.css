@@ -1,10 +1,30 @@
-#signupForm, #signinForm, #resetRequestForm, #resetPasswordForm, 
+#signinForm, #resetRequestForm, #resetPasswordForm, 
 #invitationForm, #impressionForm, 
 #aboutForm, 
 #planForm {
     width: 400px;
     margin: 60px auto;
-    box-shadow: 0px 0px 35px 3px #ccc;
+}
+
+#signupForm {
+    width: 680px;
+    margin: 20px auto;
+}
+
+#signupForm div.signup-main {
+    overflow: hidden;
+}
+
+#signupForm div.signup-main ul {
+    width: 320px;
+}
+
+#signupForm div.signup-main ul.account {
+    float: left;
+}
+
+#signupForm div.signup-main ul.user {
+    float: right;
 }
 
 #topicForm {
@@ -32,7 +52,7 @@ label {
 
 textarea {
     width: 100%;
-    min-height: 120px;
+    min-height: 106px;
     padding: 7px 8px;
 }
 

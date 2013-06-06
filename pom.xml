@@ -52,7 +52,9 @@
                           <jsSourceDir>js</jsSourceDir>
                           <jsSourceFiles>
                               <jsSourceFile>common.js</jsSourceFile>
+                              <!--
                               <jsSourceFile>user.js</jsSourceFile>
+                              -->
                           </jsSourceFiles>
                           <jsFinalFile>tissue.js</jsFinalFile>
                       </configuration>

@@ -1,17 +1,29 @@
-
-#drop database remote:www.tissue.com/test1 guo guo;
-create database remote:www.tissue.com/test1 guo guo local graph;
-#connect remote:www.tissue.com/test1 guo guo;
-
-create class UserGeneratedContent extends V;
-create class About extends UserGeneratedContent;
+connect remote:localhost/test1 guo guo;
 
 create class User extends V;
 create class Account extends V;
 create class Verification extends V;
 create class Reset extends V;
 
-create class Plan extends V;
+create class AccountsUser extends E;
+create class Impressions extends E;
+
+create property Account.username string;
+create property Account.password string;
+create property Account.email string;
+create property Account.createTime datetime;
+create property Account.roles embeddedset string;
+
+create property User.displayName string;
+create property User.headline string;
+
+create property Verification.account link Account;
+
+create class Node extends V;
+create class UserGeneratedContent extends Node;
+create class About extends UserGeneratedContent;
+
+create class Plan extends Node;
 create class UserGeneratedContent2 extends UserGeneratedContent;
 create class Topic extends UserGeneratedContent2;
 create class Post extends UserGeneratedContent2;
@@ -27,74 +39,40 @@ create class QuestionComment extends UserGeneratedContent;
 create class Answer extends UserGeneratedContent;
 create class AnswerComment extends UserGeneratedContent;
 
-create property Account.username string;
-create property Account.password string;
-create property Account.email string;
-create property Account.createTime datetime;
-create property Account.user link User;
-create property Account.roles embeddedset string;
-
-create property User.displayName string;
-create property User.headline string;
-create property User.accounts linklist Account;
-
-create property Verification.account link Account;
-create property Reset.account link Account;
-
 create property UserGeneratedContent.content string;
 create property UserGeneratedContent.type string;
-create property UserGeneratedContent.Account link account;
 
 create property UserGeneratedContent2.title string;
 
 create property Topic.tags embeddedset string;
-create property Topic.plans linklist Plan;
 
-create property Plan.topic link Topic;
-create property Post.plan link Plan;
+create class PlansTopic extends E;
+create class PostsPlan extends E;
 
-create property Article.messages linklist Message;
-create property Message.article link Article;
-create property Message.replies linklist MessageReply;
-create property MessageReply.message link Message;
+create class CommentsQuestion extends E;
+create class AnswersQuestion extends E;
+create class CommentsAnswer extends E;
 
-create property Question.comments linklist QuestionComment;
-create property Question.answers linklist Answer;
-create property QuestionComment.question link Question;
+create class MessagesArticle extends E;
+create class RepliesMessage extends E;
 
-create property Answer.question link Question;
-create property Answer.comments linklist AnswerComment;
-create property AnswerComment.answer link answer;
+create class Actions extends E;
+create class Owner extends Actions;
+create class Member extends Actions;
+create class Friend extends Actions;
+create class Invite extends Actions;
 
-create class EdgeAction extends E;
+#-----------------index ----------------------
+#create index Account.username unique;
+#create index Account.email unique;
+#create index Account.createTime unique;
 
-create class EdgeInvite extends EdgeAction;
-create class EdgeConnect extends EdgeAction;
+#create index EdgeAction.createTime unique;
+#create index EdgeCreate.createTime unique;
 
-create class EdgeCreate extends EdgeAction;
+#create index EdgeCreateImpression.createTime unique;
 
-create class EdgeCreateAbout extends EdgeCreate;
-create class EdgeCreateImpression extends EdgeCreate;
-
-create class EdgeCreateTopic extends EdgeCreate;
-create class EdgeCreatePlan extends EdgeCreate;
-create class EdgeCreateMember extends EdgeCreate;
-create class EdgeCreatePost extends EdgeCreate;
-
-create property EdgeAction.catetory string;
-create property EdgeAction.createTime datetime;
-
-create index Account.username unique;
-create index Account.email unique;
-create index Account.createTime unique;
-
-create index EdgeAction.createTime unique;
-create index EdgeCreate.createTime unique;
-
-create index EdgeCreateImpression.createTime unique;
-
-create index EdgeCreateTopic.createTime unique;
-create index EdgeCreatePlan.createTime unique;
-create index EdgeCreatePost.createTime unique;
-
+#create index EdgeCreateTopic.createTime unique;
+#create index EdgeCreatePlan.createTime unique;
+#create index EdgeCreatePost.createTime unique;
 
