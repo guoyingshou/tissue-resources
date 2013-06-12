@@ -18,6 +18,7 @@ create property User.displayName string;
 create property User.headline string;
 
 create property Verification.account link Account;
+create property Verification.code string;
 
 create class Node extends V;
 create class UserGeneratedContent extends Node;
@@ -46,33 +47,21 @@ create property UserGeneratedContent2.title string;
 
 create property Topic.tags embeddedset string;
 
-create class PlansTopic extends E;
-create class PostsPlan extends E;
-
-create class CommentsQuestion extends E;
-create class AnswersQuestion extends E;
-create class CommentsAnswer extends E;
-
-create class MessagesArticle extends E;
-create class RepliesMessage extends E;
+create class Contains extends E;
 
 create class Actions extends E;
-create class Owner extends Actions;
+create class Owns extends Actions;
 create class Member extends Actions;
 create class Friend extends Actions;
 create class Invite extends Actions;
 
+create property Actions.createTime datetime;
+
 #-----------------index ----------------------
-#create index Account.username unique;
-#create index Account.email unique;
-#create index Account.createTime unique;
+create index Account.username unique;
+create index Account.email unique;
+create index Account.createTime unique;
 
-#create index EdgeAction.createTime unique;
-#create index EdgeCreate.createTime unique;
-
-#create index EdgeCreateImpression.createTime unique;
-
-#create index EdgeCreateTopic.createTime unique;
-#create index EdgeCreatePlan.createTime unique;
-#create index EdgeCreatePost.createTime unique;
+create index Actions.createTime unique;
+create index Verification.code unique;
 

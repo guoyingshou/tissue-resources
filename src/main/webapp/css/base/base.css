@@ -1,3 +1,4 @@
+/**
 @font-face {
 	font-family: 'eightyshades';
 	src:url('/tissue/fonts/eightyshades.eot');
@@ -8,7 +9,17 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
+*/
+@font-face {
+	font-family: 'eightyshades';
+	src:url('http://image.tissue.com/tissue/fonts/eightyshades.eot');
+	src:url('http://image.tissue.com/tissue/fonts/eightyshades.eot?#iefix') format('embedded-opentype'),
+		url('http://image.tissue.com/tissue/fonts/eightyshades.woff') format('woff'),
+		url('http://image.tissue.com/tissue/fonts/eightyshades.ttf') format('truetype'),
+		url('http://image.tissue.com/tissue/fonts/eightyshades.svg#eightyshades') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 [data-icon]:before {
 	font-family: 'eightyshades';
 	content: attr(data-icon);
@@ -79,4 +90,3 @@ form, legend, ul, li, input, textarea {
     color: #999;
     font-size: 13px;
 }
-
