@@ -5,7 +5,7 @@ create class Account extends V;
 create class Verification extends V;
 create class Reset extends V;
 
-create class AccountsUser extends E;
+create class Belongs extends E;
 create class Impressions extends E;
 
 create property Account.username string;
@@ -19,6 +19,7 @@ create property User.headline string;
 
 create property Verification.account link Account;
 create property Verification.code string;
+
 
 create class Node extends V;
 create class UserGeneratedContent extends Node;
@@ -47,17 +48,17 @@ create property UserGeneratedContent2.title string;
 
 create property Topic.tags embeddedset string;
 
-create class Contains extends E;
 
+create class Contains extends E;
 create class Actions extends E;
 create class Owns extends Actions;
-create class Member extends Actions;
-create class Friend extends Actions;
-create class Invite extends Actions;
+create class Members extends Actions;
+create class Friends extends Actions;
+create class Invites extends Actions;
 
 create property Actions.createTime datetime;
 
-#-----------------index ----------------------
+
 create index Account.username unique;
 create index Account.email unique;
 create index Account.createTime unique;
